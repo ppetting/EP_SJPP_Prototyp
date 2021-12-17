@@ -1,0 +1,13 @@
+<resources>
+    <string name="app_name">EP_SJPP_Prototyp</string>
+    <string name="GemueseUndObst">Gemüse und Obst</string>
+    <string name="Getraenke">Getränke</string>
+    <string name="Apfel">Apfel</string>
+    <string name="Gurke">Gurke</string>
+    <string name="Wasser">Wasser</string>
+    <string name="Saft">Saft</string>
+    <string name="Sprudel">Sprudelwasser</string>
+    <string name="Still">stilles Wasser</string>
+    <string name="loeschen">Warenkorb leeren</string>
+
+</resources>
