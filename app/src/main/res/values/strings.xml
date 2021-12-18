@@ -9,5 +9,6 @@
     <string name="Sprudel">Sprudelwasser</string>
     <string name="Still">stilles Wasser</string>
     <string name="loeschen">Warenkorb leeren</string>
-
+    <string name="refresh">Warenkorb laden</string>
+    <string name="warenkorb">Warenkrob öffnen</string>
 </resources>

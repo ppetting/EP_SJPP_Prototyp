@@ -27,7 +27,9 @@ public class WarenkorbActivity extends AppCompatActivity {
         setContentView(R.layout.activity_warenkorb);
 
         ibtnLoeschen = findViewById(R.id.imageButtonLoeschen);
+        ibtnLoeschen.setImageResource(R.drawable.delete);
         ibtnrefresh = findViewById(R.id.imageButtonRefresh);
+        ibtnrefresh.setImageResource(R.drawable.refresh);
 
         ownLinearLayout = findViewById(R.id.LinearLayoutWarenkorb);
 

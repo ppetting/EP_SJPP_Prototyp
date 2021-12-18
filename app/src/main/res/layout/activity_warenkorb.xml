@@ -8,20 +8,19 @@
     tools:context=".WarenkorbActivity">
 
 
-
         <ImageButton
             android:id="@+id/imageButtonLoeschen"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
+            android:layout_width="200dp"
+            android:layout_height="200dp"
+
             android:contentDescription="@string/loeschen"
             tools:srcCompat="@tools:sample/avatars" />
 
         <ImageButton
             android:id="@+id/imageButtonRefresh"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
+            android:layout_width="200dp"
+            android:layout_height="200dp"
+            android:contentDescription="@string/refresh"
             tools:srcCompat="@tools:sample/avatars" />
 
 
