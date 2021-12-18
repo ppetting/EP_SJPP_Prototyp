@@ -18,11 +18,9 @@ public class WasserActivity extends AppCompatActivity {
 
         ibtnStill = findViewById(R.id.imageButtonStill);
         ibtnStill.setImageResource(R.drawable.stilleswasser);
-        ibtnStill.setTag(R.drawable.stilleswasser);
 
         ibtnSprudel = findViewById(R.id.imageButtonSprudel);
         ibtnSprudel.setImageResource(R.drawable.sprudelwasser);
-        ibtnSprudel.setTag(R.drawable.sprudelwasser);
 
         hilfMirDaddyDB = new DBHelferlein(this);
 

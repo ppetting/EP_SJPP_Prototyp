@@ -16,7 +16,6 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         ibtnWarenkorb = findViewById(R.id.imageButtonWarenkorb);
-
         ibtnGemueseUndObst = findViewById(R.id.imageButtonGemueseUndObst);
         ibtnGetraenke = findViewById(R.id.imageButtonGetraenke);
 
@@ -37,11 +36,9 @@ public class MainActivity extends AppCompatActivity {
         });
 
         ibtnWarenkorb.setOnClickListener(v -> {
-                Intent intentWarenkorb = new Intent(MainActivity.this, WarenkorbActivity.class);
-                startActivity(intentWarenkorb);
-                hilfMirDaddyDB.viewWarenkorb();
+               Intent intentWarenkorb = new Intent(MainActivity.this, WarenkorbActivity.class);
+               startActivity(intentWarenkorb);
         });
-
 
     }
 

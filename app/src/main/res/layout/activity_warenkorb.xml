@@ -1,15 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/LinearLayoutWarenkorb"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:orientation="vertical"
     tools:context=".WarenkorbActivity">
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal">
+
 
         <ImageButton
             android:id="@+id/imageButtonLoeschen"
@@ -18,5 +16,13 @@
             android:layout_weight="1"
             android:contentDescription="@string/loeschen"
             tools:srcCompat="@tools:sample/avatars" />
-    </LinearLayout>
-</ScrollView>
+
+        <ImageButton
+            android:id="@+id/imageButtonRefresh"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            tools:srcCompat="@tools:sample/avatars" />
+
+
+</LinearLayout>
