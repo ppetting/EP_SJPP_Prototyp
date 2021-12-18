@@ -9,6 +9,7 @@ public class MainActivity extends AppCompatActivity {
 
     ImageButton ibtnGemueseUndObst, ibtnGetraenke, ibtnWarenkorb;
     DBHelferlein hilfMirDaddyDB;
+    WarenkorbActivity warenkorbActivity;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

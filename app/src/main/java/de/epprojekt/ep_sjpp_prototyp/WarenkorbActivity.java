@@ -2,6 +2,7 @@ package de.epprojekt.ep_sjpp_prototyp;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Context;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageButton;
@@ -10,10 +11,9 @@ import android.widget.LinearLayout;
 
 public class WarenkorbActivity extends AppCompatActivity {
 
-    ImageButton ibtnLoeschen, ibtnRefresh;
+    ImageButton ibtnLoeschen, ibtnrefresh;
     DBHelferlein hilfMirDaddyDB;
     LinearLayout ownLinearLayout;
-
 
 
     @Override
@@ -22,7 +22,7 @@ public class WarenkorbActivity extends AppCompatActivity {
         setContentView(R.layout.activity_warenkorb);
 
         ibtnLoeschen = findViewById(R.id.imageButtonLoeschen);
-        ibtnRefresh = findViewById(R.id.imageButtonRefresh);
+        ibtnrefresh = findViewById(R.id.imageButtonRefresh);
 
         ownLinearLayout = findViewById(R.id.LinearLayoutWarenkorb);
 
@@ -35,14 +35,13 @@ public class WarenkorbActivity extends AppCompatActivity {
             }
         });
 
-        ibtnRefresh.setOnClickListener(new View.OnClickListener() {
+        ibtnrefresh.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                ImageView imageView = new ImageView(WarenkorbActivity.this);
-                imageView.setImageResource(R.drawable.apfel);
-                addView(imageView,200,200);
+                setPicture();
             }
         });
+
 
     }
 
@@ -51,6 +50,12 @@ public class WarenkorbActivity extends AppCompatActivity {
         params.setMargins(0,10,0,10);
         imageView.setLayoutParams(params);
         ownLinearLayout.addView(imageView);
+    }
+
+    public void setPicture(){
+        ImageView imageView = new ImageView(WarenkorbActivity.this);
+        imageView.setImageResource(R.drawable.apfel);
+        addView(imageView,200,200);
     }
 
 }
