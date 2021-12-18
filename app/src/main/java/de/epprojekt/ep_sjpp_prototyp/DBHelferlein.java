@@ -2,18 +2,16 @@ package de.epprojekt.ep_sjpp_prototyp;
 
 import android.content.ContentValues;
 import android.content.Context;
-import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.widget.ImageButton;
 
 
-
 public class DBHelferlein extends SQLiteOpenHelper {
 
     final String warenkorb = "Warenkorb";
-    int count = 1;
+    int count=1;
 
     public DBHelferlein(Context context) {
         super(context, "Sortiment.db",null,1);
@@ -33,9 +31,12 @@ public class DBHelferlein extends SQLiteOpenHelper {
 
         SQLiteDatabase database = this.getWritableDatabase();
 
-        Cursor cursor = database.rawQuery("SELECT COUNT(*) FROM " + warenkorb, null);
+       Cursor cursor = database.rawQuery("SELECT * FROM " + warenkorb, null);
 
-        cursor.moveToNext();
+
+        if(count>=1){
+            count = cursor.getCount()+1;
+        }
 
         Integer btnid = ibtn.getId();
         Integer bildpfad = (Integer) ibtn.getTag();

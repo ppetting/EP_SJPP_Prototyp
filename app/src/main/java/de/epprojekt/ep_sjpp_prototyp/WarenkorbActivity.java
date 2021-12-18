@@ -2,8 +2,6 @@ package de.epprojekt.ep_sjpp_prototyp;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import android.content.Intent;
-import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageButton;
