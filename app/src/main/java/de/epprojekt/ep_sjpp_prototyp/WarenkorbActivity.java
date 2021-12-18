@@ -2,18 +2,23 @@ package de.epprojekt.ep_sjpp_prototyp;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 
+import java.util.ArrayList;
+
 public class WarenkorbActivity extends AppCompatActivity {
 
     ImageButton ibtnLoeschen, ibtnrefresh;
     DBHelferlein hilfMirDaddyDB;
     LinearLayout ownLinearLayout;
+    int i = 0;
 
 
     @Override
@@ -38,7 +43,14 @@ public class WarenkorbActivity extends AppCompatActivity {
         ibtnrefresh.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                setPicture();
+
+                ArrayList<Integer> arrayListOfDrawablesID = hilfMirDaddyDB.createArrayListOfWarenkorb();
+
+                while( i < arrayListOfDrawablesID.size()){
+                    setPicture(arrayListOfDrawablesID.get(i));
+                    i++;
+                }
+
             }
         });
 
@@ -52,9 +64,10 @@ public class WarenkorbActivity extends AppCompatActivity {
         ownLinearLayout.addView(imageView);
     }
 
-    public void setPicture(){
+    @SuppressLint("ResourceType")
+    public void setPicture(int i){
         ImageView imageView = new ImageView(WarenkorbActivity.this);
-        imageView.setImageResource(R.drawable.apfel);
+        imageView.setImageResource(i);
         addView(imageView,200,200);
     }
 

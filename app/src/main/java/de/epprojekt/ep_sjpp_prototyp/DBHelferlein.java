@@ -9,6 +9,8 @@ import android.graphics.drawable.Drawable;
 import android.widget.ImageButton;
 
 import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Collections;
 
 
 public class DBHelferlein extends SQLiteOpenHelper {
@@ -22,7 +24,7 @@ public class DBHelferlein extends SQLiteOpenHelper {
 
     @Override
     public void onCreate(SQLiteDatabase db) {
-        db.execSQL("CREATE Table Warenkorb(id_key INTEGER primary key, btnID INTEGER, bild STRING)");
+        db.execSQL("CREATE TABLE IF NOT EXISTS Warenkorb(id_key INTEGER primary key, btnID INTEGER, bild INTEGER)");
     }
 
     @Override
@@ -30,25 +32,22 @@ public class DBHelferlein extends SQLiteOpenHelper {
         db.execSQL("DROP TABLE if EXISTS " + warenkorb);
     }
 
-    public long insertIntoWarenkorb(ImageButton ibtn) {
+    public long insertIntoWarenkorb(ImageButton ibtn, Integer bildInteger) {
 
         SQLiteDatabase database = this.getWritableDatabase();
 
         Cursor cursor = database.rawQuery("SELECT * FROM " + warenkorb, null);
 
-
         if (count >= 1) {
             count = cursor.getCount() + 1;
         }
 
-        Drawable bildpfad = ibtn.getDrawable();
         Integer btnid = ibtn.getId();
-
 
         ContentValues contentValues = new ContentValues();
         contentValues.put("id_key", count);
         contentValues.put("btnID", btnid);
-        contentValues.put("bild", String.valueOf(bildpfad));
+        contentValues.put("bild", bildInteger);
 
         count++;
         cursor.close();
@@ -63,19 +62,27 @@ public class DBHelferlein extends SQLiteOpenHelper {
     }
 
 
-    public ArrayList<String> createArrayListOfWarenkorb() {
+
+    public ArrayList<Integer> createArrayListOfWarenkorb() {
         SQLiteDatabase database = this.getReadableDatabase();
         Cursor cursor = database.rawQuery("SELECT bild FROM Warenkorb", null);
         cursor.moveToFirst();
-        ArrayList<String> arrayOfWarenkorbItems = new ArrayList<String>();
 
-        for (int i = 0; i < cursor.getCount(); i++) {
-            arrayOfWarenkorbItems.add(cursor.getString(i));
+        ArrayList<Integer> arrayOfWarenkorbItems = new ArrayList<>();
+
+        if(cursor.getCount() == 0){
+            arrayOfWarenkorbItems.clear();
         }
+
+        while(!cursor.isAfterLast()){
+            arrayOfWarenkorbItems.add(cursor.getInt(cursor.getColumnIndexOrThrow("bild")));
+            cursor.moveToNext();
+        }
+
+        Collections.sort(arrayOfWarenkorbItems);
 
         cursor.close();
         return arrayOfWarenkorbItems;
-
 
     }
 

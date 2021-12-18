@@ -27,14 +27,14 @@ public class WasserActivity extends AppCompatActivity {
         ibtnSprudel.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                hilfMirDaddyDB.insertIntoWarenkorb(ibtnSprudel);
+                hilfMirDaddyDB.insertIntoWarenkorb(ibtnSprudel, R.drawable.sprudelwasser);
             }
         });
 
         ibtnStill.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                hilfMirDaddyDB.insertIntoWarenkorb(ibtnStill);
+                hilfMirDaddyDB.insertIntoWarenkorb(ibtnStill, R.drawable.stilleswasser);
             }
         });
 }
