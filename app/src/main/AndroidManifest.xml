@@ -10,9 +10,6 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.EP_SJPP_Prototyp">
         <activity
-            android:name=".Toolbar"
-            android:exported="false" />
-        <activity
             android:name=".WarenkorbActivity"
             android:exported="false" />
         <activity
