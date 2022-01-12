@@ -5,13 +5,17 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.widget.ImageButton;
 
+import com.google.android.material.tabs.TabLayout;
+
 import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity {
 
     ImageButton ibtnGemueseUndObst, ibtnGetraenke, ibtnWarenkorb;
     DBHelferlein hilfMirDaddyDB;
+
     WarenkorbActivity warenkorbActivity;
+    int i = 0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -39,8 +43,9 @@ public class MainActivity extends AppCompatActivity {
         });
 
         ibtnWarenkorb.setOnClickListener(v -> {
-               Intent intentWarenkorb = new Intent(MainActivity.this, WarenkorbActivity.class);
-               startActivity(intentWarenkorb);
+            Intent intentWarenkorb = new Intent(MainActivity.this, WarenkorbActivity.class);
+            startActivity(intentWarenkorb);
+
         });
 
     }
