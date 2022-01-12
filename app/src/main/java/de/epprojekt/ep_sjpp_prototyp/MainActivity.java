@@ -16,9 +16,6 @@ public class MainActivity extends AppCompatActivity {
     ImageButton ibtnGemueseUndObst, ibtnGetraenke, ibtnWarenkorb;
     DBHelferlein hilfMirDaddyDB;
 
-    WarenkorbActivity warenkorbActivity;
-    int i = 0;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
