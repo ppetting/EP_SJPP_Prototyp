@@ -1,16 +1,12 @@
 package de.epprojekt.ep_sjpp_prototyp;
 
 import androidx.appcompat.app.AppCompatActivity;
-
 import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
-import android.view.View;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
-import android.widget.ScrollView;
-
 import java.util.ArrayList;
 
 public class WarenkorbActivity extends AppCompatActivity {
@@ -19,7 +15,6 @@ public class WarenkorbActivity extends AppCompatActivity {
     DBHelferlein hilfMirDaddyDB;
     LinearLayout ownLinearLayout;
     int i = 0;
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

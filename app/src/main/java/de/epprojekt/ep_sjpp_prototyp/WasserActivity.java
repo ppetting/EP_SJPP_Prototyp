@@ -1,9 +1,7 @@
 package de.epprojekt.ep_sjpp_prototyp;
 
 import androidx.appcompat.app.AppCompatActivity;
-
 import android.os.Bundle;
-import android.view.View;
 import android.widget.ImageButton;
 
 public class WasserActivity extends AppCompatActivity {
@@ -24,18 +22,8 @@ public class WasserActivity extends AppCompatActivity {
 
         hilfMirDaddyDB = new DBHelferlein(this);
 
-        ibtnSprudel.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                hilfMirDaddyDB.insertIntoWarenkorb(ibtnSprudel, R.drawable.sprudelwasser);
-            }
-        });
+        ibtnSprudel.setOnClickListener(v -> hilfMirDaddyDB.insertIntoWarenkorb(ibtnSprudel, R.drawable.sprudelwasser));
 
-        ibtnStill.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                hilfMirDaddyDB.insertIntoWarenkorb(ibtnStill, R.drawable.stilleswasser);
-            }
-        });
+        ibtnStill.setOnClickListener(v -> hilfMirDaddyDB.insertIntoWarenkorb(ibtnStill, R.drawable.stilleswasser));
 }
 }
