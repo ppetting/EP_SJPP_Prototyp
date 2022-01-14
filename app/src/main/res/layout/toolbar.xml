@@ -8,4 +8,12 @@
     android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
     app:popupTheme="@style/ThemeOverlay.AppCompat.Light">
 
+    <ImageButton
+        android:id="@+id/imageButtonHome"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:scaleType="fitCenter">
+
+    </ImageButton>
+
 </androidx.appcompat.widget.Toolbar>

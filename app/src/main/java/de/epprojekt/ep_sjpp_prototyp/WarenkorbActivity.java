@@ -11,7 +11,7 @@ import java.util.ArrayList;
 
 public class WarenkorbActivity extends AppCompatActivity {
 
-    ImageButton ibtnLoeschen;
+    ImageButton ibtnLoeschen, ibtnHome;
     DBHelferlein hilfMirDaddyDB;
     LinearLayout ownLinearLayout;
     int i = 0;
@@ -20,6 +20,9 @@ public class WarenkorbActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_warenkorb);
+
+        ibtnHome = findViewById(R.id.imageButtonHome);
+        ibtnHome.setImageResource(R.drawable.home);
 
         ibtnLoeschen = findViewById(R.id.imageButtonLoeschen);
         ibtnLoeschen.setImageResource(R.drawable.delete);
@@ -40,6 +43,11 @@ public class WarenkorbActivity extends AppCompatActivity {
             Intent refresh = new Intent(WarenkorbActivity.this,WarenkorbActivity.class);
             startActivity(refresh);
             finish();
+        });
+
+        ibtnHome.setOnClickListener(v -> {
+            Intent intentHome = new Intent(WarenkorbActivity.this,MainActivity.class);
+            startActivity(intentHome);
         });
 
     }
