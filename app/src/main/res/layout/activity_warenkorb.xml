@@ -19,6 +19,7 @@
                     android:layout_width="200dp"
                     android:layout_height="200dp"
                     android:contentDescription="@string/loeschen"
+                    android:scaleType="fitCenter"
                     tools:srcCompat="@tools:sample/avatars" />
 
         </LinearLayout>

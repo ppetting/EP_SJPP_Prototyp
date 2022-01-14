@@ -15,7 +15,7 @@ import java.util.ArrayList;
 
 public class WarenkorbActivity extends AppCompatActivity {
 
-    ImageButton ibtnLoeschen, ibtnrefresh;
+    ImageButton ibtnLoeschen;
     DBHelferlein hilfMirDaddyDB;
     LinearLayout ownLinearLayout;
     int i = 0;
@@ -40,30 +40,28 @@ public class WarenkorbActivity extends AppCompatActivity {
             i++;
         }
 
-        ibtnLoeschen.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                hilfMirDaddyDB.deletefromWarenkorb();
-                Intent refresh = new Intent(WarenkorbActivity.this,WarenkorbActivity.class);
-                startActivity(refresh);
-                finish();
-            }
+        ibtnLoeschen.setOnClickListener(v -> {
+            hilfMirDaddyDB.deletefromWarenkorb();
+            Intent refresh = new Intent(WarenkorbActivity.this,WarenkorbActivity.class);
+            startActivity(refresh);
+            finish();
         });
 
     }
 
-    public void addView (ImageView imageView, int width, int height){
+    public void addView (ImageButton imageButton, int width, int height){
         LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(width,height);
         params.setMargins(0,10,0,10);
-        imageView.setLayoutParams(params);
-        ownLinearLayout.addView(imageView);
+        imageButton.setLayoutParams(params);
+        ownLinearLayout.addView(imageButton);
     }
 
     @SuppressLint("ResourceType")
     public void setPicture(int i){
-        ImageView imageView = new ImageView(WarenkorbActivity.this);
-        imageView.setImageResource(i);
-        addView(imageView,400,400);
+        ImageButton imageButton = new ImageButton(WarenkorbActivity.this);
+        imageButton.setImageResource(i);
+        imageButton.setScaleType(ImageView.ScaleType.FIT_CENTER);
+        addView(imageButton,400,400);
     }
 
 }

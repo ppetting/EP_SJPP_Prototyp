@@ -12,6 +12,7 @@
         android:layout_height="200dp"
         android:layout_weight="1"
         android:contentDescription="@string/Gurke"
+        android:scaleType="fitCenter"
         tools:srcCompat="@tools:sample/avatars" />
 
     <ImageButton
@@ -20,5 +21,6 @@
         android:layout_height="200dp"
         android:layout_weight="1"
         android:contentDescription="@string/Apfel"
+        android:scaleType="fitCenter"
         tools:srcCompat="@tools:sample/avatars" />
 </LinearLayout>
