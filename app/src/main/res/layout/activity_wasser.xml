@@ -32,4 +32,5 @@
         android:contentDescription="@string/Still"
         android:scaleType="fitCenter"
         tools:srcCompat="@tools:sample/avatars" />
+
 </LinearLayout>
