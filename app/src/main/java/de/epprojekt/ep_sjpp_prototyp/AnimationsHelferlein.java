@@ -1,11 +1,11 @@
 package de.epprojekt.ep_sjpp_prototyp;
 
+import android.animation.ObjectAnimator;
 import android.view.View;
-import android.view.animation.AccelerateDecelerateInterpolator;
-import android.view.animation.AlphaAnimation;
 import android.view.animation.Animation;
 import android.view.animation.AnimationSet;
 import android.view.animation.BounceInterpolator;
+import android.view.animation.DecelerateInterpolator;
 import android.view.animation.ScaleAnimation;
 import android.view.animation.TranslateAnimation;
 import android.widget.ImageButton;
@@ -15,43 +15,31 @@ public class AnimationsHelferlein {
 
     public void ownAnimation( ImageButton item, int startX, int startY, int destinationX, int destinationY){
 
-        AnimationSet animationToLeftSide = new AnimationSet(true);
+        //gewähltes icon kleiner machen und nach rechts bewegen
+        AnimationSet scaleAndMoveToRightAnimationSet = new AnimationSet(false);
 
-        ScaleAnimation scaleAnimationToLeft = new ScaleAnimation(1,(float)0.8,1,(float)0.8);
-        scaleAnimationToLeft.setInterpolator(new BounceInterpolator());
-        scaleAnimationToLeft.setDuration(200);
-        scaleAnimationToLeft.setFillAfter(true);
-        animationToLeftSide.addAnimation(scaleAnimationToLeft);
+        ScaleAnimation scaleToRight = new ScaleAnimation(1,(float)0.8,1,(float)0.8);
+        scaleToRight.setDuration(200);
+        scaleAndMoveToRightAnimationSet.addAnimation(scaleToRight);
 
-        TranslateAnimation translateToLeftAnimation = new TranslateAnimation(startX, destinationX, startY, startY);
-        translateToLeftAnimation.setInterpolator(new AccelerateDecelerateInterpolator());
-        translateToLeftAnimation.setDuration(200);
-        animationToLeftSide.addAnimation(translateToLeftAnimation);
+        TranslateAnimation translateToRight = new TranslateAnimation(startX,destinationX,startY,startY);
+        translateToRight.setDuration(200);
+        scaleAndMoveToRightAnimationSet.addAnimation(translateToRight);
 
-        AlphaAnimation alpha = new AlphaAnimation(1, (float) 0.8);
-        alpha.setDuration(200);
-        animationToLeftSide.addAnimation(alpha);
+        //gewähltes icon nach oben auf den warenkorb bewegen
+        AnimationSet moveupAnimationSet = new AnimationSet(false);
 
-        final AnimationSet animationToBottom = new AnimationSet(true);
-        animationToBottom.setInterpolator(new BounceInterpolator());
+        TranslateAnimation translateUpwards = new TranslateAnimation(destinationX,destinationX,startY,destinationY);
+        translateUpwards.setDuration(200);
+        moveupAnimationSet.addAnimation(translateUpwards);
 
-        ScaleAnimation scaleToBottomAnimation = new ScaleAnimation((float) 0.8, (float) 0.1, (float) 0.8, (float) 0.1);
-        scaleToBottomAnimation.setDuration(400);
-        scaleToBottomAnimation.setFillAfter(true);
-        animationToBottom.addAnimation(scaleToBottomAnimation);
+        item.startAnimation(scaleAndMoveToRightAnimationSet);
+        item.startAnimation(scaleToRight);
 
-        TranslateAnimation translateToBottomAnimation = new TranslateAnimation(destinationX, destinationX, startY, destinationY);
-        translateToBottomAnimation.setDuration(800);
-        animationToBottom.addAnimation(translateToBottomAnimation);
-
-        AlphaAnimation alphaToBottom = new AlphaAnimation((float) 0.8, (float) 0.6);
-        alphaToBottom.setDuration(800);
-        animationToBottom.addAnimation(alphaToBottom);
-
-        animationToLeftSide.setAnimationListener(new Animation.AnimationListener() {
+        scaleAndMoveToRightAnimationSet.setAnimationListener(new Animation.AnimationListener() {
             @Override
             public void onAnimationStart(Animation animation) {
-                item.setVisibility(View.VISIBLE);
+                item.setVisibility(ImageButton.VISIBLE);
             }
 
             @Override
@@ -64,7 +52,7 @@ public class AnimationsHelferlein {
             }
         });
 
-        animationToBottom.setAnimationListener(new Animation.AnimationListener() {
+        moveupAnimationSet.setAnimationListener(new Animation.AnimationListener() {
             @Override
             public void onAnimationStart(Animation animation) {
 
@@ -72,16 +60,14 @@ public class AnimationsHelferlein {
 
             @Override
             public void onAnimationEnd(Animation animation) {
-                item.setVisibility(View.GONE);
+                item.setVisibility(ImageButton.GONE);
             }
 
             @Override
             public void onAnimationRepeat(Animation animation) {
 
             }
-
-    });
-
+        });
     }
 }
 
