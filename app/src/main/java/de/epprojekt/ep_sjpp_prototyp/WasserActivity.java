@@ -12,7 +12,6 @@ public class WasserActivity extends AppCompatActivity {
     ImageButton ibtnStill, ibtnSprudel, ibtnHome, ibtnWarenkorb;
     DBHelferlein hilfMirDaddyDB;
     AnimationsHelferlein hilfMirMommyAnimation;
-    int startX, startY, destinationX, destinationY;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -35,32 +34,6 @@ public class WasserActivity extends AppCompatActivity {
         hilfMirMommyAnimation = new AnimationsHelferlein();
 
 
-        ViewTreeObserver viewTreeObserver = ibtnSprudel.getViewTreeObserver();
-        viewTreeObserver.addOnGlobalLayoutListener(new ViewTreeObserver.OnGlobalLayoutListener() {
-            @Override
-            public void onGlobalLayout() {
-                ibtnSprudel.getViewTreeObserver().removeOnGlobalLayoutListener(this);
-
-                int[] fromLocation = new int[2];
-                ibtnSprudel.getLocationInWindow(fromLocation);
-                startX = fromLocation[0];
-                startY = fromLocation[1];
-            }
-        });
-
-        ViewTreeObserver viewTreeObserver2 = ibtnWarenkorb.getViewTreeObserver();
-        viewTreeObserver2.addOnGlobalLayoutListener(new ViewTreeObserver.OnGlobalLayoutListener() {
-            @Override
-            public void onGlobalLayout() {
-                ibtnWarenkorb.getViewTreeObserver().removeOnGlobalLayoutListener(this);
-
-                int[] fromLocation = new int[2];
-                ibtnWarenkorb.getLocationInWindow(fromLocation);
-                destinationX = fromLocation[0];
-                destinationY = fromLocation[1];
-            }
-        });
-
         ibtnWarenkorb.setOnClickListener(v -> {
             Intent intentWarenkorb = new Intent(WasserActivity.this, WarenkorbActivity.class);
             startActivity(intentWarenkorb);
@@ -73,12 +46,13 @@ public class WasserActivity extends AppCompatActivity {
 
         ibtnSprudel.setOnClickListener(v -> {
             hilfMirDaddyDB.insertIntoWarenkorb(ibtnSprudel, R.drawable.sprudelwasser);
-            hilfMirMommyAnimation.ownAnimation(ibtnSprudel,startX,startY,destinationX,destinationY);
+            hilfMirMommyAnimation.ownAnimation(ibtnSprudel, ibtnWarenkorb);
         });
 
-        ibtnStill.setOnClickListener(v ->
-                hilfMirDaddyDB.insertIntoWarenkorb(ibtnStill, R.drawable.stilleswasser)
-        );
+        ibtnStill.setOnClickListener(v -> {
+            hilfMirDaddyDB.insertIntoWarenkorb(ibtnStill, R.drawable.stilleswasser);
+            hilfMirMommyAnimation.ownAnimation(ibtnStill, ibtnWarenkorb);
+        });
 
     }
 

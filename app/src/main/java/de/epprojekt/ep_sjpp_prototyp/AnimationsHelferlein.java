@@ -1,49 +1,48 @@
 package de.epprojekt.ep_sjpp_prototyp;
 
-import android.animation.ObjectAnimator;
-import android.view.View;
 import android.view.animation.Animation;
 import android.view.animation.AnimationSet;
-import android.view.animation.BounceInterpolator;
-import android.view.animation.DecelerateInterpolator;
 import android.view.animation.ScaleAnimation;
 import android.view.animation.TranslateAnimation;
 import android.widget.ImageButton;
 
-
 public class AnimationsHelferlein {
 
-    public void ownAnimation( ImageButton item, int startX, int startY, int destinationX, int destinationY){
+    public void ownAnimation(ImageButton item, ImageButton warenkorb){
 
-        //gewähltes icon kleiner machen und nach rechts bewegen
-        AnimationSet scaleAndMoveToRightAnimationSet = new AnimationSet(false);
+        //ANIMATIONSET
+        AnimationSet animationSet = new AnimationSet(false);
 
-        ScaleAnimation scaleToRight = new ScaleAnimation(1,(float)0.8,1,(float)0.8);
-        scaleToRight.setDuration(200);
-        scaleAndMoveToRightAnimationSet.addAnimation(scaleToRight);
+        //KLEINER WERDEN
+        ScaleAnimation scaleAnimation = new ScaleAnimation(1, (float) 0.15, 1, (float) 0.15);
+        scaleAnimation.setDuration(800);
+        animationSet.addAnimation(scaleAnimation);
 
-        TranslateAnimation translateToRight = new TranslateAnimation(startX,destinationX,startY,startY);
-        translateToRight.setDuration(200);
-        scaleAndMoveToRightAnimationSet.addAnimation(translateToRight);
+        //NACH RECHTS FAHREN
+        TranslateAnimation translateToRightAnimation = new TranslateAnimation(0, warenkorb.getX()-item.getX(), 0, 0);
+        translateToRightAnimation.setDuration(800);
+        translateToRightAnimation.setStartOffset(800);
+        animationSet.addAnimation(translateToRightAnimation);
 
-        //gewähltes icon nach oben auf den warenkorb bewegen
-        AnimationSet moveupAnimationSet = new AnimationSet(false);
+        //NACH OBEN FAHREN
+        TranslateAnimation translateToTopAnimation = new TranslateAnimation(0, 0,0,warenkorb.getY()-item.getY());
+        translateToTopAnimation.setDuration(800);
+        translateToTopAnimation.setStartOffset(1600);
+        animationSet.addAnimation(translateToTopAnimation);
 
-        TranslateAnimation translateUpwards = new TranslateAnimation(destinationX,destinationX,startY,destinationY);
-        translateUpwards.setDuration(200);
-        moveupAnimationSet.addAnimation(translateUpwards);
+        //ANIMATIONSET CALL
+        item.startAnimation(animationSet);
 
-        item.startAnimation(scaleAndMoveToRightAnimationSet);
-        item.startAnimation(scaleToRight);
-
-        scaleAndMoveToRightAnimationSet.setAnimationListener(new Animation.AnimationListener() {
+        animationSet.setAnimationListener(new Animation.AnimationListener() {
             @Override
             public void onAnimationStart(Animation animation) {
                 item.setVisibility(ImageButton.VISIBLE);
+
             }
 
             @Override
             public void onAnimationEnd(Animation animation) {
+
             }
 
             @Override
@@ -52,22 +51,6 @@ public class AnimationsHelferlein {
             }
         });
 
-        moveupAnimationSet.setAnimationListener(new Animation.AnimationListener() {
-            @Override
-            public void onAnimationStart(Animation animation) {
-
-            }
-
-            @Override
-            public void onAnimationEnd(Animation animation) {
-                item.setVisibility(ImageButton.GONE);
-            }
-
-            @Override
-            public void onAnimationRepeat(Animation animation) {
-
-            }
-        });
     }
 }
 
