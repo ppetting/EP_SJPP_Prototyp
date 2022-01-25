@@ -37,7 +37,7 @@ public class MainActivity extends AppCompatActivity {
         ibtnGetraenke.setImageResource(R.drawable.getraenke);
 
         ibtnSoundGetraenke = findViewById(R.id.imageButtonSoundGetraenke);
-        ibtnSoundGetraenke.setImageResource(R.drawable.refresh);
+        ibtnSoundGetraenke.setImageResource(R.drawable.klang);
 
         //SOUND
         final MediaPlayer mediaPlayer = MediaPlayer.create(this, R.raw.getraenke);
