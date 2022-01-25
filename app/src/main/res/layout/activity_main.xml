@@ -25,6 +25,14 @@
         tools:srcCompat="@tools:sample/avatars" />
 
     <ImageButton
+        android:id="@+id/imageButtonSoundGetraenke"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:layout_marginLeft="70dp"
+        android:scaleType="fitCenter"
+        app:srcCompat="@drawable/refresh" />
+
+    <ImageButton
         android:id="@+id/imageButtonGemueseUndObst"
         android:layout_width="200dp"
         android:layout_height="200dp"
