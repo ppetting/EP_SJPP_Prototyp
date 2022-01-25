@@ -5,7 +5,6 @@ import androidx.appcompat.widget.Toolbar;
 import android.content.Intent;
 import android.media.MediaPlayer;
 import android.os.Bundle;
-import android.view.View;
 import android.widget.ImageButton;
 
 public class MainActivity extends AppCompatActivity {
@@ -59,12 +58,9 @@ public class MainActivity extends AppCompatActivity {
             startActivity(intentWarenkorb);
         });
 
-        ibtnMenue.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intentMenue = new Intent(MainActivity.this, MenueActivity.class);
-                startActivity(intentMenue);
-            }
+        ibtnMenue.setOnClickListener(v -> {
+            Intent intentMenue = new Intent(MainActivity.this, MenueActivity.class);
+            startActivity(intentMenue);
         });
 
     }

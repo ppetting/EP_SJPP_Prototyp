@@ -16,29 +16,50 @@
         app:layout_constraintTop_toTopOf = "parent"
         />
 
-    <ImageButton
-        android:id="@+id/imageButtonGetraenke"
-        android:layout_width="200dp"
-        android:layout_height="200dp"
-        android:contentDescription="@string/Getraenke"
-        android:scaleType="fitCenter"
-        tools:srcCompat="@tools:sample/avatars" />
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
 
-    <ImageButton
-        android:id="@+id/imageButtonSoundGetraenke"
-        android:layout_width="50dp"
-        android:layout_height="50dp"
-        android:layout_marginLeft="70dp"
-        android:scaleType="fitCenter"
-        app:srcCompat="@drawable/refresh" />
+        <ImageButton
+            android:id="@+id/imageButtonSoundGetraenke"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_marginLeft="70dp"
+            android:scaleType="fitCenter"
+            app:srcCompat="@drawable/klang" />
 
-    <ImageButton
-        android:id="@+id/imageButtonGemueseUndObst"
-        android:layout_width="200dp"
-        android:layout_height="200dp"
-        android:contentDescription="@string/GemueseUndObst"
-        android:scaleType="fitCenter"
-        tools:srcCompat="@tools:sample/avatars" />
+        <ImageButton
+            android:id="@+id/imageButtonGetraenke"
+            android:layout_width="200dp"
+            android:layout_height="200dp"
+            android:contentDescription="@string/Getraenke"
+            android:scaleType="fitCenter"
+            tools:srcCompat="@tools:sample/avatars" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <ImageButton
+            android:id="@+id/imageButtonGemueseUndObst"
+            android:layout_width="200dp"
+            android:layout_height="200dp"
+            android:contentDescription="@string/GemueseUndObst"
+            android:scaleType="fitCenter"
+            tools:srcCompat="@tools:sample/avatars" />
+
+        <ImageButton
+            android:id="@+id/imageButtonSoundGemueseundObst"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_marginLeft="70dp"
+            android:scaleType="fitCenter"
+            app:srcCompat="@drawable/klang" />
+    </LinearLayout>
 
 
 </LinearLayout>
