@@ -15,7 +15,7 @@
         />
 
     <TextView
-        android:id="@+id/textTitel"
+        android:id="@+id/TVtextTitel"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="100dp"
@@ -23,24 +23,53 @@
         android:textSize="24dp" />
 
     <EditText
-        android:id = "@+id/name"
+        android:id = "@+id/ETname"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:hint="Name"
         android:textSize="24dp"
-        android:layout_below="@+id/textTitel"
+        android:layout_below="@+id/TVtextTitel"
         android:inputType="textPersonName"
         />
 
-    <Button
-        android:id="@+id/btnErstellen"
+    <EditText
+        android:id = "@+id/ETgruen"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:hint="grüner Flag"
         android:textSize="24dp"
-        android:text="Neuen Benutzer anlegen"
-        android:layout_marginTop="30dp"
-        android:layout_below="@id/name"
+        android:layout_below="@+id/ETname"
+        android:inputType="numberDecimal"
         />
+
+    <EditText
+        android:id = "@+id/ETrot"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="roter Flag"
+        android:textSize="24dp"
+        android:layout_below="@+id/ETgruen"
+        android:inputType="numberDecimal"
+        />
+
+    <EditText
+        android:id = "@+id/ETblau"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="blauer Flag"
+        android:textSize="24dp"
+        android:layout_below="@+id/ETrot"
+        android:inputType="numberDecimal"
+        />
+
+    <Button
+        android:id="@+id/btnCreate"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/ETblau"
+        android:layout_marginTop="30dp"
+        android:text="Neuen Benutzer anlegen"
+        android:textSize="24dp" />
 
     <Button
         android:id="@+id/btnUpdate"
@@ -48,7 +77,16 @@
         android:layout_height="wrap_content"
         android:textSize="24dp"
         android:text="Benutzer wechseln"
-        android:layout_below="@id/btnErstellen"
+        android:layout_below="@id/btnCreate"
+        />
+
+    <Button
+        android:id="@+id/btnChange"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textSize="24dp"
+        android:text="Benutzer bearbeiten"
+        android:layout_below="@id/btnUpdate"
         />
 
     <Button
@@ -57,7 +95,7 @@
         android:layout_height="wrap_content"
         android:textSize="24dp"
         android:text="Benutzer löschen"
-        android:layout_below="@id/btnUpdate"
+        android:layout_below="@id/btnChange"
         />
 
     <Button
