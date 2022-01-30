@@ -10,6 +10,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.EP_SJPP_Prototyp">
         <activity
+            android:name=".DeletePageActivity"
+            android:exported="false" />
+        <activity
             android:name=".MenueActivity"
             android:exported="false" />
         <activity

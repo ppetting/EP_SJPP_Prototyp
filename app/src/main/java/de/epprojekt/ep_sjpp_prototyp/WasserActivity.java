@@ -4,7 +4,6 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.view.ViewTreeObserver;
 import android.widget.ImageButton;
 
 public class WasserActivity extends AppCompatActivity {

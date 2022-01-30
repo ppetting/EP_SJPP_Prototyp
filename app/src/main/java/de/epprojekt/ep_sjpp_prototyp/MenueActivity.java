@@ -2,8 +2,8 @@ package de.epprojekt.ep_sjpp_prototyp;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
-import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
@@ -33,18 +33,22 @@ public class MenueActivity extends AppCompatActivity {
          benutzerAnzeigen = findViewById(R.id.btnView);
 
 
-         benutzerAnlegen.setOnClickListener(new View.OnClickListener() {
-             @Override
-             public void onClick(View v) {
-                 String nameTXT = name.getText().toString();
-                 Integer gruenerFlagTXT = Integer.parseInt(gruenerFlag.getText().toString());
-                 Integer roterFlagTXT = Integer.parseInt(roterFlag.getText().toString());
-                 Integer blauerFlagTXT = Integer.parseInt(blauerFlag.getText().toString());
+         benutzerAnlegen.setOnClickListener(v -> {
+             String nameTXT = name.getText().toString();
+             Integer gruenerFlagTXT = Integer.parseInt(gruenerFlag.getText().toString());
+             Integer roterFlagTXT = Integer.parseInt(roterFlag.getText().toString());
+             Integer blauerFlagTXT = Integer.parseInt(blauerFlag.getText().toString());
 
-                 hilfMirDaddyDB.insertIntoUserdaten(nameTXT,gruenerFlagTXT,roterFlagTXT,blauerFlagTXT);
-                 Toast.makeText(MenueActivity.this,"Benutzer wurde angelegt", Toast.LENGTH_SHORT).show();
-             }
+             hilfMirDaddyDB.insertIntoUserdaten(nameTXT,gruenerFlagTXT,roterFlagTXT,blauerFlagTXT);
+             Toast.makeText(MenueActivity.this,"Benutzer wurde angelegt", Toast.LENGTH_SHORT).show();
          });
+
+         benutzerLoeschen.setOnClickListener(v -> {
+             Intent intentDeltePage = new Intent(MenueActivity.this,DeletePageActivity.class);
+             startActivity(intentDeltePage);
+         });
+
+
 
 
     }

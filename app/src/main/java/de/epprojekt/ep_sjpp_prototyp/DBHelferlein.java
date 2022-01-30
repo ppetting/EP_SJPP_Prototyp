@@ -93,7 +93,6 @@ public class DBHelferlein extends SQLiteOpenHelper {
     }
 
     //USERDATEN FUNKTIONEN
-
     public long insertIntoUserdaten(String username, Integer flaggruen, Integer flagblau, Integer flagrot) {
 
         SQLiteDatabase database = this.getWritableDatabase();
@@ -117,6 +116,31 @@ public class DBHelferlein extends SQLiteOpenHelper {
         return database.insert(userdaten, null, contentValues);
 
     }
+
+    public ArrayList<String> createArrayListOfUserdaten() {
+
+        SQLiteDatabase database = this.getReadableDatabase();
+
+        Cursor cursor = database.rawQuery("SELECT username FROM Userdaten", null);
+        cursor.moveToFirst();
+
+        ArrayList<String> arrayOfUsers = new ArrayList<>();
+
+        if(cursor.getCount() == 0){
+            arrayOfUsers.clear();
+        }
+
+        while(!cursor.isAfterLast()){
+            arrayOfUsers.add(cursor.getString(cursor.getColumnIndexOrThrow("username")));
+            cursor.moveToNext();
+        }
+
+        Collections.sort(arrayOfUsers);
+
+        cursor.close();
+        return arrayOfUsers;
+    }
+
 
 
 }
