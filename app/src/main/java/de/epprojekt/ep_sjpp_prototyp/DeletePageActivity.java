@@ -47,13 +47,13 @@ public class DeletePageActivity extends AppCompatActivity {
     public void setPicture (String i){
         Button button = new Button(DeletePageActivity.this);
         button.setText(i);
+        button.setBackgroundColor(grandbudapesthotelrosa);
         button.setOnClickListener(v -> {
            hilfMirDaddyDB.deletefromUserdaten(i);
            Intent refresh = new Intent(DeletePageActivity.this,DeletePageActivity.class);
            startActivity(refresh);
            finish();
         });
-        button.setBackgroundColor(grandbudapesthotelrosa);
         addView(button,400,400);
     }
 

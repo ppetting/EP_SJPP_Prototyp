@@ -11,6 +11,11 @@ public class WasserActivity extends AppCompatActivity {
     ImageButton ibtnStill, ibtnSprudel, ibtnHome, ibtnWarenkorb;
     DBHelferlein hilfMirDaddyDB;
     AnimationsHelferlein hilfMirMommyAnimation;
+    int i = 0;
+    int j = 0;
+    String itemname1 = "Sprudelwasser";
+    String itemname2 = "Stilleswasser";
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -33,6 +38,7 @@ public class WasserActivity extends AppCompatActivity {
         hilfMirMommyAnimation = new AnimationsHelferlein();
 
 
+
         ibtnWarenkorb.setOnClickListener(v -> {
             Intent intentWarenkorb = new Intent(WasserActivity.this, WarenkorbActivity.class);
             startActivity(intentWarenkorb);
@@ -44,13 +50,15 @@ public class WasserActivity extends AppCompatActivity {
         });
 
         ibtnSprudel.setOnClickListener(v -> {
-            hilfMirDaddyDB.insertIntoWarenkorb(ibtnSprudel, R.drawable.sprudelwasser);
+            hilfMirDaddyDB.insertIntoWarenkorb(ibtnSprudel, R.drawable.sprudelwasser, itemname1+i);
             hilfMirMommyAnimation.ownAnimation(ibtnSprudel, ibtnWarenkorb);
+            i++;
         });
 
         ibtnStill.setOnClickListener(v -> {
-            hilfMirDaddyDB.insertIntoWarenkorb(ibtnStill, R.drawable.stilleswasser);
+            hilfMirDaddyDB.insertIntoWarenkorb(ibtnStill, R.drawable.stilleswasser, itemname2+j);
             hilfMirMommyAnimation.ownAnimation(ibtnStill, ibtnWarenkorb);
+            j++;
         });
 
     }

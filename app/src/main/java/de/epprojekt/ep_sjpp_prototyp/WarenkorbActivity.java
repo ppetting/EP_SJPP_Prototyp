@@ -15,6 +15,7 @@ public class WarenkorbActivity extends AppCompatActivity {
     ImageButton ibtnLoeschen, ibtnHome;
     DBHelferlein hilfMirDaddyDB;
     LinearLayout ownLinearLayout;
+    int j = 0;
     int i = 0;
 
     @Override
@@ -33,11 +34,14 @@ public class WarenkorbActivity extends AppCompatActivity {
         hilfMirDaddyDB = new DBHelferlein(this);
 
         ArrayList<Integer> arrayListOfDrawablesID = hilfMirDaddyDB.createArrayListOfWarenkorb();
+        ArrayList<String> arrayListOfWarenkorbitems = hilfMirDaddyDB.createArrayListOfWarenkorbItems();
 
         while(i < arrayListOfDrawablesID.size()){
-            setPicture(arrayListOfDrawablesID.get(i));
+            setPicture(arrayListOfDrawablesID.get(i),arrayListOfWarenkorbitems.get(i));
             i++;
         }
+
+
 
         ibtnLoeschen.setOnClickListener(v -> {
             hilfMirDaddyDB.deleteCompletefromWarenkorb();
@@ -61,10 +65,20 @@ public class WarenkorbActivity extends AppCompatActivity {
     }
 
     @SuppressLint("ResourceType")
-    public void setPicture(int i){
+    public void setPicture(Integer i, String j){
         ImageButton imageButton = new ImageButton(WarenkorbActivity.this);
         imageButton.setImageResource(i);
         imageButton.setScaleType(ImageView.ScaleType.FIT_CENTER);
+
+        imageButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                hilfMirDaddyDB.deleteIndividuallyfromWarenkorb(j);
+                Intent refresh = new Intent(WarenkorbActivity.this,WarenkorbActivity.class);
+                startActivity(refresh);
+                finish();
+            }
+        });
         addView(imageButton,400,400);
     }
 

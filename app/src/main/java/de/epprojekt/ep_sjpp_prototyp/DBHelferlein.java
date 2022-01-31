@@ -27,7 +27,7 @@ public class DBHelferlein extends SQLiteOpenHelper {
     @SuppressLint("SQLiteString")
     @Override
     public void onCreate(SQLiteDatabase db) {
-        db.execSQL("CREATE TABLE IF NOT EXISTS Warenkorb(id_key INTEGER primary key, btnID INTEGER, bildwert INTEGER)");
+        db.execSQL("CREATE TABLE IF NOT EXISTS Warenkorb(id_key INTEGER primary key, btnID INTEGER, bildwert INTEGER, itemname STRING)");
         db.execSQL("CREATE TABLE IF NOT EXISTS Sortiment(id_key INTEGER primary key, bildname TEXT, bild BLOB,flag TEXT)");
         db.execSQL("CREATE TABLE IF NOT EXISTS Userdaten(id_key INTEGER primary key, username STRING, flaggruen INTEGER, flagblau INETGER, flagrot INTEGER)");
     }
@@ -40,7 +40,7 @@ public class DBHelferlein extends SQLiteOpenHelper {
     }
 
     //WARENKORB FUNKTIONEN
-    public long insertIntoWarenkorb(ImageButton ibtn, Integer bildInteger) {
+    public long insertIntoWarenkorb(ImageButton ibtn, Integer bildInteger, String itemname) {
 
         SQLiteDatabase database = this.getWritableDatabase();
 
@@ -56,6 +56,7 @@ public class DBHelferlein extends SQLiteOpenHelper {
         contentValues.put("id_key", countWarenkorb);
         contentValues.put("btnID", btnid);
         contentValues.put("bildwert", bildInteger);
+        contentValues.put("itemname", itemname);
 
         countWarenkorb++;
         cursor.close();
@@ -67,6 +68,13 @@ public class DBHelferlein extends SQLiteOpenHelper {
     public void deleteCompletefromWarenkorb() {
         SQLiteDatabase database = this.getWritableDatabase();
         database.delete(this.warenkorb, null, null);
+        database.close();
+    }
+
+    public void deleteIndividuallyfromWarenkorb(String itemname_local) {
+        SQLiteDatabase database = this.getWritableDatabase();
+        database.delete(this.warenkorb, "itemname = ?", new String[]{itemname_local});
+        database.close();
     }
 
 
@@ -92,11 +100,27 @@ public class DBHelferlein extends SQLiteOpenHelper {
         return arrayOfWarenkorbItems;
     }
 
+    public ArrayList<String> createArrayListOfWarenkorbItems() {
+        SQLiteDatabase database = this.getReadableDatabase();
+        Cursor cursor = database.rawQuery("SELECT itemname FROM Warenkorb", null);
+        cursor.moveToFirst();
 
+        ArrayList<String> arrayOfWarenkorbItemsNAME = new ArrayList<>();
 
+        if(cursor.getCount() == 0){
+            arrayOfWarenkorbItemsNAME.clear();
+        }
 
+        while(!cursor.isAfterLast()){
+            arrayOfWarenkorbItemsNAME.add(cursor.getString(cursor.getColumnIndexOrThrow("itemname")));
+            cursor.moveToNext();
+        }
 
+        Collections.sort(arrayOfWarenkorbItemsNAME);
 
+        cursor.close();
+        return arrayOfWarenkorbItemsNAME;
+    }
 
 
     //USERDATEN FUNKTIONEN
