@@ -15,19 +15,19 @@ public class AnimationsHelferlein {
 
         //KLEINER WERDEN
         ScaleAnimation scaleAnimation = new ScaleAnimation(1, (float) 0.15, 1, (float) 0.15);
-        scaleAnimation.setDuration(800);
+        scaleAnimation.setDuration(400);
         animationSet.addAnimation(scaleAnimation);
 
         //NACH RECHTS FAHREN
         TranslateAnimation translateToRightAnimation = new TranslateAnimation(0, warenkorb.getX()-item.getX(), 0, 0);
-        translateToRightAnimation.setDuration(800);
-        translateToRightAnimation.setStartOffset(800);
+        translateToRightAnimation.setDuration(400);
+        translateToRightAnimation.setStartOffset(400);
         animationSet.addAnimation(translateToRightAnimation);
 
         //NACH OBEN FAHREN
         TranslateAnimation translateToTopAnimation = new TranslateAnimation(0, 0,0,warenkorb.getY()-item.getY());
-        translateToTopAnimation.setDuration(800);
-        translateToTopAnimation.setStartOffset(1600);
+        translateToTopAnimation.setDuration(400);
+        translateToTopAnimation.setStartOffset(800);
         animationSet.addAnimation(translateToTopAnimation);
 
         //ANIMATIONSET CALL
