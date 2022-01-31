@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -39,7 +40,7 @@ public class WarenkorbActivity extends AppCompatActivity {
         }
 
         ibtnLoeschen.setOnClickListener(v -> {
-            hilfMirDaddyDB.deletefromWarenkorb();
+            hilfMirDaddyDB.deleteCompletefromWarenkorb();
             Intent refresh = new Intent(WarenkorbActivity.this,WarenkorbActivity.class);
             startActivity(refresh);
             finish();

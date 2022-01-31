@@ -3,6 +3,7 @@ package de.epprojekt.ep_sjpp_prototyp;
 import android.annotation.SuppressLint;
 import android.content.ContentValues;
 import android.content.Context;
+import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
@@ -63,11 +64,10 @@ public class DBHelferlein extends SQLiteOpenHelper {
 
     }
 
-    public void deletefromWarenkorb() {
+    public void deleteCompletefromWarenkorb() {
         SQLiteDatabase database = this.getWritableDatabase();
         database.delete(this.warenkorb, null, null);
     }
-
 
 
     public ArrayList<Integer> createArrayListOfWarenkorb() {
@@ -91,6 +91,13 @@ public class DBHelferlein extends SQLiteOpenHelper {
         cursor.close();
         return arrayOfWarenkorbItems;
     }
+
+
+
+
+
+
+
 
     //USERDATEN FUNKTIONEN
     public long insertIntoUserdaten(String username, Integer flaggruen, Integer flagblau, Integer flagrot) {
@@ -141,7 +148,10 @@ public class DBHelferlein extends SQLiteOpenHelper {
         return arrayOfUsers;
     }
 
-
+    public void deletefromUserdaten(String username) {
+        SQLiteDatabase database = this.getWritableDatabase();
+        database.delete(this.userdaten, "username = ?", new String[]{username});
+    }
 
 }
 
