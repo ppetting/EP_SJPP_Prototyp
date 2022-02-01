@@ -10,7 +10,7 @@ public class AnimationsHelferlein {
 
     public void ownAnimation(ImageButton item, ImageButton warenkorb){
 
-        //ANIMATIONSET
+        //ANIMATIONSSET
         AnimationSet animationSet = new AnimationSet(false);
 
         //KLEINER WERDEN
@@ -30,7 +30,7 @@ public class AnimationsHelferlein {
         translateToTopAnimation.setStartOffset(800);
         animationSet.addAnimation(translateToTopAnimation);
 
-        //ANIMATIONSET CALL
+        //ANIMATIONSSET CALL
         item.startAnimation(animationSet);
 
         animationSet.setAnimationListener(new Animation.AnimationListener() {

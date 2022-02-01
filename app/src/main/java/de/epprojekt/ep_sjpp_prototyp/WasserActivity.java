@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.widget.ImageButton;
+import android.widget.TextView;
 
 public class WasserActivity extends AppCompatActivity {
 
@@ -15,12 +16,15 @@ public class WasserActivity extends AppCompatActivity {
     int j = 0;
     String itemname1 = "Sprudelwasser";
     String itemname2 = "Stilleswasser";
+    TextView textViewToolbar;
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_wasser);
+
+        textViewToolbar = findViewById(R.id.TVToolbar);
 
         ibtnStill = findViewById(R.id.imageButtonStill);
         ibtnStill.setImageResource(R.drawable.stilleswasser);
@@ -50,13 +54,13 @@ public class WasserActivity extends AppCompatActivity {
         });
 
         ibtnSprudel.setOnClickListener(v -> {
-            hilfMirDaddyDB.insertIntoWarenkorb(ibtnSprudel, R.drawable.sprudelwasser, itemname1+i);
+            hilfMirDaddyDB.insertIntoWarenkorb(ibtnSprudel, R.drawable.sprudelwasser, itemname1+i, (String) textViewToolbar.getText());
             hilfMirMommyAnimation.ownAnimation(ibtnSprudel, ibtnWarenkorb);
             i++;
         });
 
         ibtnStill.setOnClickListener(v -> {
-            hilfMirDaddyDB.insertIntoWarenkorb(ibtnStill, R.drawable.stilleswasser, itemname2+j);
+            hilfMirDaddyDB.insertIntoWarenkorb(ibtnStill, R.drawable.stilleswasser, itemname2+j, (String) textViewToolbar.getText());
             hilfMirMommyAnimation.ownAnimation(ibtnStill, ibtnWarenkorb);
             j++;
         });

@@ -10,10 +10,10 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.EP_SJPP_Prototyp">
         <activity
-            android:name=".DeletePageActivity"
+            android:name=".UserUebersichtActivity"
             android:exported="false" />
         <activity
-            android:name=".MenueActivity"
+            android:name=".NutzerErstellenActivity"
             android:exported="false" />
         <activity
             android:name=".WarenkorbActivity"

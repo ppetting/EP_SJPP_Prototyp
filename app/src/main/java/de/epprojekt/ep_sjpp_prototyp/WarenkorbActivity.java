@@ -41,8 +41,6 @@ public class WarenkorbActivity extends AppCompatActivity {
             i++;
         }
 
-
-
         ibtnLoeschen.setOnClickListener(v -> {
             hilfMirDaddyDB.deleteCompletefromWarenkorb();
             Intent refresh = new Intent(WarenkorbActivity.this,WarenkorbActivity.class);
@@ -70,14 +68,11 @@ public class WarenkorbActivity extends AppCompatActivity {
         imageButton.setImageResource(i);
         imageButton.setScaleType(ImageView.ScaleType.FIT_CENTER);
 
-        imageButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                hilfMirDaddyDB.deleteIndividuallyfromWarenkorb(j);
-                Intent refresh = new Intent(WarenkorbActivity.this,WarenkorbActivity.class);
-                startActivity(refresh);
-                finish();
-            }
+        imageButton.setOnClickListener(v -> {
+            hilfMirDaddyDB.deleteIndividuallyfromWarenkorb(j);
+            Intent refresh = new Intent(WarenkorbActivity.this,WarenkorbActivity.class);
+            startActivity(refresh);
+            finish();
         });
         addView(imageButton,400,400);
     }

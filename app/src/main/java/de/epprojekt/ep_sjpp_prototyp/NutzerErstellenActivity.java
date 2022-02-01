@@ -8,16 +8,16 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
-public class MenueActivity extends AppCompatActivity {
+public class NutzerErstellenActivity extends AppCompatActivity {
 
     EditText name, gruenerFlag, roterFlag, blauerFlag;
-    Button benutzerAnlegen, benutzerWechseln, benutzerBearbeiten, benutzerLoeschen, benutzerAnzeigen;
+    Button benutzerAnlegen;
     DBHelferlein hilfMirDaddyDB;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_menue);
+        setContentView(R.layout.activity_nutzer_erstellen);
 
          hilfMirDaddyDB = new DBHelferlein(this);
 
@@ -25,13 +25,7 @@ public class MenueActivity extends AppCompatActivity {
          gruenerFlag = findViewById(R.id.ETgruen);
          roterFlag = findViewById(R.id.ETrot);
          blauerFlag = findViewById(R.id.ETblau);
-
          benutzerAnlegen = findViewById(R.id.btnCreate);
-         benutzerWechseln = findViewById(R.id.btnChange);
-         benutzerBearbeiten = findViewById(R.id.btnUpdate);
-         benutzerLoeschen = findViewById(R.id.btnDelete);
-         benutzerAnzeigen = findViewById(R.id.btnView);
-
 
          benutzerAnlegen.setOnClickListener(v -> {
              String nameTXT = name.getText().toString();
@@ -40,16 +34,14 @@ public class MenueActivity extends AppCompatActivity {
              Integer blauerFlagTXT = Integer.parseInt(blauerFlag.getText().toString());
 
              hilfMirDaddyDB.insertIntoUserdaten(nameTXT,gruenerFlagTXT,roterFlagTXT,blauerFlagTXT);
-             Toast.makeText(MenueActivity.this,"Benutzer wurde angelegt", Toast.LENGTH_SHORT).show();
+             Toast.makeText(NutzerErstellenActivity.this,"Benutzer wurde angelegt", Toast.LENGTH_SHORT).show();
+
+             hilfMirDaddyDB.createWarenkorbOnClick(nameTXT);
+
+             Intent refresh = new Intent(NutzerErstellenActivity.this, UserUebersichtActivity.class);
+             startActivity(refresh);
+
          });
-
-         benutzerLoeschen.setOnClickListener(v -> {
-             Intent intentDeltePage = new Intent(MenueActivity.this,DeletePageActivity.class);
-             startActivity(intentDeltePage);
-         });
-
-
-
 
     }
 }

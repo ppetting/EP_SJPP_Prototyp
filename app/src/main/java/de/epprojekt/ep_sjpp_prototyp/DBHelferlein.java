@@ -3,7 +3,6 @@ package de.epprojekt.ep_sjpp_prototyp;
 import android.annotation.SuppressLint;
 import android.content.ContentValues;
 import android.content.Context;
-import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
@@ -17,6 +16,7 @@ public class DBHelferlein extends SQLiteOpenHelper {
     final String warenkorb = "Warenkorb";
     final String sortiment = "Sortiment";
     final String userdaten = "Userdaten";
+    SQLiteDatabase Einkaufsdatenbank;
     int countWarenkorb = 1;
     int countUserdaten = 1;
 
@@ -27,7 +27,7 @@ public class DBHelferlein extends SQLiteOpenHelper {
     @SuppressLint("SQLiteString")
     @Override
     public void onCreate(SQLiteDatabase db) {
-        db.execSQL("CREATE TABLE IF NOT EXISTS Warenkorb(id_key INTEGER primary key, btnID INTEGER, bildwert INTEGER, itemname STRING)");
+        //db.execSQL("CREATE TABLE IF NOT EXISTS Warenkorb(id_key INTEGER primary key, btnID INTEGER, bildwert INTEGER, itemname STRING)");
         db.execSQL("CREATE TABLE IF NOT EXISTS Sortiment(id_key INTEGER primary key, bildname TEXT, bild BLOB,flag TEXT)");
         db.execSQL("CREATE TABLE IF NOT EXISTS Userdaten(id_key INTEGER primary key, username STRING, flaggruen INTEGER, flagblau INETGER, flagrot INTEGER)");
     }
@@ -39,12 +39,20 @@ public class DBHelferlein extends SQLiteOpenHelper {
         db.execSQL("DROP TABLE if EXISTS " + userdaten);
     }
 
+    //Warenkorb OnClick erstellen
+    @SuppressLint("SQLiteString")
+    public void createWarenkorbOnClick(String name){
+        SQLiteDatabase db = this.getWritableDatabase();
+        db.execSQL("CREATE TABLE IF NOT EXISTS Warenkorb"+name+"(id_key INTEGER primary key, btnID INTEGER, bildwert INTEGER, itemname STRING)");
+        close();
+    }
+
     //WARENKORB FUNKTIONEN
-    public long insertIntoWarenkorb(ImageButton ibtn, Integer bildInteger, String itemname) {
+    public long insertIntoWarenkorb(ImageButton ibtn, Integer bildInteger, String itemname, String username) {
 
         SQLiteDatabase database = this.getWritableDatabase();
 
-        Cursor cursor = database.rawQuery("SELECT * FROM " + warenkorb, null);
+        Cursor cursor = database.rawQuery("SELECT * FROM Warenkorb" + username, null);
 
         if (countWarenkorb >= 1) {
             countWarenkorb = cursor.getCount() + 1;

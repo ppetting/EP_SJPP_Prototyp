@@ -59,10 +59,9 @@ public class MainActivity extends AppCompatActivity {
         });
 
         ibtnMenue.setOnClickListener(v -> {
-            Intent intentMenue = new Intent(MainActivity.this, MenueActivity.class);
+            Intent intentMenue = new Intent(MainActivity.this, UserUebersichtActivity.class);
             startActivity(intentMenue);
         });
-
 
     }
 }

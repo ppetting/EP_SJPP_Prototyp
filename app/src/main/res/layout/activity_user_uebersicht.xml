@@ -5,7 +5,7 @@
     android:id="@+id/LinearLayoutDeletePageEbeneONE"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".DeletePageActivity"
+    tools:context=".UserUebersichtActivity"
     android:orientation="vertical">
 
     <include

@@ -1,29 +1,35 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.appcompat.widget.Toolbar xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/toolbarMAIN"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:background="@color/teal_200"
     android:elevation="4dp"
     android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
     app:popupTheme="@style/ThemeOverlay.AppCompat.Light">
 
+    <TextView
+        android:id="@+id/TVToolbar"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:layout_marginEnd="10dp">
+
+    </TextView>
+
     <ImageButton
         android:id="@+id/imageButtonHome"
         android:layout_width="50dp"
         android:layout_height="50dp"
-        android:layout_marginStart="290dp"
-        android:scaleType="fitCenter">
-
-    </ImageButton>
+        android:layout_marginStart="220dp"
+        android:scaleType="fitCenter"></ImageButton>
 
     <ImageButton
         android:id="@+id/imageButtonWarenkorb"
         android:layout_width="50dp"
         android:layout_height="50dp"
         android:layout_marginLeft="10dp"
-        android:scaleType="fitCenter">
+        android:scaleType="fitCenter"></ImageButton>
 
-    </ImageButton>
 
 </androidx.appcompat.widget.Toolbar>
