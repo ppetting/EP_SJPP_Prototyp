@@ -179,7 +179,9 @@ public class DBHelferlein extends SQLiteOpenHelper {
 
     public void deletefromUserdaten(String username) {
         SQLiteDatabase database = this.getWritableDatabase();
+        database.execSQL("DROP TABLE if EXISTS " + warenkorb+username);
         database.delete(this.userdaten, "username = ?", new String[]{username});
+        database.close();
     }
 
 }

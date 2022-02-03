@@ -12,13 +12,11 @@ public class WasserActivity extends AppCompatActivity {
     ImageButton ibtnStill, ibtnSprudel, ibtnHome, ibtnWarenkorb;
     DBHelferlein hilfMirDaddyDB;
     AnimationsHelferlein hilfMirMommyAnimation;
-    int i = 0;
-    int j = 0;
+    static int i = 0;
+    static int j = 0;
     String itemname1 = "Sprudelwasser";
     String itemname2 = "Stilleswasser";
     TextView textViewToolbar;
-    UserUebersichtActivity uua;
-    NutzerErstellenActivity nea;
 
 
     @Override
@@ -42,15 +40,6 @@ public class WasserActivity extends AppCompatActivity {
 
         hilfMirDaddyDB = new DBHelferlein(this);
         hilfMirMommyAnimation = new AnimationsHelferlein();
-
-
-        String a;
-        a = NutzerErstellenActivity.nameTXT;
-
-        String b;
-        b = NutzerErstellenActivity.nameTXT;
-
-
 
         ibtnWarenkorb.setOnClickListener(v -> {
             Intent intentWarenkorb = new Intent(WasserActivity.this, WarenkorbActivity.class);
