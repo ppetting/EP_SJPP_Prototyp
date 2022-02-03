@@ -7,12 +7,12 @@ import android.graphics.Color;
 import android.os.Bundle;
 import android.view.Gravity;
 import android.view.LayoutInflater;
-import android.view.MotionEvent;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.LinearLayout;
 import android.widget.PopupWindow;
+import android.widget.TextView;
 import java.util.ArrayList;
 
 public class UserUebersichtActivity extends AppCompatActivity {
@@ -20,19 +20,20 @@ public class UserUebersichtActivity extends AppCompatActivity {
     ImageButton ibtnBenutzerErstellen;
     LinearLayout ownLinearLayout;
     DBHelferlein hilfMirDaddyDB;
-    Button btnLoeschen, btnBearbeiten, btnWechseln;
-    String aktiverNutzer;
+    String aktiverNutzer = "";
     int j = 0;
     int grandbudapesthotelrosa = Color.parseColor("#FA86C4");
+    Button btnLoeschen,btnWechsel,btnBearbeiten;
+    TextView textViewToolbar;
+
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_user_uebersicht);
 
-        btnLoeschen = findViewById(R.id.btnBenutzerLoeschen);
-        btnWechseln = findViewById(R.id.btnBenutzerWechseln);
-        btnBearbeiten = findViewById(R.id.btnBenutzerBearbeiten);
+        textViewToolbar = findViewById(R.id.TVToolbar);
 
         ibtnBenutzerErstellen = findViewById(R.id.imageButtonWarenkorb);
         ibtnBenutzerErstellen.setImageResource(R.drawable.plus);
@@ -73,25 +74,49 @@ public class UserUebersichtActivity extends AppCompatActivity {
         addView(button,400,400);
     }
 
+    @SuppressLint("ClickableViewAccessibility")
     public void onButtonShowPopupWindowClick(View view) {
         // inflate the layout of the popup window
-        LayoutInflater inflater = (LayoutInflater) getSystemService(LAYOUT_INFLATER_SERVICE);
-        View popupView = inflater.inflate(R.layout.popup_delte_change_edit, null);
+        LayoutInflater layoutInflater = (LayoutInflater) getSystemService(LAYOUT_INFLATER_SERVICE);
+        View popupView = layoutInflater.inflate(R.layout.activity_popup_delete_change,null );
 
         // create the popup window
         final PopupWindow popupWindow = new PopupWindow(popupView, 800, 800, true);
 
         // show the popup window
         // which view you pass in doesn't matter, it is only used for the window tolken
-        popupWindow.showAtLocation(view, Gravity.CENTER, 0, 0);
+        popupWindow.showAtLocation(view,Gravity.CENTER, 0, 0);
+
+        btnLoeschen = (Button) popupView.findViewById(R.id.btnBenutzerLoeschen);
+        btnWechsel = (Button) popupView.findViewById(R.id.btnBenutzerWechseln);
+        btnBearbeiten = (Button) popupView.findViewById(R.id.btnBenutzerBearbeiten);
+
+        btnLoeschen.setOnClickListener(v -> {
+            hilfMirDaddyDB.deletefromUserdaten(getAktiverNutzer());
+            popupWindow.dismiss();
+            Intent refresh = new Intent(UserUebersichtActivity.this, MainActivity.class);
+            startActivity(refresh);
+        });
+
+        btnWechsel.setOnClickListener(v -> {
+            popupWindow.dismiss();
+            aktiverNutzer = getAktiverNutzer();
+            Intent refresh = new Intent(UserUebersichtActivity.this, MainActivity.class);
+            startActivity(refresh);
+        });
 
         // dismiss the popup window when touched
-        popupView.setOnTouchListener(new View.OnTouchListener() {
-            @Override
-            public boolean onTouch(View v, MotionEvent event) {
-                popupWindow.dismiss();
-                return true;
-            }
+        popupView.setOnTouchListener((v, event) -> {
+            popupWindow.dismiss();
+            return true;
         });
+    }
+
+    public String getAktiverNutzer() {
+        return aktiverNutzer;
+    }
+
+    public void setAktiverNutzer(String aktiverNutzer) {
+        this.aktiverNutzer = aktiverNutzer;
     }
 }

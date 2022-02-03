@@ -16,7 +16,6 @@ public class DBHelferlein extends SQLiteOpenHelper {
     final String warenkorb = "Warenkorb";
     final String sortiment = "Sortiment";
     final String userdaten = "Userdaten";
-    SQLiteDatabase Einkaufsdatenbank;
     int countWarenkorb = 1;
     int countUserdaten = 1;
 
@@ -34,7 +33,7 @@ public class DBHelferlein extends SQLiteOpenHelper {
 
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
-        db.execSQL("DROP TABLE if EXISTS " + warenkorb);
+        //db.execSQL("DROP TABLE if EXISTS " + warenkorb);
         db.execSQL("DROP TABLE if EXISTS " + sortiment);
         db.execSQL("DROP TABLE if EXISTS " + userdaten);
     }
@@ -52,7 +51,7 @@ public class DBHelferlein extends SQLiteOpenHelper {
 
         SQLiteDatabase database = this.getWritableDatabase();
 
-        Cursor cursor = database.rawQuery("SELECT * FROM Warenkorb" + username, null);
+        Cursor cursor = database.rawQuery("SELECT * FROM Warenkorb" +username, null);
 
         if (countWarenkorb >= 1) {
             countWarenkorb = cursor.getCount() + 1;
@@ -73,9 +72,9 @@ public class DBHelferlein extends SQLiteOpenHelper {
 
     }
 
-    public void deleteCompletefromWarenkorb() {
+    public void deleteCompletefromWarenkorb(String name) {
         SQLiteDatabase database = this.getWritableDatabase();
-        database.delete(this.warenkorb, null, null);
+        database.delete(this.warenkorb+name, null, null);
         database.close();
     }
 
@@ -86,9 +85,9 @@ public class DBHelferlein extends SQLiteOpenHelper {
     }
 
 
-    public ArrayList<Integer> createArrayListOfWarenkorb() {
+    public ArrayList<Integer> createArrayListOfWarenkorb(String username) {
         SQLiteDatabase database = this.getReadableDatabase();
-        Cursor cursor = database.rawQuery("SELECT bildwert FROM Warenkorb", null);
+        Cursor cursor = database.rawQuery("SELECT bildwert FROM Warenkorb" + username, null);
         cursor.moveToFirst();
 
         ArrayList<Integer> arrayOfWarenkorbItems = new ArrayList<>();

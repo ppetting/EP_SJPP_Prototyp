@@ -13,6 +13,7 @@ public class NutzerErstellenActivity extends AppCompatActivity {
     EditText name, gruenerFlag, roterFlag, blauerFlag;
     Button benutzerAnlegen;
     DBHelferlein hilfMirDaddyDB;
+    UserUebersichtActivity userUebersichtActivity;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -35,6 +36,8 @@ public class NutzerErstellenActivity extends AppCompatActivity {
 
              hilfMirDaddyDB.insertIntoUserdaten(nameTXT,gruenerFlagTXT,roterFlagTXT,blauerFlagTXT);
              Toast.makeText(NutzerErstellenActivity.this,"Benutzer wurde angelegt", Toast.LENGTH_SHORT).show();
+
+             userUebersichtActivity.setAktiverNutzer(nameTXT);
 
              hilfMirDaddyDB.createWarenkorbOnClick(nameTXT);
 

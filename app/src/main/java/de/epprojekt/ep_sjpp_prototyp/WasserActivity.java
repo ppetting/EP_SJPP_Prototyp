@@ -17,6 +17,7 @@ public class WasserActivity extends AppCompatActivity {
     String itemname1 = "Sprudelwasser";
     String itemname2 = "Stilleswasser";
     TextView textViewToolbar;
+    UserUebersichtActivity userUebersichtActivity;
 
 
     @Override
@@ -54,13 +55,13 @@ public class WasserActivity extends AppCompatActivity {
         });
 
         ibtnSprudel.setOnClickListener(v -> {
-            hilfMirDaddyDB.insertIntoWarenkorb(ibtnSprudel, R.drawable.sprudelwasser, itemname1+i, (String) textViewToolbar.getText());
+            hilfMirDaddyDB.insertIntoWarenkorb(ibtnSprudel, R.drawable.sprudelwasser, itemname1+i);
             hilfMirMommyAnimation.ownAnimation(ibtnSprudel, ibtnWarenkorb);
             i++;
         });
 
         ibtnStill.setOnClickListener(v -> {
-            hilfMirDaddyDB.insertIntoWarenkorb(ibtnStill, R.drawable.stilleswasser, itemname2+j, (String) textViewToolbar.getText());
+            hilfMirDaddyDB.insertIntoWarenkorb(ibtnStill, R.drawable.stilleswasser, itemname2+j);
             hilfMirMommyAnimation.ownAnimation(ibtnStill, ibtnWarenkorb);
             j++;
         });

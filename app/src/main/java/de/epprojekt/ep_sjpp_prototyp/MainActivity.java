@@ -7,11 +7,13 @@ import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.widget.ImageButton;
 
+
 public class MainActivity extends AppCompatActivity {
 
     ImageButton ibtnGemueseUndObst, ibtnGetraenke, ibtnWarenkorb, ibtnMenue;
     ImageButton ibtnSoundGetraenke;
     DBHelferlein hilfMirDaddyDB;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -62,6 +64,8 @@ public class MainActivity extends AppCompatActivity {
             Intent intentMenue = new Intent(MainActivity.this, UserUebersichtActivity.class);
             startActivity(intentMenue);
         });
+
+
 
     }
 }
