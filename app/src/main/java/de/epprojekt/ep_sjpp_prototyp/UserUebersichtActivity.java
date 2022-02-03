@@ -13,47 +13,46 @@ import android.widget.ImageButton;
 import android.widget.LinearLayout;
 import android.widget.PopupWindow;
 import android.widget.TextView;
-import java.util.ArrayList;
 
 public class UserUebersichtActivity extends AppCompatActivity {
 
     ImageButton ibtnBenutzerErstellen;
-    LinearLayout ownLinearLayout;
-    DBHelferlein hilfMirDaddyDB;
-    String aktiverNutzer = "";
-    int j = 0;
-    int grandbudapesthotelrosa = Color.parseColor("#FA86C4");
     Button btnLoeschen,btnWechsel,btnBearbeiten;
     TextView textViewToolbar;
+    LinearLayout ownLinearLayout;
+    DBHelferlein hilfMirDaddyDB;
 
-
+    static String aktiverNutzerUUA;
+    int j = 0;
+    int grandbudapesthotelrosa = Color.parseColor("#FA86C4");
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_user_uebersicht);
 
-        textViewToolbar = findViewById(R.id.TVToolbar);
-
         ibtnBenutzerErstellen = findViewById(R.id.imageButtonWarenkorb);
         ibtnBenutzerErstellen.setImageResource(R.drawable.plus);
 
-        hilfMirDaddyDB = new DBHelferlein(this);
+        textViewToolbar = findViewById(R.id.TVToolbar);
+
         ownLinearLayout = findViewById(R.id.LinearLayoutDeletePage);
 
-        ArrayList<String> arrayListOfUsers = hilfMirDaddyDB.createArrayListOfUserdaten();
+        hilfMirDaddyDB = new DBHelferlein(this);
 
-        while (j < arrayListOfUsers.size()) {
-            generateButtonsAndSetName(arrayListOfUsers.get(j));
-            j++;
-        }
+        aktiverNutzerUUA  = NutzerErstellenActivity.nameTXT;
 
         ibtnBenutzerErstellen.setOnClickListener(v -> {
             Intent intentNutzerErstellen = new Intent(UserUebersichtActivity.this, NutzerErstellenActivity.class);
             startActivity(intentNutzerErstellen);
         });
 
+        while (j < hilfMirDaddyDB.createArrayListOfUserdaten().size()) {
+            generateButtonsAndSetName(hilfMirDaddyDB.createArrayListOfUserdaten().get(j));
+            j++;
+        }
     }
+
 
     public void addView (Button button, int width, int height){
         LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(width,height);
@@ -63,28 +62,24 @@ public class UserUebersichtActivity extends AppCompatActivity {
     }
 
     @SuppressLint("ResourceType")
-    public void generateButtonsAndSetName(String i){
+    public void generateButtonsAndSetName(String username){
         Button button = new Button(UserUebersichtActivity.this);
-        button.setText(i);
+        button.setText(username);
         button.setBackgroundColor(grandbudapesthotelrosa);
+
         button.setOnClickListener(v -> {
-            aktiverNutzer = i;
+            aktiverNutzerUUA = username;
             onButtonShowPopupWindowClick(ownLinearLayout);
         });
+
         addView(button,400,400);
     }
 
     @SuppressLint("ClickableViewAccessibility")
     public void onButtonShowPopupWindowClick(View view) {
-        // inflate the layout of the popup window
         LayoutInflater layoutInflater = (LayoutInflater) getSystemService(LAYOUT_INFLATER_SERVICE);
         View popupView = layoutInflater.inflate(R.layout.activity_popup_delete_change,null );
-
-        // create the popup window
         final PopupWindow popupWindow = new PopupWindow(popupView, 800, 800, true);
-
-        // show the popup window
-        // which view you pass in doesn't matter, it is only used for the window tolken
         popupWindow.showAtLocation(view,Gravity.CENTER, 0, 0);
 
         btnLoeschen = (Button) popupView.findViewById(R.id.btnBenutzerLoeschen);
@@ -92,7 +87,7 @@ public class UserUebersichtActivity extends AppCompatActivity {
         btnBearbeiten = (Button) popupView.findViewById(R.id.btnBenutzerBearbeiten);
 
         btnLoeschen.setOnClickListener(v -> {
-            hilfMirDaddyDB.deletefromUserdaten(getAktiverNutzer());
+            hilfMirDaddyDB.deletefromUserdaten(aktiverNutzerUUA);
             popupWindow.dismiss();
             Intent refresh = new Intent(UserUebersichtActivity.this, MainActivity.class);
             startActivity(refresh);
@@ -100,23 +95,14 @@ public class UserUebersichtActivity extends AppCompatActivity {
 
         btnWechsel.setOnClickListener(v -> {
             popupWindow.dismiss();
-            aktiverNutzer = getAktiverNutzer();
             Intent refresh = new Intent(UserUebersichtActivity.this, MainActivity.class);
             startActivity(refresh);
         });
 
-        // dismiss the popup window when touched
         popupView.setOnTouchListener((v, event) -> {
             popupWindow.dismiss();
             return true;
         });
     }
 
-    public String getAktiverNutzer() {
-        return aktiverNutzer;
-    }
-
-    public void setAktiverNutzer(String aktiverNutzer) {
-        this.aktiverNutzer = aktiverNutzer;
-    }
 }

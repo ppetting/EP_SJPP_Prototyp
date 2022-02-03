@@ -26,14 +26,12 @@ public class DBHelferlein extends SQLiteOpenHelper {
     @SuppressLint("SQLiteString")
     @Override
     public void onCreate(SQLiteDatabase db) {
-        //db.execSQL("CREATE TABLE IF NOT EXISTS Warenkorb(id_key INTEGER primary key, btnID INTEGER, bildwert INTEGER, itemname STRING)");
         db.execSQL("CREATE TABLE IF NOT EXISTS Sortiment(id_key INTEGER primary key, bildname TEXT, bild BLOB,flag TEXT)");
         db.execSQL("CREATE TABLE IF NOT EXISTS Userdaten(id_key INTEGER primary key, username STRING, flaggruen INTEGER, flagblau INETGER, flagrot INTEGER)");
     }
 
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
-        //db.execSQL("DROP TABLE if EXISTS " + warenkorb);
         db.execSQL("DROP TABLE if EXISTS " + sortiment);
         db.execSQL("DROP TABLE if EXISTS " + userdaten);
     }
@@ -68,7 +66,7 @@ public class DBHelferlein extends SQLiteOpenHelper {
         countWarenkorb++;
         cursor.close();
 
-        return database.insert(warenkorb, null, contentValues);
+        return database.insert(warenkorb+username, null, contentValues);
 
     }
 
@@ -78,9 +76,9 @@ public class DBHelferlein extends SQLiteOpenHelper {
         database.close();
     }
 
-    public void deleteIndividuallyfromWarenkorb(String itemname_local) {
+    public void deleteIndividuallyfromWarenkorb(String itemname_local, String username) {
         SQLiteDatabase database = this.getWritableDatabase();
-        database.delete(this.warenkorb, "itemname = ?", new String[]{itemname_local});
+        database.delete(this.warenkorb+username, "itemname = ?", new String[]{itemname_local});
         database.close();
     }
 
@@ -107,9 +105,9 @@ public class DBHelferlein extends SQLiteOpenHelper {
         return arrayOfWarenkorbItems;
     }
 
-    public ArrayList<String> createArrayListOfWarenkorbItems() {
+    public ArrayList<String> createArrayListOfWarenkorbItems(String username) {
         SQLiteDatabase database = this.getReadableDatabase();
-        Cursor cursor = database.rawQuery("SELECT itemname FROM Warenkorb", null);
+        Cursor cursor = database.rawQuery("SELECT itemname FROM Warenkorb" +username, null);
         cursor.moveToFirst();
 
         ArrayList<String> arrayOfWarenkorbItemsNAME = new ArrayList<>();

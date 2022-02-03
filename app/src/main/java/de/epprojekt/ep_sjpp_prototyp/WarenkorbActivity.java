@@ -14,7 +14,7 @@ public class WarenkorbActivity extends AppCompatActivity {
     ImageButton ibtnLoeschen, ibtnHome;
     DBHelferlein hilfMirDaddyDB;
     LinearLayout ownLinearLayout;
-    int j = 0;
+    UserUebersichtActivity uua;
     int i = 0;
 
     @Override
@@ -31,9 +31,10 @@ public class WarenkorbActivity extends AppCompatActivity {
         ownLinearLayout = findViewById(R.id.LinearLayoutWarenkorb);
 
         hilfMirDaddyDB = new DBHelferlein(this);
+        uua = new UserUebersichtActivity();
 
-        ArrayList<Integer> arrayListOfDrawablesID = hilfMirDaddyDB.createArrayListOfWarenkorb();
-        ArrayList<String> arrayListOfWarenkorbitems = hilfMirDaddyDB.createArrayListOfWarenkorbItems();
+        ArrayList<Integer> arrayListOfDrawablesID = hilfMirDaddyDB.createArrayListOfWarenkorb(UserUebersichtActivity.aktiverNutzerUUA);
+        ArrayList<String> arrayListOfWarenkorbitems = hilfMirDaddyDB.createArrayListOfWarenkorbItems(UserUebersichtActivity.aktiverNutzerUUA);
 
         while(i < arrayListOfDrawablesID.size()){
             setPicture(arrayListOfDrawablesID.get(i),arrayListOfWarenkorbitems.get(i));
@@ -41,7 +42,7 @@ public class WarenkorbActivity extends AppCompatActivity {
         }
 
         ibtnLoeschen.setOnClickListener(v -> {
-            hilfMirDaddyDB.deleteCompletefromWarenkorb();
+            hilfMirDaddyDB.deleteCompletefromWarenkorb(UserUebersichtActivity.aktiverNutzerUUA);
             Intent refresh = new Intent(WarenkorbActivity.this,WarenkorbActivity.class);
             startActivity(refresh);
             finish();
@@ -68,7 +69,7 @@ public class WarenkorbActivity extends AppCompatActivity {
         imageButton.setScaleType(ImageView.ScaleType.FIT_CENTER);
 
         imageButton.setOnClickListener(v -> {
-            hilfMirDaddyDB.deleteIndividuallyfromWarenkorb(j);
+            hilfMirDaddyDB.deleteIndividuallyfromWarenkorb(j,UserUebersichtActivity.aktiverNutzerUUA);
             Intent refresh = new Intent(WarenkorbActivity.this,WarenkorbActivity.class);
             startActivity(refresh);
             finish();

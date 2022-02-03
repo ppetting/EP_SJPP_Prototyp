@@ -13,7 +13,9 @@ public class NutzerErstellenActivity extends AppCompatActivity {
     EditText name, gruenerFlag, roterFlag, blauerFlag;
     Button benutzerAnlegen;
     DBHelferlein hilfMirDaddyDB;
-    UserUebersichtActivity userUebersichtActivity;
+    static String nameTXT;
+    Integer gruenerFlagTXT, roterFlagTXT, blauerFlagTXT;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -29,22 +31,21 @@ public class NutzerErstellenActivity extends AppCompatActivity {
          benutzerAnlegen = findViewById(R.id.btnCreate);
 
          benutzerAnlegen.setOnClickListener(v -> {
-             String nameTXT = name.getText().toString();
-             Integer gruenerFlagTXT = Integer.parseInt(gruenerFlag.getText().toString());
-             Integer roterFlagTXT = Integer.parseInt(roterFlag.getText().toString());
-             Integer blauerFlagTXT = Integer.parseInt(blauerFlag.getText().toString());
+
+             nameTXT = name.getText().toString();
+             gruenerFlagTXT = Integer.parseInt(gruenerFlag.getText().toString());
+             roterFlagTXT = Integer.parseInt(roterFlag.getText().toString());
+             blauerFlagTXT = Integer.parseInt(blauerFlag.getText().toString());
 
              hilfMirDaddyDB.insertIntoUserdaten(nameTXT,gruenerFlagTXT,roterFlagTXT,blauerFlagTXT);
-             Toast.makeText(NutzerErstellenActivity.this,"Benutzer wurde angelegt", Toast.LENGTH_SHORT).show();
-
-             userUebersichtActivity.setAktiverNutzer(nameTXT);
-
              hilfMirDaddyDB.createWarenkorbOnClick(nameTXT);
-
-             Intent refresh = new Intent(NutzerErstellenActivity.this, UserUebersichtActivity.class);
+             Intent refresh = new Intent(NutzerErstellenActivity.this, MainActivity.class);
              startActivity(refresh);
+
+             Toast.makeText(NutzerErstellenActivity.this,"Benutzer wurde angelegt", Toast.LENGTH_SHORT).show();
 
          });
 
     }
+
 }

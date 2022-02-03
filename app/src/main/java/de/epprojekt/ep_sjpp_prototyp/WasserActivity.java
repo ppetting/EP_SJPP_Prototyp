@@ -17,7 +17,8 @@ public class WasserActivity extends AppCompatActivity {
     String itemname1 = "Sprudelwasser";
     String itemname2 = "Stilleswasser";
     TextView textViewToolbar;
-    UserUebersichtActivity userUebersichtActivity;
+    UserUebersichtActivity uua;
+    NutzerErstellenActivity nea;
 
 
     @Override
@@ -43,6 +44,13 @@ public class WasserActivity extends AppCompatActivity {
         hilfMirMommyAnimation = new AnimationsHelferlein();
 
 
+        String a;
+        a = NutzerErstellenActivity.nameTXT;
+
+        String b;
+        b = NutzerErstellenActivity.nameTXT;
+
+
 
         ibtnWarenkorb.setOnClickListener(v -> {
             Intent intentWarenkorb = new Intent(WasserActivity.this, WarenkorbActivity.class);
@@ -55,13 +63,13 @@ public class WasserActivity extends AppCompatActivity {
         });
 
         ibtnSprudel.setOnClickListener(v -> {
-            hilfMirDaddyDB.insertIntoWarenkorb(ibtnSprudel, R.drawable.sprudelwasser, itemname1+i);
+            hilfMirDaddyDB.insertIntoWarenkorb(ibtnSprudel, R.drawable.sprudelwasser, itemname1+i,UserUebersichtActivity.aktiverNutzerUUA);
             hilfMirMommyAnimation.ownAnimation(ibtnSprudel, ibtnWarenkorb);
             i++;
         });
 
         ibtnStill.setOnClickListener(v -> {
-            hilfMirDaddyDB.insertIntoWarenkorb(ibtnStill, R.drawable.stilleswasser, itemname2+j);
+            hilfMirDaddyDB.insertIntoWarenkorb(ibtnStill, R.drawable.stilleswasser, itemname2+j,UserUebersichtActivity.aktiverNutzerUUA);
             hilfMirMommyAnimation.ownAnimation(ibtnStill, ibtnWarenkorb);
             j++;
         });
