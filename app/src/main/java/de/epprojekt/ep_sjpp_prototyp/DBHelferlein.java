@@ -16,6 +16,10 @@ public class DBHelferlein extends SQLiteOpenHelper {
     final String warenkorb = "Warenkorb";
     final String sortiment = "Sortiment";
     final String userdaten = "Userdaten";
+    final String flaggruen = "flaggruen";
+    final String flagblau = "flagblau";
+    final String flagrot = "flagrot";
+    final String flagweiss = "flagweiss";
     int countWarenkorb = 1;
     int countUserdaten = 1;
 
@@ -28,6 +32,7 @@ public class DBHelferlein extends SQLiteOpenHelper {
     public void onCreate(SQLiteDatabase db) {
         db.execSQL("CREATE TABLE IF NOT EXISTS Sortiment(id_key INTEGER primary key, bildname TEXT, bild BLOB,flag TEXT)");
         db.execSQL("CREATE TABLE IF NOT EXISTS Userdaten(id_key INTEGER primary key, username STRING, flaggruen INTEGER, flagblau INETGER, flagrot INTEGER)");
+        startInsertIntoSortiment(db);
     }
 
     @Override
@@ -35,6 +40,39 @@ public class DBHelferlein extends SQLiteOpenHelper {
         db.execSQL("DROP TABLE if EXISTS " + sortiment);
         db.execSQL("DROP TABLE if EXISTS " + userdaten);
     }
+
+    //Sortiment Stuff
+    public void startInsertIntoSortiment(SQLiteDatabase database){
+
+        ContentValues contentValues = new ContentValues();
+
+        contentValues.put("id_key", 1); contentValues.put("bildname", "roter Apfel"); contentValues.put("bild", R.drawable.apfel); contentValues.put("flag", flaggruen);
+        database.insert(sortiment, null, contentValues);
+
+        contentValues.put("id_key", 2); contentValues.put("bildname", "gruener Apfel"); contentValues.put("bild", R.drawable.apfelgruen); contentValues.put("flag", flaggruen);
+        database.insert(sortiment, null, contentValues);
+
+        contentValues.put("id_key", 3); contentValues.put("bildname", "Salatgurke"); contentValues.put("bild", R.drawable.gurke); contentValues.put("flag", flaggruen);
+        database.insert(sortiment, null, contentValues);
+
+        contentValues.put("id_key", 4); contentValues.put("bildname", "Hartkaese"); contentValues.put("bild", R.drawable.cheese); contentValues.put("flag", flagrot);
+        database.insert(sortiment, null, contentValues);
+
+        contentValues.put("id_key", 5); contentValues.put("bildname", "Streichkaese"); contentValues.put("bild", R.drawable.cheeseweich); contentValues.put("flag", flagrot);
+        database.insert(sortiment, null, contentValues);
+
+        contentValues.put("id_key", 6); contentValues.put("bildname", "Kaeseaufschnitt"); contentValues.put("bild", R.drawable.cheeseslice); contentValues.put("flag", flagrot);
+        database.insert(sortiment, null, contentValues);
+
+        contentValues.put("id_key", 7); contentValues.put("bildname", "sechserPackungEier"); contentValues.put("bild", R.drawable.eier6); contentValues.put("flag", flagblau);
+        database.insert(sortiment, null, contentValues);
+
+        contentValues.put("id_key", 8); contentValues.put("bildname", "zehnerPackungEier"); contentValues.put("bild", R.drawable.eier10); contentValues.put("flag", flagblau);
+        database.insert(sortiment, null, contentValues);
+
+    }
+
+
 
     //Warenkorb OnClick erstellen
     @SuppressLint("SQLiteString")
