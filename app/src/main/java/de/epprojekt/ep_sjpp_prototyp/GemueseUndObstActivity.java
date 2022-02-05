@@ -21,7 +21,7 @@ public class GemueseUndObstActivity extends AppCompatActivity {
     ImageButton ibtnApfel, ibtnGurke, ibtnWarenkorb;
     DBHelferlein hilfMirDaddyDB;
     AnimationsHelferlein hilfMirMommyAnimation;
-    ImageView imageView;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -30,29 +30,9 @@ public class GemueseUndObstActivity extends AppCompatActivity {
 
         ibtnApfel = findViewById(R.id.imageButtonApfel);
         ibtnGurke = findViewById(R.id.imageButtonGurke);
-        imageView = findViewById(R.id.IVTEST);
 
-
-        ibtnApfel.setOnClickListener(v -> {
-            Intent intent = new Intent();
-            intent.setType("image/*");
-            activityResultLauncher.launch(intent);
-        });
     }
 
-    ActivityResultLauncher<Intent> activityResultLauncher = registerForActivityResult(new ActivityResultContracts.StartActivityForResult(), new ActivityResultCallback<ActivityResult>() {
-        @Override
-        public void onActivityResult(ActivityResult activityResult) {
-            int result = activityResult.getResultCode();
-            Intent data = activityResult.getData();
-
-            if (result == RESULT_OK) {
-                Uri selectedImageUri = data.getData();
-                ibtnGurke.setImageURI(selectedImageUri);
-            }
-        }
-
-    });
 }
 
 

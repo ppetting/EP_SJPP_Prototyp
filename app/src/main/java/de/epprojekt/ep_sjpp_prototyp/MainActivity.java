@@ -46,7 +46,7 @@ public class MainActivity extends AppCompatActivity {
                 mediaPlayer.start());
 
         ibtnGemueseUndObst.setOnClickListener(v -> {
-            Intent intentGemueseUndObst = new Intent(MainActivity.this,GemueseUndObstActivity.class);
+            Intent intentGemueseUndObst = new Intent(MainActivity.this,PictureChangeActivity.class);
             startActivity(intentGemueseUndObst);
         });
 

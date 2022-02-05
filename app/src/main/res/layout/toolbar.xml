@@ -23,14 +23,14 @@
         android:layout_width="50dp"
         android:layout_height="50dp"
         android:layout_marginStart="220dp"
-        android:scaleType="fitCenter"></ImageButton>
+        android:scaleType="fitCenter" />
 
     <ImageButton
         android:id="@+id/imageButtonWarenkorb"
         android:layout_width="50dp"
         android:layout_height="50dp"
         android:layout_marginLeft="10dp"
-        android:scaleType="fitCenter"></ImageButton>
+        android:scaleType="fitCenter" />
 
 
 </androidx.appcompat.widget.Toolbar>
