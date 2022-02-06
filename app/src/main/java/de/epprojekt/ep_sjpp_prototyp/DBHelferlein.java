@@ -7,6 +7,8 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.widget.ImageButton;
+import android.widget.Toast;
+
 import java.util.ArrayList;
 import java.util.Collections;
 
@@ -30,7 +32,7 @@ public class DBHelferlein extends SQLiteOpenHelper {
     @SuppressLint("SQLiteString")
     @Override
     public void onCreate(SQLiteDatabase db) {
-        db.execSQL("CREATE TABLE IF NOT EXISTS Sortiment(id_key INTEGER primary key, bildname TEXT, bild BLOB,flag TEXT)");
+        db.execSQL("CREATE TABLE IF NOT EXISTS Sortiment(id_key INTEGER primary key, bildname STRING, bild BLOB,flag STRING)");
         db.execSQL("CREATE TABLE IF NOT EXISTS Userdaten(id_key INTEGER primary key, username STRING, flaggruen INTEGER, flagblau INETGER, flagrot INTEGER)");
         startInsertIntoSortiment(db);
     }
@@ -81,6 +83,8 @@ public class DBHelferlein extends SQLiteOpenHelper {
         db.execSQL("CREATE TABLE IF NOT EXISTS Warenkorb"+name+"(id_key INTEGER primary key, btnID INTEGER, bildwert INTEGER, itemname STRING)");
         close();
     }
+
+
 
     //WARENKORB FUNKTIONEN
     public long insertIntoWarenkorb(ImageButton ibtn, Integer bildInteger, String itemname, String username) {
@@ -222,6 +226,26 @@ public class DBHelferlein extends SQLiteOpenHelper {
         database.close();
     }
 
+
+    // Sucht Flag (ob grün,rot,blau) zum entsprechenden Produkt
+    public Cursor fetchSortiment(String produktname) {
+       SQLiteDatabase database = this.getWritableDatabase();
+       Cursor cursor = database.query(sortiment, new String[]{"flag" }, "bildname =?", new String[]{produktname }, null, null, null);
+        if (cursor != null) {
+            cursor.moveToFirst();
+        }
+        return cursor;
+    }
+
+    // Sucht Flaganzahl einer bestimmten Flagart
+    public Cursor fetchUserFlagAnzahl(String aktuellerUser,String flag) {
+        SQLiteDatabase database = this.getWritableDatabase();
+        Cursor cursor = database.query(userdaten, new String[]{flag}, "username =?", new String[]{aktuellerUser }, null, null, null);
+        if (cursor != null) {
+            cursor.moveToFirst();
+        }
+        return cursor;
+    }
 }
 
 

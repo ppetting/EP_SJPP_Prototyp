@@ -37,7 +37,7 @@ public class NutzerErstellenActivity extends AppCompatActivity {
              roterFlagTXT = Integer.parseInt(roterFlag.getText().toString());
              blauerFlagTXT = Integer.parseInt(blauerFlag.getText().toString());
 
-             hilfMirDaddyDB.insertIntoUserdaten(nameTXT,gruenerFlagTXT,roterFlagTXT,blauerFlagTXT);
+             hilfMirDaddyDB.insertIntoUserdaten(nameTXT,gruenerFlagTXT,blauerFlagTXT,roterFlagTXT);
              hilfMirDaddyDB.createWarenkorbOnClick(nameTXT);
              Intent refresh = new Intent(NutzerErstellenActivity.this, MainActivity.class);
              startActivity(refresh);
