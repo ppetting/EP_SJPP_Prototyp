@@ -4,7 +4,6 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.net.Uri;
-import android.os.Build;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.widget.ImageButton;
@@ -12,7 +11,7 @@ import android.widget.ImageButton;
 public class PictureChangeActivity extends AppCompatActivity {
 
     ImageButton ibtnSprudelwasserChanger, ibtnSprudelwasser, ibtnhome;
-    Uri mImageUri;
+    static Uri mImageUri;
     private static final int PICK_IMAGE_REQUEST = 0;
 
     @Override
@@ -39,6 +38,9 @@ public class PictureChangeActivity extends AppCompatActivity {
 
         ibtnSprudelwasserChanger.setOnClickListener(v ->{
             imageSelect();
+            Intent intent = new Intent(this,WasserActivity.class);
+            intent.putExtra("keyPoint",mImageUri);
+
         });
 
 

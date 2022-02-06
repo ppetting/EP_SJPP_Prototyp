@@ -21,6 +21,7 @@ public class WasserActivity extends AppCompatActivity {
     TextView textViewToolbar;
 
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -32,7 +33,7 @@ public class WasserActivity extends AppCompatActivity {
         ibtnStill.setImageResource(R.drawable.stilleswasser);
 
         ibtnSprudel = findViewById(R.id.imageButtonSprudel);
-        ibtnSprudel.setImageResource(R.drawable.sprudelwasser);
+        ibtnSprudel.setImageResource(getIntent().getIntExtra("keyPoint", R.drawable.sprudelwasser));
 
         ibtnWarenkorb = findViewById(R.id.imageButtonWarenkorb);
         ibtnWarenkorb.setImageResource(R.drawable.warenkorb);
@@ -42,7 +43,6 @@ public class WasserActivity extends AppCompatActivity {
 
         hilfMirDaddyDB = new DBHelferlein(this);
         hilfMirMommyAnimation = new AnimationsHelferlein();
-
 
 
         ibtnWarenkorb.setOnClickListener(v -> {

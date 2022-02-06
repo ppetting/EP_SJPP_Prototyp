@@ -32,7 +32,7 @@ public class MainActivity extends AppCompatActivity {
         ibtnWarenkorb.setImageResource(R.drawable.warenkorb);
 
         ibtnGemueseUndObst = findViewById(R.id.imageButtonGemueseUndObst);
-        ibtnGemueseUndObst.setImageResource(R.drawable.gemueseundobst);
+        ibtnGemueseUndObst.setImageResource(R.drawable.ei_braun);
 
         ibtnGetraenke = findViewById(R.id.imageButtonGetraenke);
         ibtnGetraenke.setImageResource(R.drawable.getraenke);

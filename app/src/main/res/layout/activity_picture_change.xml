@@ -19,6 +19,7 @@
         android:layout_width="50dp"
         android:layout_height="50dp"
         android:layout_below="@+id/toolbarMAIN"
+        android:scaleType="fitCenter"
         android:id="@+id/imageButtonSprudelWasserChanger">
 
     </ImageButton>
