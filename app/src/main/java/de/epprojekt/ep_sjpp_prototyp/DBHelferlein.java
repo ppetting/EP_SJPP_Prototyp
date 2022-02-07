@@ -72,6 +72,13 @@ public class DBHelferlein extends SQLiteOpenHelper {
         contentValues.put("id_key", 8); contentValues.put("bildname", "zehnerPackungEier"); contentValues.put("bild", R.drawable.eier10); contentValues.put("flag", flagblau);
         database.insert(sortiment, null, contentValues);
 
+        /// Sprudel wasser zum testen
+        contentValues.put("id_key", 9); contentValues.put("bildname", "Sprudelwasser"); contentValues.put("bild", R.drawable.sprudelwasser); contentValues.put("flag", flaggruen);
+        database.insert(sortiment, null, contentValues);
+
+        contentValues.put("id_key", 10); contentValues.put("bildname", "Stilleswasser"); contentValues.put("bild", R.drawable.stilleswasser); contentValues.put("flag", flagrot);
+        database.insert(sortiment, null, contentValues);
+
     }
 
 
@@ -80,14 +87,14 @@ public class DBHelferlein extends SQLiteOpenHelper {
     @SuppressLint("SQLiteString")
     public void createWarenkorbOnClick(String name){
         SQLiteDatabase db = this.getWritableDatabase();
-        db.execSQL("CREATE TABLE IF NOT EXISTS Warenkorb"+name+"(id_key INTEGER primary key, btnID INTEGER, bildwert INTEGER, itemname STRING)");
+        db.execSQL("CREATE TABLE IF NOT EXISTS Warenkorb"+name+"(id_key INTEGER primary key, btnID INTEGER, bildwert INTEGER, itemnamekey STRING, itemname STRING)");
         close();
     }
 
 
 
     //WARENKORB FUNKTIONEN
-    public long insertIntoWarenkorb(ImageButton ibtn, Integer bildInteger, String itemname, String username) {
+    public long insertIntoWarenkorb(ImageButton ibtn, Integer bildInteger, String itemnamekey, String itemname, String username) {
 
         SQLiteDatabase database = this.getWritableDatabase();
 
@@ -103,6 +110,7 @@ public class DBHelferlein extends SQLiteOpenHelper {
         contentValues.put("id_key", countWarenkorb);
         contentValues.put("btnID", btnid);
         contentValues.put("bildwert", bildInteger);
+        contentValues.put("itemnamekey", itemnamekey);
         contentValues.put("itemname", itemname);
 
         countWarenkorb++;
@@ -120,7 +128,7 @@ public class DBHelferlein extends SQLiteOpenHelper {
 
     public void deleteIndividuallyfromWarenkorb(String itemname_local, String username) {
         SQLiteDatabase database = this.getWritableDatabase();
-        database.delete(this.warenkorb+username, "itemname = ?", new String[]{itemname_local});
+        database.delete(this.warenkorb+username, "itemnamekey =?", new String[]{itemname_local});
         database.close();
     }
 
@@ -149,7 +157,7 @@ public class DBHelferlein extends SQLiteOpenHelper {
 
     public ArrayList<String> createArrayListOfWarenkorbItems(String username) {
         SQLiteDatabase database = this.getReadableDatabase();
-        Cursor cursor = database.rawQuery("SELECT itemname FROM Warenkorb" +username, null);
+        Cursor cursor = database.rawQuery("SELECT itemnamekey FROM Warenkorb" +username, null);
         cursor.moveToFirst();
 
         ArrayList<String> arrayOfWarenkorbItemsNAME = new ArrayList<>();
@@ -159,7 +167,7 @@ public class DBHelferlein extends SQLiteOpenHelper {
         }
 
         while(!cursor.isAfterLast()){
-            arrayOfWarenkorbItemsNAME.add(cursor.getString(cursor.getColumnIndexOrThrow("itemname")));
+            arrayOfWarenkorbItemsNAME.add(cursor.getString(cursor.getColumnIndexOrThrow("itemnamekey")));
             cursor.moveToNext();
         }
 
@@ -237,6 +245,15 @@ public class DBHelferlein extends SQLiteOpenHelper {
         return cursor;
     }
 
+    public Cursor fetchSortimentidkey(String idkey) {
+        SQLiteDatabase database = this.getWritableDatabase();
+        Cursor cursor = database.query(sortiment, new String[]{"flag" }, "id_key =?", new String[]{idkey }, null, null, null);
+        if (cursor != null) {
+            cursor.moveToFirst();
+        }
+        return cursor;
+    }
+
     // Sucht Flaganzahl einer bestimmten Flagart
     public Cursor fetchUserFlagAnzahl(String aktuellerUser,String flag) {
         SQLiteDatabase database = this.getWritableDatabase();
@@ -246,6 +263,17 @@ public class DBHelferlein extends SQLiteOpenHelper {
         }
         return cursor;
     }
+
+    public Cursor fetchItemnameAusWarenkorb (String aktuellerUser,String itemnamekey) {
+        SQLiteDatabase database = this.getWritableDatabase();
+        Cursor cursor = database.query(warenkorb + aktuellerUser, new String[]{"itemname"}, "itemnamekey =?", new String[]{itemnamekey}, null, null, null);
+        if (cursor != null) {
+            cursor.moveToFirst();
+        }
+        return cursor;
+    }
+
+
 }
 
 
