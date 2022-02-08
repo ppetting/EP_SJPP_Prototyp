@@ -10,39 +10,38 @@ import android.widget.ImageButton;
 
 public class PictureChangeActivity extends AppCompatActivity {
 
-    ImageButton ibtnSprudelwasserChanger, ibtnSprudelwasser, ibtnhome;
-    static Uri mImageUri;
+    ImageButton ibtnSprudelwasserChanger, ibtnhome, ibtnStillesWasserChanger;
+    Uri mImageUri;
     private static final int PICK_IMAGE_REQUEST = 0;
+    DBHelferlein hilfMirDaddyDB;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_picture_change);
 
+        hilfMirDaddyDB = new DBHelferlein(this);
 
         ibtnSprudelwasserChanger = findViewById(R.id.imageButtonSprudelWasserChanger);
+        ibtnStillesWasserChanger = findViewById(R.id.imageButtonStillesWasserChanger);
 
-        ibtnSprudelwasser = findViewById(R.id.imageButtonSprudel);
         ibtnhome = findViewById(R.id.imageButtonHome);
         ibtnhome.setImageResource(R.drawable.home);
 
         SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(this);
-        String mImageUri = preferences.getString("image", null);
+        String sprudelstatus = preferences.getString("image", null);
 
-
-        if (mImageUri != null) {
-            ibtnSprudelwasserChanger.setImageURI(Uri.parse(mImageUri));
+        if (sprudelstatus == null) {
+            ibtnSprudelwasserChanger.setImageResource(Integer.parseInt(hilfMirDaddyDB.getDrawableFromTable("roterApfel")));
         } else {
-            ibtnSprudelwasserChanger.setImageResource(R.drawable.sprudelwasser);
+            ibtnSprudelwasserChanger.setImageURI(Uri.parse(sprudelstatus));
         }
 
         ibtnSprudelwasserChanger.setOnClickListener(v ->{
             imageSelect();
-            Intent intent = new Intent(this,WasserActivity.class);
-            intent.putExtra("keyPoint",mImageUri);
-
+            //hilfMirDaddyDB.setDrawableFromGallery("roterApfel",mImageUri);
         });
-
 
         ibtnhome.setOnClickListener(v -> {
             Intent intent = new Intent(PictureChangeActivity.this, MainActivity.class);
@@ -75,6 +74,7 @@ public class PictureChangeActivity extends AppCompatActivity {
                   // Sets the ImageView with the Image URI
                   ibtnSprudelwasserChanger.setImageURI(mImageUri);
                   ibtnSprudelwasserChanger.invalidate();
+
               }
           }
       }
@@ -87,6 +87,7 @@ public class PictureChangeActivity extends AppCompatActivity {
         intent.setType("image/*");
         startActivityForResult(Intent.createChooser(intent, "Select Picture"), PICK_IMAGE_REQUEST);
     }
+
 
 
 

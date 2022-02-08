@@ -6,8 +6,10 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.database.Cursor;
+import android.net.Uri;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
+import android.view.View;
 import android.widget.ImageButton;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -33,6 +35,9 @@ public class WasserActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_wasser);
 
+        hilfMirDaddyDB = new DBHelferlein(this);
+        hilfMirMommyAnimation = new AnimationsHelferlein();
+
         counterSprudel = PreferenceHelferlein.loadTotalFromPref(this,KEY_SPRUDEL);
         counterStill = PreferenceHelferlein.loadTotalFromPref(this,KEY_STILL);
 
@@ -42,17 +47,20 @@ public class WasserActivity extends AppCompatActivity {
         ibtnStill.setImageResource(R.drawable.stilleswasser);
 
         ibtnSprudel = findViewById(R.id.imageButtonSprudel);
-        ibtnSprudel.setImageResource(getIntent().getIntExtra("keyPoint", R.drawable.sprudelwasser));
 
+   /*     if(savedInstanceState == null){
+            ibtnSprudel.setImageResource(Integer.parseInt(hilfMirDaddyDB.getDrawableFromTable("roterApfel")));
+        }else{
+            ibtnSprudel.setImageURI(Uri.parse(hilfMirDaddyDB.getDrawableFromTable("roterApfel")));
+        }
+*/
+        ibtnSprudel.setImageResource(R.drawable.sprudelwasser);
 
         ibtnWarenkorb = findViewById(R.id.imageButtonWarenkorb);
         ibtnWarenkorb.setImageResource(R.drawable.warenkorb);
 
         ibtnHome = findViewById(R.id.imageButtonHome);
         ibtnHome.setImageResource(R.drawable.home);
-
-        hilfMirDaddyDB = new DBHelferlein(this);
-        hilfMirMommyAnimation = new AnimationsHelferlein();
 
 
         ibtnWarenkorb.setOnClickListener(v -> {
@@ -77,8 +85,6 @@ public class WasserActivity extends AppCompatActivity {
             }else{
                 Toast.makeText(WasserActivity.this, "Es dürfen keine Produkte mehr hinzugefügt werden", Toast.LENGTH_SHORT).show();
             }
-
-
         });
 
         ibtnStill.setOnClickListener(v -> {

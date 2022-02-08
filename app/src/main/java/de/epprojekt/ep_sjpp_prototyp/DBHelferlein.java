@@ -6,8 +6,9 @@ import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
+import android.graphics.drawable.Drawable;
+import android.net.Uri;
 import android.widget.ImageButton;
-import android.widget.Toast;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -32,7 +33,7 @@ public class DBHelferlein extends SQLiteOpenHelper {
     @SuppressLint("SQLiteString")
     @Override
     public void onCreate(SQLiteDatabase db) {
-        db.execSQL("CREATE TABLE IF NOT EXISTS Sortiment(id_key INTEGER primary key, bildname STRING, bild BLOB,flag STRING)");
+        db.execSQL("CREATE TABLE IF NOT EXISTS Sortiment(id_key INTEGER primary key, bildname STRING, bild STRING,flag STRING)");
         db.execSQL("CREATE TABLE IF NOT EXISTS Userdaten(id_key INTEGER primary key, username STRING, flaggruen INTEGER, flagblau INETGER, flagrot INTEGER)");
         startInsertIntoSortiment(db);
     }
@@ -48,10 +49,10 @@ public class DBHelferlein extends SQLiteOpenHelper {
 
         ContentValues contentValues = new ContentValues();
 
-        contentValues.put("id_key", 1); contentValues.put("bildname", "roter Apfel"); contentValues.put("bild", R.drawable.apfel); contentValues.put("flag", flaggruen);
+        contentValues.put("id_key", 1); contentValues.put("bildname", "roterApfel"); contentValues.put("bild", R.drawable.apfel); contentValues.put("flag", flaggruen);
         database.insert(sortiment, null, contentValues);
 
-        contentValues.put("id_key", 2); contentValues.put("bildname", "gruener Apfel"); contentValues.put("bild", R.drawable.apfelgruen); contentValues.put("flag", flaggruen);
+        contentValues.put("id_key", 2); contentValues.put("bildname", "gruenerApfel"); contentValues.put("bild", R.drawable.apfelgruen); contentValues.put("flag", flaggruen);
         database.insert(sortiment, null, contentValues);
 
         contentValues.put("id_key", 3); contentValues.put("bildname", "Salatgurke"); contentValues.put("bild", R.drawable.gurke); contentValues.put("flag", flaggruen);
@@ -87,7 +88,7 @@ public class DBHelferlein extends SQLiteOpenHelper {
     @SuppressLint("SQLiteString")
     public void createWarenkorbOnClick(String name){
         SQLiteDatabase db = this.getWritableDatabase();
-        db.execSQL("CREATE TABLE IF NOT EXISTS Warenkorb"+name+"(id_key INTEGER primary key, btnID INTEGER, bildwert INTEGER, itemnamekey STRING, itemname STRING)");
+        db.execSQL("CREATE TABLE IF NOT EXISTS Warenkorb"+name+"(btnID INTEGER, bildwert INTEGER, itemnamekey STRING primary key, itemname STRING)");
         close();
     }
 
@@ -100,20 +101,14 @@ public class DBHelferlein extends SQLiteOpenHelper {
 
         Cursor cursor = database.rawQuery("SELECT * FROM Warenkorb" +username, null);
 
-        if (countWarenkorb >= 1) {
-            countWarenkorb = cursor.getCount() + 1;
-        }
-
         Integer btnid = ibtn.getId();
 
         ContentValues contentValues = new ContentValues();
-        contentValues.put("id_key", countWarenkorb);
         contentValues.put("btnID", btnid);
         contentValues.put("bildwert", bildInteger);
         contentValues.put("itemnamekey", itemnamekey);
         contentValues.put("itemname", itemname);
 
-        countWarenkorb++;
         cursor.close();
 
         return database.insert(warenkorb+username, null, contentValues);
@@ -245,15 +240,6 @@ public class DBHelferlein extends SQLiteOpenHelper {
         return cursor;
     }
 
-    public Cursor fetchSortimentidkey(String idkey) {
-        SQLiteDatabase database = this.getWritableDatabase();
-        Cursor cursor = database.query(sortiment, new String[]{"flag" }, "id_key =?", new String[]{idkey }, null, null, null);
-        if (cursor != null) {
-            cursor.moveToFirst();
-        }
-        return cursor;
-    }
-
     // Sucht Flaganzahl einer bestimmten Flagart
     public Cursor fetchUserFlagAnzahl(String aktuellerUser,String flag) {
         SQLiteDatabase database = this.getWritableDatabase();
@@ -271,6 +257,31 @@ public class DBHelferlein extends SQLiteOpenHelper {
             cursor.moveToFirst();
         }
         return cursor;
+    }
+
+    public String getDrawableFromTable(String bildname){
+
+        SQLiteDatabase database = this.getWritableDatabase();
+
+        Cursor cursor = database.query(sortiment, new String[]{"bild"},"bildname =?",new String[]{bildname},null,null,null);
+
+        if (cursor != null) {
+            cursor.moveToFirst();
+        }
+
+        assert cursor != null;
+        return cursor.getString(0);
+    }
+
+    public void setDrawableFromGallery(String bildname, Uri bildID){
+
+        SQLiteDatabase database = this.getWritableDatabase();
+
+        ContentValues contentValues = new ContentValues();
+        contentValues.put("bild", String.valueOf(bildID));
+
+        database.update(sortiment,contentValues,"bildname =?",new String[]{bildname});
+
     }
 
 
