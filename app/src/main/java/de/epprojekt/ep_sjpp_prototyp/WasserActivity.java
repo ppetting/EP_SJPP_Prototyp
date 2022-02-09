@@ -6,6 +6,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.database.Cursor;
+import android.graphics.BitmapFactory;
 import android.net.Uri;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
@@ -15,6 +16,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import java.util.ArrayList;
+import java.util.Base64;
 
 public class WasserActivity extends AppCompatActivity {
 
@@ -48,13 +50,13 @@ public class WasserActivity extends AppCompatActivity {
 
         ibtnSprudel = findViewById(R.id.imageButtonSprudel);
 
-   /*     if(savedInstanceState == null){
-            ibtnSprudel.setImageResource(Integer.parseInt(hilfMirDaddyDB.getDrawableFromTable("roterApfel")));
+        if(savedInstanceState == null){
+            ibtnSprudel.setImageBitmap(BitmapFactory.decodeByteArray(hilfMirDaddyDB.getDrawableFromTable("roterApfel"),0,hilfMirDaddyDB.getDrawableFromTable("roterApfel").length));
         }else{
-            ibtnSprudel.setImageURI(Uri.parse(hilfMirDaddyDB.getDrawableFromTable("roterApfel")));
+            ibtnSprudel.setImageBitmap(BitmapFactory.decodeByteArray(hilfMirDaddyDB.getDrawableFromTable("roterApfel"),0,hilfMirDaddyDB.getDrawableFromTable("roterApfel").length));
         }
-*/
-        ibtnSprudel.setImageResource(R.drawable.sprudelwasser);
+
+        //ibtnSprudel.setImageResource(R.drawable.sprudelwasser);
 
         ibtnWarenkorb = findViewById(R.id.imageButtonWarenkorb);
         ibtnWarenkorb.setImageResource(R.drawable.warenkorb);

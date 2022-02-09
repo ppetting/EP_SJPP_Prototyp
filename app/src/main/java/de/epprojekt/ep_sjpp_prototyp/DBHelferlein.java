@@ -6,6 +6,7 @@ import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
+import android.graphics.Bitmap;
 import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.widget.ImageButton;
@@ -33,7 +34,7 @@ public class DBHelferlein extends SQLiteOpenHelper {
     @SuppressLint("SQLiteString")
     @Override
     public void onCreate(SQLiteDatabase db) {
-        db.execSQL("CREATE TABLE IF NOT EXISTS Sortiment(id_key INTEGER primary key, bildname STRING, bild STRING,flag STRING)");
+        db.execSQL("CREATE TABLE IF NOT EXISTS Sortiment(id_key INTEGER primary key, bildname STRING, bild BLOB,flag STRING)");
         db.execSQL("CREATE TABLE IF NOT EXISTS Userdaten(id_key INTEGER primary key, username STRING, flaggruen INTEGER, flagblau INETGER, flagrot INTEGER)");
         startInsertIntoSortiment(db);
     }
@@ -259,7 +260,7 @@ public class DBHelferlein extends SQLiteOpenHelper {
         return cursor;
     }
 
-    public String getDrawableFromTable(String bildname){
+    public byte[] getDrawableFromTable(String bildname){
 
         SQLiteDatabase database = this.getWritableDatabase();
 
@@ -270,15 +271,15 @@ public class DBHelferlein extends SQLiteOpenHelper {
         }
 
         assert cursor != null;
-        return cursor.getString(0);
+        return cursor.getBlob(0);
     }
 
-    public void setDrawableFromGallery(String bildname, Uri bildID){
+    public void setDrawableFromGallery(String bildname, byte[] bildID){
 
         SQLiteDatabase database = this.getWritableDatabase();
 
         ContentValues contentValues = new ContentValues();
-        contentValues.put("bild", String.valueOf(bildID));
+        contentValues.put("bild", bildID);
 
         database.update(sortiment,contentValues,"bildname =?",new String[]{bildname});
 

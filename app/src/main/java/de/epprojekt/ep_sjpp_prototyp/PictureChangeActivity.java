@@ -1,19 +1,34 @@
 package de.epprojekt.ep_sjpp_prototyp;
 
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
+
 import android.content.Intent;
-import android.content.SharedPreferences;
+import android.database.Cursor;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.net.Uri;
 import android.os.Bundle;
-import android.preference.PreferenceManager;
+import android.os.Environment;
+import android.provider.MediaStore;
+import android.util.Base64;
+import android.view.View;
 import android.widget.ImageButton;
+import java.io.ByteArrayOutputStream;
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.OutputStream;
+import java.util.Objects;
 
-public class PictureChangeActivity extends AppCompatActivity {
 
-    ImageButton ibtnSprudelwasserChanger, ibtnhome, ibtnStillesWasserChanger;
-    Uri mImageUri;
-    private static final int PICK_IMAGE_REQUEST = 0;
+public class PictureChangeActivity extends AppCompatActivity{
+
+    ImageButton  ibtnhome, ibtnStillesWasserChanger, ibtnSprudelwasserChanger;
     DBHelferlein hilfMirDaddyDB;
+    public static byte[] test;
 
 
     @Override
@@ -26,69 +41,92 @@ public class PictureChangeActivity extends AppCompatActivity {
         ibtnSprudelwasserChanger = findViewById(R.id.imageButtonSprudelWasserChanger);
         ibtnStillesWasserChanger = findViewById(R.id.imageButtonStillesWasserChanger);
 
-        ibtnhome = findViewById(R.id.imageButtonHome);
-        ibtnhome.setImageResource(R.drawable.home);
+        ibtnSprudelwasserChanger.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                selectImage();
+            }
+        });
+        ibtnStillesWasserChanger.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                hilfMirDaddyDB.setDrawableFromGallery("roterApfel",test);
+            }
+        });
 
-        SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(this);
-        String sprudelstatus = preferences.getString("image", null);
+    }
 
-        if (sprudelstatus == null) {
-            ibtnSprudelwasserChanger.setImageResource(Integer.parseInt(hilfMirDaddyDB.getDrawableFromTable("roterApfel")));
-        } else {
-            ibtnSprudelwasserChanger.setImageURI(Uri.parse(sprudelstatus));
+    private void selectImage() {
+        final CharSequence[] options = { "Foto aufnehmen", "Bild aus Gallerie auswählen","Abbrechen" };
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setTitle("Bild ändern");
+        builder.setItems(options, (dialog, item) -> {
+            if (options[item].equals("Foto aufnehmen"))
+            {
+                Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+                File file = new File(Environment.getExternalStorageDirectory(), "temp.jpg");
+                intent.putExtra(MediaStore.EXTRA_OUTPUT, Uri.fromFile(file));
+                startActivityForResult(intent, 1);
+            }
+            else if (options[item].equals("Bild aus Gallerie auswählen"))
+            {
+                Intent intent = new   Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
+                intent.setType("image/*");
+                startActivityForResult(intent, 2);
+            }
+            else if (options[item].equals("Abbrechen")) {
+                dialog.dismiss();
+            }
+        });
+        builder.show();
+    }
+
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        BitmapFactory.Options bitmapOptions = new BitmapFactory.Options();
+        if (resultCode == RESULT_OK) {
+            if (requestCode == 1) {
+                //Hier müsste man das Kamerabild verarbeiten
+            } else if (requestCode == 2) {
+
+                try {
+                    InputStream inputStream = getContentResolver().openInputStream(data.getData());
+                    Bitmap bitmap = BitmapFactory.decodeStream(inputStream);
+                    bitmap = getResizedBitmap(bitmap,400);
+                    //test = BitMapToString(bitmap);
+                    test = getBytes(bitmap);
+                } catch (FileNotFoundException e) {
+                    e.printStackTrace();
+                }
+            }
         }
-
-        ibtnSprudelwasserChanger.setOnClickListener(v ->{
-            imageSelect();
-            //hilfMirDaddyDB.setDrawableFromGallery("roterApfel",mImageUri);
-        });
-
-        ibtnhome.setOnClickListener(v -> {
-            Intent intent = new Intent(PictureChangeActivity.this, MainActivity.class);
-            startActivity(intent);
-        });
-
-    }
-
-
-  @Override
-  protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-      // Check which request we're responding to
-      super.onActivityResult(requestCode, resultCode, data);
-      if (requestCode == PICK_IMAGE_REQUEST) {
-          // Make sure the request was successful
-          if (resultCode == RESULT_OK) {
-              // The user picked a image.
-              // The Intent's data Uri identifies which item was selected.
-              if (data != null) {
-
-                  // This is the key line item, URI specifies the name of the data
-                  mImageUri = data.getData();
-
-                  // Saves image URI as string to Default Shared Preferences
-                  SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(this);
-                  SharedPreferences.Editor editor = preferences.edit();
-                  editor.putString("image", String.valueOf(mImageUri));
-                  editor.apply();
-
-                  // Sets the ImageView with the Image URI
-                  ibtnSprudelwasserChanger.setImageURI(mImageUri);
-                  ibtnSprudelwasserChanger.invalidate();
-
-              }
-          }
-      }
-  }
-
-    public void imageSelect() {
-        Intent intent;
-        intent = new Intent(Intent.ACTION_OPEN_DOCUMENT);
-        intent.addCategory(Intent.CATEGORY_OPENABLE);
-        intent.setType("image/*");
-        startActivityForResult(Intent.createChooser(intent, "Select Picture"), PICK_IMAGE_REQUEST);
     }
 
 
 
+    // convert from bitmap to byte array
+    public static byte[] getBytes(Bitmap bitmap) {
+        ByteArrayOutputStream stream = new ByteArrayOutputStream();
+        bitmap.compress(Bitmap.CompressFormat.PNG, 0, stream);
+        return stream.toByteArray();
+    }
+
+    public Bitmap getResizedBitmap(Bitmap image, int maxSize) {
+        int width = image.getWidth();
+        int height = image.getHeight();
+
+        float bitmapRatio = (float)width / (float) height;
+        if (bitmapRatio > 1) {
+            width = maxSize;
+            height = (int) (width / bitmapRatio);
+        } else {
+            height = maxSize;
+            width = (int) (height * bitmapRatio);
+        }
+        return Bitmap.createScaledBitmap(image, width, height, true);
+    }
 
 }
+
