@@ -24,7 +24,8 @@ public class WarenkorbActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_warenkorb);
 
-        //Toolbar AktiverUsername
+
+        //Toolbar aktiver Username wird angezeigt
         TextView tvAktiverUser = findViewById(R.id.TVToolbar);
         tvAktiverUser.setText(UserUebersichtActivity.aktiverNutzerUUA);
 

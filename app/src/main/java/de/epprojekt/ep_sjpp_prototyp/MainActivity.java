@@ -23,7 +23,7 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        //Toolbar AktiverUsername
+        //Toolbar aktiver Username wird angezeigt
         Toolbar toolbar = findViewById(R.id.toolbarMAIN);
         TextView tvAktiverUser = findViewById(R.id.TVToolbar);
         tvAktiverUser.setText(UserUebersichtActivity.aktiverNutzerUUA);

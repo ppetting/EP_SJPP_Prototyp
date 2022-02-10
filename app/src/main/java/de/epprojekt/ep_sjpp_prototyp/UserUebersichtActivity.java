@@ -37,7 +37,7 @@ public class UserUebersichtActivity extends AppCompatActivity {
         ibtnBenutzerErstellen = findViewById(R.id.imageButtonWarenkorb);
         ibtnBenutzerErstellen.setImageResource(R.drawable.plus);
 
-        //Toolbar AktiverUsername
+        //Toolbar aktiver Username wird angezeigt
         TextView tvAktiverUser = findViewById(R.id.TVToolbar);
         tvAktiverUser.setText(UserUebersichtActivity.aktiverNutzerUUA);
 

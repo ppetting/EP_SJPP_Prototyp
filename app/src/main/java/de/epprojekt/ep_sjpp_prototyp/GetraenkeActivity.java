@@ -17,7 +17,7 @@ public class GetraenkeActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_getraenke);
 
-        //Toolbar AktiverUsername
+        //Toolbar aktiver Username wird angezeigt
         TextView tvAktiverUser = findViewById(R.id.TVToolbar);
         tvAktiverUser.setText(UserUebersichtActivity.aktiverNutzerUUA);
 

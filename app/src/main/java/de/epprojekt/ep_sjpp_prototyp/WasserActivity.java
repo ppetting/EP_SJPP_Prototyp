@@ -47,7 +47,7 @@ public class WasserActivity extends AppCompatActivity {
         counterStill = PreferenceHelferlein.loadTotalFromPref(this,KEY_STILL);
 
 
-        //Toolbar AktiverUsername
+        //Toolbar aktiver Username wird angezeigt
         TextView tvAktiverUser = findViewById(R.id.TVToolbar);
         tvAktiverUser.setText(UserUebersichtActivity.aktiverNutzerUUA);
 
