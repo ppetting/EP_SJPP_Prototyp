@@ -20,7 +20,6 @@ public class UserUebersichtActivity extends AppCompatActivity {
 
     ImageButton ibtnBenutzerErstellen;
     //Button btnLoeschen,btnWechsel,btnBearbeiten;
-    TextView textViewToolbar;
     LinearLayout ownLinearLayout;
     DBHelferlein hilfMirDaddyDB;
     static String anlegen_bearbeiten = "";
@@ -34,10 +33,14 @@ public class UserUebersichtActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_user_uebersicht);
 
+
         ibtnBenutzerErstellen = findViewById(R.id.imageButtonWarenkorb);
         ibtnBenutzerErstellen.setImageResource(R.drawable.plus);
 
-        textViewToolbar = findViewById(R.id.TVToolbar);
+        //Toolbar AktiverUsername
+        TextView tvAktiverUser = findViewById(R.id.TVToolbar);
+        tvAktiverUser.setText(UserUebersichtActivity.aktiverNutzerUUA);
+
 
         ownLinearLayout = findViewById(R.id.LinearLayoutDeletePage);
 

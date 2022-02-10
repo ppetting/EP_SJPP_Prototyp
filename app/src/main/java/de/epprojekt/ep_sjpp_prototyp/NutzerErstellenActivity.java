@@ -1,11 +1,13 @@
 package de.epprojekt.ep_sjpp_prototyp;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 
 import android.content.Intent;
 import android.os.Bundle;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 
 public class NutzerErstellenActivity extends AppCompatActivity {
@@ -25,7 +27,10 @@ public class NutzerErstellenActivity extends AppCompatActivity {
 
          hilfMirDaddyDB = new DBHelferlein(this);
 
-         name = findViewById(R.id.ETname);
+
+
+
+        name = findViewById(R.id.ETname);
          gruenerFlag = findViewById(R.id.ETgruen);
          roterFlag = findViewById(R.id.ETrot);
          blauerFlag = findViewById(R.id.ETblau);

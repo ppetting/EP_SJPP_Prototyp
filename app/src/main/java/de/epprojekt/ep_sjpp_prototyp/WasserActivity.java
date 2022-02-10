@@ -1,6 +1,7 @@
 package de.epprojekt.ep_sjpp_prototyp;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 
 import android.content.Context;
 import android.content.Intent;
@@ -37,13 +38,18 @@ public class WasserActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_wasser);
 
+
+
         hilfMirDaddyDB = new DBHelferlein(this);
         hilfMirMommyAnimation = new AnimationsHelferlein();
 
         counterSprudel = PreferenceHelferlein.loadTotalFromPref(this,KEY_SPRUDEL);
         counterStill = PreferenceHelferlein.loadTotalFromPref(this,KEY_STILL);
 
-        textViewToolbar = findViewById(R.id.TVToolbar);
+
+        //Toolbar AktiverUsername
+        TextView tvAktiverUser = findViewById(R.id.TVToolbar);
+        tvAktiverUser.setText(UserUebersichtActivity.aktiverNutzerUUA);
 
         ibtnStill = findViewById(R.id.imageButtonStill);
         ibtnStill.setImageResource(R.drawable.stilleswasser);

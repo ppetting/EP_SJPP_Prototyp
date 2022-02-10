@@ -1,10 +1,12 @@
 package de.epprojekt.ep_sjpp_prototyp;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 
 import android.content.Intent;
 import android.os.Bundle;
 import android.widget.ImageButton;
+import android.widget.TextView;
 
 public class GetraenkeActivity extends AppCompatActivity {
 
@@ -14,6 +16,10 @@ public class GetraenkeActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_getraenke);
+
+        //Toolbar AktiverUsername
+        TextView tvAktiverUser = findViewById(R.id.TVToolbar);
+        tvAktiverUser.setText(UserUebersichtActivity.aktiverNutzerUUA);
 
         ibtnWasser = findViewById(R.id.imageButtonWasser);
         ibtnWasser.setImageResource(R.drawable.wasser);

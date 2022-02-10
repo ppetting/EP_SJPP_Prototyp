@@ -7,6 +7,8 @@ import android.os.Bundle;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.TextView;
+
 import java.util.ArrayList;
 
 public class WarenkorbActivity extends AppCompatActivity {
@@ -21,6 +23,10 @@ public class WarenkorbActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_warenkorb);
+
+        //Toolbar AktiverUsername
+        TextView tvAktiverUser = findViewById(R.id.TVToolbar);
+        tvAktiverUser.setText(UserUebersichtActivity.aktiverNutzerUUA);
 
         ibtnHome = findViewById(R.id.imageButtonHome);
         ibtnHome.setImageResource(R.drawable.home);
