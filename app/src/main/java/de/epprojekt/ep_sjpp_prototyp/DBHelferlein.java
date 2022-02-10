@@ -10,6 +10,7 @@ import android.graphics.Bitmap;
 import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.widget.ImageButton;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -230,35 +231,102 @@ public class DBHelferlein extends SQLiteOpenHelper {
         database.close();
     }
 
-
+    //gibt die Flag-Art des Produkts als String zurück
     // Sucht Flag (ob grün,rot,blau) zum entsprechenden Produkt
-    public Cursor fetchSortiment(String produktname) {
+    public String fetchSortiment(String produktname) {
        SQLiteDatabase database = this.getWritableDatabase();
        Cursor cursor = database.query(sortiment, new String[]{"flag" }, "bildname =?", new String[]{produktname }, null, null, null);
         if (cursor != null) {
             cursor.moveToFirst();
         }
-        return cursor;
+        return cursor.getString(0);
     }
 
-    // Sucht Flaganzahl einer bestimmten Flagart
-    public Cursor fetchUserFlagAnzahl(String aktuellerUser,String flag) {
+    // Sucht maximale Flaganzahl einer bestimmten Flagart für den übergebenen User
+        //gibt es für weitere Berechnungen als Integer zurück
+    public Integer getFlaganzahl(String aktuellerUser,String flag) {
         SQLiteDatabase database = this.getWritableDatabase();
         Cursor cursor = database.query(userdaten, new String[]{flag}, "username =?", new String[]{aktuellerUser }, null, null, null);
         if (cursor != null) {
             cursor.moveToFirst();
         }
-        return cursor;
+        return cursor.getInt(0);
+    }
+    // Sucht maximale Flaganzahl einer bestimmten Flagart für den übergebenen User
+        //gibt es für Textfelder als String zurück
+    public String getFlaganzahlString(String aktuellerUser,String flag) {
+        SQLiteDatabase database = this.getWritableDatabase();
+        Cursor cursor = database.query(userdaten, new String[]{flag}, "username =?", new String[]{aktuellerUser }, null, null, null);
+        if (cursor != null) {
+            cursor.moveToFirst();
+        }
+        return cursor.getString(0);
     }
 
-    public Cursor fetchItemnameAusWarenkorb (String aktuellerUser,String itemnamekey) {
+
+    // gibt den Namen des Produkts zurück (nicht des individuellen Produktnamens Item1)
+    public String getWarenkorbItemname (String itemnamekey, String aktuellerUser) {
         SQLiteDatabase database = this.getWritableDatabase();
         Cursor cursor = database.query(warenkorb + aktuellerUser, new String[]{"itemname"}, "itemnamekey =?", new String[]{itemnamekey}, null, null, null);
         if (cursor != null) {
             cursor.moveToFirst();
         }
-        return cursor;
+        return cursor.getString(0);
     }
+
+    //Zählt die Anzahl einer bestimmten Flagart im Einkaufswagen des aktiven Nutzers
+    public Integer flagCountEinkaufswagen(String flagart, String aktivernutzer) {
+        int count = 0;
+        int x = 0;
+
+        ArrayList<String> arrayListOfWarenkorbitems = this.createArrayListOfWarenkorbItems(aktivernutzer);
+
+        while (x < arrayListOfWarenkorbitems.size()) {
+            String itemname = getWarenkorbItemname(arrayListOfWarenkorbitems.get(x),aktivernutzer);
+            String itemflag = fetchSortiment(itemname);
+
+            if (flagart.equals(itemflag)) {
+                count++;
+                x++;
+            } else {
+                x++;
+            }
+        }
+        return count;
+    }
+
+    public Boolean darfHinzugefügtWerden (String produktname, String aktiverNutzer){
+        Integer countEinkaufswagen = flagCountEinkaufswagen(fetchSortiment(produktname),aktiverNutzer);
+        Integer personenmaximum = getFlaganzahl(aktiverNutzer, fetchSortiment(produktname));
+        if(countEinkaufswagen < personenmaximum){
+            return true;
+        } else return false;
+    }
+
+    public void updateUserdata(String aktiveruser, String neuerUsername, Integer flaggruen, Integer flagblau, Integer flagrot){
+
+        SQLiteDatabase database = this.getWritableDatabase();
+
+        ContentValues contentValues = new ContentValues();
+        contentValues.put("username", neuerUsername);
+        contentValues.put("flaggruen", flaggruen);
+        contentValues.put("flagrot", flagrot);
+        contentValues.put("flagblau", flagblau);
+
+        database.update(userdaten,contentValues,"username =?",new String[]{aktiveruser});
+
+    }
+
+
+
+
+
+
+
+
+
+
+
 
     public byte[] getDrawableFromTable(String bildname){
 

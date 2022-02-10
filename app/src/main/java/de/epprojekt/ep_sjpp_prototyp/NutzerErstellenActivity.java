@@ -14,6 +14,7 @@ public class NutzerErstellenActivity extends AppCompatActivity {
     Button benutzerAnlegen;
     DBHelferlein hilfMirDaddyDB;
     static String nameTXT;
+    String aktiverUser = UserUebersichtActivity.aktiverNutzerUUA;
     Integer gruenerFlagTXT, roterFlagTXT, blauerFlagTXT;
 
 
@@ -30,19 +31,57 @@ public class NutzerErstellenActivity extends AppCompatActivity {
          blauerFlag = findViewById(R.id.ETblau);
          benutzerAnlegen = findViewById(R.id.btnCreate);
 
+        if(UserUebersichtActivity.anlegen_bearbeiten.equals("Benutzer anlegen")){
+            //Button Anzeigetext
+            benutzerAnlegen.setText(UserUebersichtActivity.anlegen_bearbeiten);
+        }else if(UserUebersichtActivity.anlegen_bearbeiten.equals("Benutzer aktualisieren")){
+            //Button Anzeigetext
+            benutzerAnlegen.setText(UserUebersichtActivity.anlegen_bearbeiten);
+            //Vorausgefüllt mit den aktuellen Userdaten
+            name.setText(aktiverUser);
+            gruenerFlag.setText(hilfMirDaddyDB.getFlaganzahlString(aktiverUser,"flaggruen"));
+            roterFlag.setText(hilfMirDaddyDB.getFlaganzahlString(aktiverUser,"flagrot"));
+            blauerFlag.setText(hilfMirDaddyDB.getFlaganzahlString(aktiverUser,"flagblau"));
+        }
+
          benutzerAnlegen.setOnClickListener(v -> {
+             //Benutzer anlegen
+             if(UserUebersichtActivity.anlegen_bearbeiten.equals("Benutzer anlegen")) {
+                 nameTXT = name.getText().toString();
+                 gruenerFlagTXT = Integer.parseInt(gruenerFlag.getText().toString());
+                 roterFlagTXT = Integer.parseInt(roterFlag.getText().toString());
+                 blauerFlagTXT = Integer.parseInt(blauerFlag.getText().toString());
 
-             nameTXT = name.getText().toString();
-             gruenerFlagTXT = Integer.parseInt(gruenerFlag.getText().toString());
-             roterFlagTXT = Integer.parseInt(roterFlag.getText().toString());
-             blauerFlagTXT = Integer.parseInt(blauerFlag.getText().toString());
+                 hilfMirDaddyDB.insertIntoUserdaten(nameTXT, gruenerFlagTXT, blauerFlagTXT, roterFlagTXT);
+                 hilfMirDaddyDB.createWarenkorbOnClick(nameTXT);
 
-             hilfMirDaddyDB.insertIntoUserdaten(nameTXT,gruenerFlagTXT,blauerFlagTXT,roterFlagTXT);
-             hilfMirDaddyDB.createWarenkorbOnClick(nameTXT);
-             Intent refresh = new Intent(NutzerErstellenActivity.this, MainActivity.class);
-             startActivity(refresh);
+                 UserUebersichtActivity.aktiverNutzerUUA = nameTXT;
+                 Intent refresh = new Intent(NutzerErstellenActivity.this, MainActivity.class);
+                 startActivity(refresh);
 
-             Toast.makeText(NutzerErstellenActivity.this,"Benutzer wurde angelegt", Toast.LENGTH_SHORT).show();
+                 Toast.makeText(NutzerErstellenActivity.this, "Benutzer wurde angelegt", Toast.LENGTH_SHORT).show();
+
+             //Benutzer bearbeiten
+             }else if(UserUebersichtActivity.anlegen_bearbeiten.equals("Benutzer aktualisieren")){
+
+                 nameTXT = name.getText().toString();
+                 gruenerFlagTXT = Integer.parseInt(gruenerFlag.getText().toString());
+                 roterFlagTXT = Integer.parseInt(roterFlag.getText().toString());
+                 blauerFlagTXT = Integer.parseInt(blauerFlag.getText().toString());
+
+                 hilfMirDaddyDB.updateUserdata(aktiverUser,nameTXT, gruenerFlagTXT, blauerFlagTXT, roterFlagTXT);
+
+                 UserUebersichtActivity.aktiverNutzerUUA = nameTXT;
+
+                 Intent refresh = new Intent(NutzerErstellenActivity.this, MainActivity.class);
+                 startActivity(refresh);
+
+                 Toast.makeText(NutzerErstellenActivity.this, "Benutzer aktualisiert", Toast.LENGTH_SHORT).show();
+
+             }else{
+                 Toast.makeText(NutzerErstellenActivity.this, "FEHELER!!!!", Toast.LENGTH_SHORT).show();
+             }
+
 
          });
 

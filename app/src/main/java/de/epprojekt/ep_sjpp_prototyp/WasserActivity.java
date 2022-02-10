@@ -50,13 +50,19 @@ public class WasserActivity extends AppCompatActivity {
 
         ibtnSprudel = findViewById(R.id.imageButtonSprudel);
 
+        ibtnSprudel.setImageResource(R.drawable.sprudelwasser);
+
+       /*
+
         if(savedInstanceState == null){
             ibtnSprudel.setImageBitmap(BitmapFactory.decodeByteArray(hilfMirDaddyDB.getDrawableFromTable("roterApfel"),0,hilfMirDaddyDB.getDrawableFromTable("roterApfel").length));
+
+
         }else{
             ibtnSprudel.setImageBitmap(BitmapFactory.decodeByteArray(hilfMirDaddyDB.getDrawableFromTable("roterApfel"),0,hilfMirDaddyDB.getDrawableFromTable("roterApfel").length));
         }
+*/
 
-        //ibtnSprudel.setImageResource(R.drawable.sprudelwasser);
 
         ibtnWarenkorb = findViewById(R.id.imageButtonWarenkorb);
         ibtnWarenkorb.setImageResource(R.drawable.warenkorb);
@@ -78,7 +84,7 @@ public class WasserActivity extends AppCompatActivity {
         ibtnSprudel.setOnClickListener(v -> {
 
 
-            if(darfHinzugefügtWerden(flagCountEinkaufswagen(getSortiment("Sprudelwasser")),getFlaganzahl(UserUebersichtActivity.aktiverNutzerUUA,getSortiment("Sprudelwasser")))){
+            if (hilfMirDaddyDB.darfHinzugefügtWerden("Sprudelwasser", UserUebersichtActivity.aktiverNutzerUUA)){
                 hilfMirDaddyDB.insertIntoWarenkorb(ibtnSprudel, R.drawable.sprudelwasser, itemname1 + counterSprudel, itemname1,UserUebersichtActivity.aktiverNutzerUUA);
                 hilfMirMommyAnimation.ownAnimation(ibtnSprudel, ibtnWarenkorb);
 
@@ -90,7 +96,7 @@ public class WasserActivity extends AppCompatActivity {
         });
 
         ibtnStill.setOnClickListener(v -> {
-            if(darfHinzugefügtWerden(flagCountEinkaufswagen(getSortiment("Stilleswasser")),getFlaganzahl(UserUebersichtActivity.aktiverNutzerUUA,getSortiment("Stilleswasser")))) {
+            if (hilfMirDaddyDB.darfHinzugefügtWerden("Stilleswasser", UserUebersichtActivity.aktiverNutzerUUA)) {
                 hilfMirDaddyDB.insertIntoWarenkorb(ibtnStill, R.drawable.stilleswasser, itemname2 + counterStill, itemname2, UserUebersichtActivity.aktiverNutzerUUA);
                 hilfMirMommyAnimation.ownAnimation(ibtnStill, ibtnWarenkorb);
 
@@ -106,65 +112,7 @@ public class WasserActivity extends AppCompatActivity {
         });
 
     }
-
-
-
-    //gibt die Flag-Art des Produkts als String zurück
-    public String getSortiment(String produktname) {
-
-        Cursor cursor = hilfMirDaddyDB.fetchSortiment(produktname);
-        //Toast.makeText(WasserActivity.this, "Produkt hat folgenden Flag:" + cursor.getString(0), Toast.LENGTH_SHORT).show();
-
-        cursor.moveToFirst();
-        return cursor.getString(0);
-    }
-
-
-    // gibt den Namen des Produkts zurück (nicht des individuellen Produktnamens Item1)
-    public String getWarenkorbItemname(String produktname, String aktuellerUser) {
-
-        Cursor cursor = hilfMirDaddyDB.fetchItemnameAusWarenkorb(aktuellerUser,produktname);
-        cursor.moveToFirst();
-        return cursor.getString(0);
-    }
-
-
-    //gibt die als Integer zurück, wie viele Produkte der aktive User von dem angegebenen Flag hinzufügen darf
-    public Integer getFlaganzahl(String aktiverbenutzer, String flagname) {
-
-        Cursor cursor = hilfMirDaddyDB.fetchUserFlagAnzahl(aktiverbenutzer, flagname);
-        Toast.makeText(WasserActivity.this, "Benutzer hat Flaganzahl:" + cursor.getInt(0), Toast.LENGTH_SHORT).show();
-        cursor.moveToFirst();
-        return cursor.getInt(0);
-    }
-
-    //Zählt die Anzahl einer bestimmten Flagart im Einkaufswagen des aktiven Nutzers
-    public Integer flagCountEinkaufswagen(String flagart) {
-        int count = 0;
-        int x = 0;
-
-        ArrayList<String> arrayListOfWarenkorbitems = hilfMirDaddyDB.createArrayListOfWarenkorbItems(UserUebersichtActivity.aktiverNutzerUUA);
-
-        while (x < arrayListOfWarenkorbitems.size()) {
-            String itemname = getWarenkorbItemname(arrayListOfWarenkorbitems.get(x),UserUebersichtActivity.aktiverNutzerUUA);
-            String itemflag = getSortiment(itemname);
-
-            if (flagart.equals(itemflag)) {
-                count++;
-                x++;
-            } else {
-                x++;
-            }
-        }
-        Toast.makeText(WasserActivity.this, "Flaganzahl des Einkaufswagen:" + count, Toast.LENGTH_SHORT).show();
-        return count;
-    }
-
-
-
-    public Boolean darfHinzugefügtWerden (Integer countEinkaufswagen,Integer personenmaximum){
-        if(countEinkaufswagen < personenmaximum){
-            return true;
-        } else return false;
-    }
 }
+
+
+
