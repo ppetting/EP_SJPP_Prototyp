@@ -11,12 +11,15 @@ import android.widget.TextView;
 
 import java.util.ArrayList;
 
+import de.epprojekt.ep_sjpp_prototyp.Helferlein.DBHelferlein;
+import de.epprojekt.ep_sjpp_prototyp.Menuebereich.UserOverviewActivity;
+
 public class WarenkorbActivity extends AppCompatActivity {
 
     ImageButton ibtnLoeschen, ibtnHome;
     DBHelferlein hilfMirDaddyDB;
     LinearLayout ownLinearLayout;
-    UserUebersichtActivity uua;
+    UserOverviewActivity uua;
     int i = 0;
 
     @Override
@@ -27,21 +30,21 @@ public class WarenkorbActivity extends AppCompatActivity {
 
         //Toolbar aktiver Username wird angezeigt
         TextView tvAktiverUser = findViewById(R.id.TVToolbar);
-        tvAktiverUser.setText(UserUebersichtActivity.aktiverNutzerUUA);
+        tvAktiverUser.setText(UserOverviewActivity.aktiverNutzerUOA);
 
         ibtnHome = findViewById(R.id.imageButtonHome);
         ibtnHome.setImageResource(R.drawable.home);
 
         ibtnLoeschen = findViewById(R.id.imageButtonWarenkorb);
-        ibtnLoeschen.setImageResource(R.drawable.delete);
+
 
         ownLinearLayout = findViewById(R.id.LinearLayoutWarenkorb);
 
         hilfMirDaddyDB = new DBHelferlein(this);
-        uua = new UserUebersichtActivity();
+        uua = new UserOverviewActivity();
 
-        ArrayList<Integer> arrayListOfDrawablesID = hilfMirDaddyDB.createArrayListOfWarenkorb(UserUebersichtActivity.aktiverNutzerUUA);
-        ArrayList<String> arrayListOfWarenkorbitems = hilfMirDaddyDB.createArrayListOfWarenkorbItems(UserUebersichtActivity.aktiverNutzerUUA);
+        ArrayList<Integer> arrayListOfDrawablesID = hilfMirDaddyDB.createArrayListOfWarenkorb(UserOverviewActivity.aktiverNutzerUOA);
+        ArrayList<String> arrayListOfWarenkorbitems = hilfMirDaddyDB.createArrayListOfWarenkorbItems(UserOverviewActivity.aktiverNutzerUOA);
 
         while(i < arrayListOfDrawablesID.size()){
             setPicture(arrayListOfDrawablesID.get(i),arrayListOfWarenkorbitems.get(i));
@@ -49,7 +52,7 @@ public class WarenkorbActivity extends AppCompatActivity {
         }
 
         ibtnLoeschen.setOnClickListener(v -> {
-            hilfMirDaddyDB.deleteCompletefromWarenkorb(UserUebersichtActivity.aktiverNutzerUUA);
+            hilfMirDaddyDB.deleteCompletefromWarenkorb(UserOverviewActivity.aktiverNutzerUOA);
             Intent refresh = new Intent(WarenkorbActivity.this,WarenkorbActivity.class);
             startActivity(refresh);
             finish();
@@ -76,7 +79,7 @@ public class WarenkorbActivity extends AppCompatActivity {
         imageButton.setScaleType(ImageView.ScaleType.FIT_CENTER);
 
         imageButton.setOnClickListener(v -> {
-            hilfMirDaddyDB.deleteIndividuallyfromWarenkorb(j,UserUebersichtActivity.aktiverNutzerUUA);
+            hilfMirDaddyDB.deleteIndividuallyfromWarenkorb(j, UserOverviewActivity.aktiverNutzerUOA);
             Intent refresh = new Intent(WarenkorbActivity.this,WarenkorbActivity.class);
             startActivity(refresh);
             finish();

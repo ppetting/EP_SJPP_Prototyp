@@ -16,50 +16,114 @@
         app:layout_constraintTop_toTopOf = "parent"
         />
 
-    <LinearLayout
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal">
+ <ScrollView
+     android:layout_width="match_parent"
+     android:layout_height="wrap_content"
+     android:orientation="vertical">
+
+<RelativeLayout
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginStart="100dp">
+
+        <ImageButton
+            android:id="@+id/imageButtonGetraenke"
+            android:layout_width="150dp"
+            android:layout_height="150dp"
+            android:scaleType="fitCenter"
+            android:layout_below="@+id/toolbarMAIN"
+            app:srcCompat="@drawable/getraenke"
+            tools:ignore="NotSibling"/>
 
         <ImageButton
             android:id="@+id/imageButtonSoundGetraenke"
             android:layout_width="50dp"
             android:layout_height="50dp"
-            android:layout_marginLeft="70dp"
+            android:layout_below="@id/toolbarMAIN"
+            android:layout_marginLeft="10dp"
+            android:layout_toRightOf="@id/imageButtonGetraenke"
             android:scaleType="fitCenter"
-            app:srcCompat="@drawable/klang" />
-
-        <ImageButton
-            android:id="@+id/imageButtonGetraenke"
-            android:layout_width="200dp"
-            android:layout_height="200dp"
-            android:contentDescription="@string/Getraenke"
-            android:scaleType="fitCenter"
-            tools:srcCompat="@tools:sample/avatars" />
-
-    </LinearLayout>
-
-    <LinearLayout
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal">
+            app:srcCompat="@drawable/sound"
+            tools:ignore="NotSibling" />
 
         <ImageButton
             android:id="@+id/imageButtonGemueseUndObst"
-            android:layout_width="200dp"
-            android:layout_height="200dp"
-            android:contentDescription="@string/GemueseUndObst"
+            android:layout_width="150dp"
+            android:layout_height="150dp"
             android:scaleType="fitCenter"
-            tools:srcCompat="@tools:sample/avatars" />
+            android:layout_below="@+id/imageButtonGetraenke"
+            tools:ignore="NotSibling"
+            app:srcCompat="@drawable/obstundgemuese" />
 
         <ImageButton
             android:id="@+id/imageButtonSoundGemueseundObst"
             android:layout_width="50dp"
             android:layout_height="50dp"
-            android:layout_marginLeft="70dp"
+            android:layout_marginLeft="10dp"
+            android:layout_toRightOf="@+id/imageButtonGemueseUndObst"
+            android:layout_below="@id/imageButtonGetraenke"
             android:scaleType="fitCenter"
-            app:srcCompat="@drawable/klang" />
-    </LinearLayout>
+            app:srcCompat="@drawable/sound"/>
 
+        <ImageButton
+            android:id="@+id/imageButtonFleischundWurst"
+            android:layout_width="150dp"
+            android:layout_height="150dp"
+            android:scaleType="fitCenter"
+            android:layout_below="@id/imageButtonGemueseUndObst"
+            app:srcCompat="@drawable/fleischundwurst"
+            tools:ignore="NotSibling" />
+
+        <ImageButton
+            android:id="@+id/imageButtonSoundFleischundWurst"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_marginLeft="10dp"
+            android:layout_toRightOf="@id/imageButtonFleischundWurst"
+            android:layout_below="@id/imageButtonGemueseUndObst"
+            android:scaleType="fitCenter"
+            app:srcCompat="@drawable/sound" />
+
+        <ImageButton
+            android:id="@+id/imageButtonMilchprodukte"
+            android:layout_width="150dp"
+            android:layout_height="150dp"
+            android:scaleType="fitCenter"
+            android:layout_below="@id/imageButtonFleischundWurst"
+            app:srcCompat="@drawable/milchprodukte"
+            tools:ignore="NotSibling" />
+
+        <ImageButton
+            android:id="@+id/imageButtonSoundMilchprodukte"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_marginLeft="10dp"
+            android:layout_toRightOf="@id/imageButtonMilchprodukte"
+            android:layout_below="@id/imageButtonFleischundWurst"
+            android:scaleType="fitCenter"
+            app:srcCompat="@drawable/sound" />
+
+        <ImageButton
+            android:id="@+id/imageButtonWeizenprodukte"
+            android:layout_width="150dp"
+            android:layout_height="150dp"
+            android:scaleType="fitCenter"
+            android:layout_below="@id/imageButtonMilchprodukte"
+            app:srcCompat="@drawable/weizenprodukte"
+            tools:ignore="NotSibling" />
+
+        <ImageButton
+            android:id="@+id/imageButtonSoundWeizenprodukte"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_marginLeft="10dp"
+            android:layout_toRightOf="@id/imageButtonWeizenprodukte"
+            android:layout_below="@id/imageButtonMilchprodukte"
+            android:scaleType="fitCenter"
+            app:srcCompat="@drawable/sound" />
+
+</RelativeLayout>
+
+</ScrollView>
 
 </LinearLayout>

@@ -5,32 +5,69 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context=".GemueseUndObstActivity">
+    tools:context=".Einkauf.GemueseUndObstActivity">
 
     <include
         android:id="@+id/toolbarMAIN"
         layout="@layout/toolbar"
-        app:layout_constraintEnd_toEndOf = "parent"
+        app:layout_constraintEnd_toEndOf ="parent"
         app:layout_constraintStart_toStartOf = "parent"
         app:layout_constraintTop_toTopOf = "parent"
         />
 
-    <ImageButton
-        android:id="@+id/imageButtonGurke"
-        android:layout_width="200dp"
-        android:layout_height="200dp"
-        android:layout_weight="1"
-        android:contentDescription="@string/Gurke"
-        android:scaleType="fitCenter"
-        tools:srcCompat="@tools:sample/avatars" />
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
 
-    <ImageButton
-        android:id="@+id/imageButtonApfel"
-        android:layout_width="200dp"
-        android:layout_height="200dp"
-        android:layout_weight="1"
-        android:contentDescription="@string/Apfel"
-        android:scaleType="fitCenter"
-        tools:srcCompat="@tools:sample/avatars" />
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="100dp">
+
+            <ImageButton
+                android:id="@+id/imageButtonAepfel"
+                android:layout_width="150dp"
+                android:layout_height="150dp"
+                android:scaleType="fitCenter"
+                android:layout_below="@+id/toolbarMAIN"
+                app:srcCompat="@drawable/aepfel"
+                tools:ignore="NotSibling"/>
+
+            <ImageButton
+                android:id="@+id/imageButtonSoundAepfel"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:layout_below="@id/toolbarMAIN"
+                android:layout_marginLeft="10dp"
+                android:layout_toRightOf="@id/imageButtonAepfel"
+                android:scaleType="fitCenter"
+                app:srcCompat="@drawable/sound"
+                tools:ignore="NotSibling" />
+
+            <ImageButton
+                android:id="@+id/imageButtonGurke"
+                android:layout_width="150dp"
+                android:layout_height="150dp"
+                android:scaleType="fitCenter"
+                android:layout_below="@+id/imageButtonAepfel"
+                tools:ignore="NotSibling"
+                app:srcCompat="@drawable/gurke" />
+
+            <ImageButton
+                android:id="@+id/imageButtonSoundGurke"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:layout_marginLeft="10dp"
+                android:layout_toRightOf="@+id/imageButtonGurke"
+                android:layout_below="@id/imageButtonAepfel"
+                android:scaleType="fitCenter"
+                app:srcCompat="@drawable/sound"/>
+
+
+
+        </RelativeLayout>
+
+    </ScrollView>
 
 </LinearLayout>

@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/LinearViewWasser"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".Einkauf.KaeseActivity"
+    tools:ignore="ExtraText">
+
+        android:id="@+id/RelativesLayoutWasser"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+
+        <include
+            android:id="@+id/toolbarMAIN"
+            layout="@layout/toolbar"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <ImageButton
+            android:id="@+id/imageButtonSprudel"
+            android:layout_width="200dp"
+            android:layout_height="200dp"
+            android:layout_marginStart="100dp"
+            android:contentDescription="@string/Sprudel"
+            android:scaleType="fitCenter"
+            android:layout_below="@id/toolbarMAIN"
+            tools:srcCompat="@tools:sample/avatars" />
+
+        <ImageButton
+            android:id="@+id/imageButtonSoundSprudelWasser"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:scaleType="fitCenter"
+            android:layout_below="@id/imageButtonSprudel"
+            app:srcCompat="@drawable/sound" />
+
+        <ImageButton
+            android:id="@+id/imageButtonStill"
+            android:layout_width="200dp"
+            android:layout_height="200dp"
+            android:layout_marginStart="100dp"
+            android:contentDescription="@string/Still"
+            android:scaleType="fitCenter"
+            android:layout_below="@id/imageButtonSprudel"
+            tools:srcCompat="@tools:sample/avatars" />
+
+        <ImageButton
+            android:id="@+id/imageButtonSoundStillesWasser"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:scaleType="fitCenter"
+            android:layout_below="@id/imageButtonStill"
+            app:srcCompat="@drawable/sound" />
+
+
+</RelativeLayout>

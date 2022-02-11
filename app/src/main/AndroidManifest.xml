@@ -3,6 +3,12 @@
     xmlns:tools="http://schemas.android.com/tools"
     package="de.epprojekt.ep_sjpp_prototyp">
 
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.MANAGE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.CAMERA" />
+
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
@@ -11,41 +17,38 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.EP_SJPP_Prototyp">
         <activity
-            android:name=".PictureChangeActivity"
+            android:name=".Einkauf.AepfelActivity"
             android:exported="false" />
         <activity
-            android:name=".UserUebersichtActivity"
+            android:name=".Menuebereich.IbtnChangerActivity"
             android:exported="false" />
         <activity
-            android:name=".NutzerErstellenActivity"
+            android:name=".Menuebereich.UserOverviewActivity"
+            android:exported="false" />
+        <activity
+            android:name=".Menuebereich.UserCreationActivity"
             android:exported="false" />
         <activity
             android:name=".WarenkorbActivity"
             android:exported="false" />
         <activity
-            android:name=".WasserActivity"
+            android:name=".Einkauf.KaeseActivity"
             android:exported="false" />
         <activity
-            android:name=".GemueseUndObstActivity"
+            android:name=".Einkauf.GemueseUndObstActivity"
             android:exported="false" />
         <activity
-            android:name=".GetraenkeActivity"
+            android:name=".Einkauf.MilchprdoukteActivity"
             android:exported="false" />
         <activity
             android:name=".MainActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
+
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
     </application>
-
-    <uses-permission android:name="android.permission.INTERNET"/>
-    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
-    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>
-    <uses-permission android:name="android.permission.MANAGE_EXTERNAL_STORAGE"/>
-    <uses-permission android:name="android.permission.CAMERA"/>
-
 
 </manifest>

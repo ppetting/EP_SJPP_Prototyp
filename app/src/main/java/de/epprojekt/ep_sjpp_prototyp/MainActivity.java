@@ -8,71 +8,91 @@ import android.os.Bundle;
 import android.widget.ImageButton;
 import android.widget.TextView;
 
-import org.w3c.dom.Text;
-
+import de.epprojekt.ep_sjpp_prototyp.Einkauf.GemueseUndObstActivity;
+import de.epprojekt.ep_sjpp_prototyp.Einkauf.MilchprdoukteActivity;
+import de.epprojekt.ep_sjpp_prototyp.Helferlein.DBHelferlein;
+import de.epprojekt.ep_sjpp_prototyp.Helferlein.PreferenceHelferlein;
+import de.epprojekt.ep_sjpp_prototyp.Menuebereich.UserCreationActivity;
+import de.epprojekt.ep_sjpp_prototyp.Menuebereich.UserOverviewActivity;
 
 public class MainActivity extends AppCompatActivity {
 
-    ImageButton ibtnGemueseUndObst, ibtnGetraenke, ibtnWarenkorb, ibtnMenue;
-    ImageButton ibtnSoundGetraenke;
+    ImageButton ibtnGemueseUndObst, ibtnGetraenke, ibtnWeizenprodukte, ibtnMilchprodukte, ibtnFleischundWurst, ibtnWarenkorb, ibtnMenue;
+    ImageButton ibtnSoundGetraenke, ibtnSoundGemueseundObst, ibtnSoundWeizenprodukte, ibtnSoundMilchprdoukte, ibtnSoundFleischundWurst;
+    TextView tvToolbar;
+    Toolbar toolbar;
     DBHelferlein hilfMirDaddyDB;
-
+    public final static String FIRST_APP_START_MAIN = "FirstAppStartMain";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        //Toolbar aktiver Username wird angezeigt
-        Toolbar toolbar = findViewById(R.id.toolbarMAIN);
-        TextView tvAktiverUser = findViewById(R.id.TVToolbar);
-        tvAktiverUser.setText(UserUebersichtActivity.aktiverNutzerUUA);
-
-        setSupportActionBar(toolbar);
+        if(PreferenceHelferlein.firstAppStart(getApplicationContext(),FIRST_APP_START_MAIN)){
+            Intent intent = new Intent(this, UserCreationActivity.class);
+            startActivity(intent);
+        }
 
         hilfMirDaddyDB = new DBHelferlein(this);
 
-        ibtnMenue = findViewById(R.id.imageButtonHome);
-        ibtnMenue.setImageResource(R.drawable.menue);
+        //TOOLBAR
+        toolbar = findViewById(R.id.toolbarMAIN);
+        tvToolbar = findViewById(R.id.TVToolbar);
+        tvToolbar.setText(UserOverviewActivity.aktiverNutzerUOA);
+        setSupportActionBar(toolbar);
 
-        ibtnWarenkorb = findViewById(R.id.imageButtonWarenkorb);
-        ibtnWarenkorb.setImageResource(R.drawable.warenkorb);
-
+        //BTN ZUWEISUNG
         ibtnGemueseUndObst = findViewById(R.id.imageButtonGemueseUndObst);
-        ibtnGemueseUndObst.setImageResource(R.drawable.ei_braun);
-
         ibtnGetraenke = findViewById(R.id.imageButtonGetraenke);
-        ibtnGetraenke.setImageResource(R.drawable.getraenke);
+        ibtnWeizenprodukte = findViewById(R.id.imageButtonWeizenprodukte);
+        ibtnMilchprodukte = findViewById(R.id.imageButtonMilchprodukte);
+        ibtnFleischundWurst = findViewById(R.id.imageButtonFleischundWurst);
+
+        ibtnMenue = findViewById(R.id.imageButtonHome);
+        ibtnWarenkorb = findViewById(R.id.imageButtonWarenkorb);
 
         ibtnSoundGetraenke = findViewById(R.id.imageButtonSoundGetraenke);
-        ibtnSoundGetraenke.setImageResource(R.drawable.klang);
+        ibtnSoundGemueseundObst = findViewById(R.id.imageButtonSoundGemueseundObst);
+        ibtnSoundWeizenprodukte = findViewById(R.id.imageButtonSoundWeizenprodukte);
+        ibtnSoundMilchprdoukte = findViewById(R.id.imageButtonSoundMilchprodukte);
+        ibtnSoundFleischundWurst = findViewById(R.id.imageButtonSoundFleischundWurst);
 
         //SOUND
-        final MediaPlayer mediaPlayer = MediaPlayer.create(this, R.raw.getraenke);
-        ibtnSoundGetraenke.setOnClickListener(v ->
-                mediaPlayer.start());
+        MediaPlayer mediaPlayerGemueseundObst = MediaPlayer.create(this, R.raw.obstundgemuese);
+        MediaPlayer mediaPlayerGetraenke = MediaPlayer.create(this, R.raw.getraenke);
+        MediaPlayer mediaPlayerWeizenprodukte = MediaPlayer.create(this, R.raw.weizenprodukte);
+        MediaPlayer mediaPlayerFleischUndWurst = MediaPlayer.create(this, R.raw.fleischundwurst);
+        MediaPlayer mediaPlayerMilchprodukte = MediaPlayer.create(this, R.raw.michlprodukte);
 
+        ibtnSoundGetraenke.setOnClickListener(v -> mediaPlayerGetraenke.start());
+        ibtnSoundGemueseundObst.setOnClickListener(v -> mediaPlayerGemueseundObst.start());
+        ibtnSoundWeizenprodukte.setOnClickListener(v -> mediaPlayerWeizenprodukte.start());
+        ibtnSoundMilchprdoukte.setOnClickListener(v -> mediaPlayerMilchprodukte.start());
+        ibtnSoundFleischundWurst.setOnClickListener(v -> mediaPlayerFleischUndWurst.start());
+
+        //ONCLICKLISTENER
         ibtnGemueseUndObst.setOnClickListener(v -> {
-            Intent intentGemueseUndObst = new Intent(MainActivity.this,PictureChangeActivity.class);
+            Intent intentGemueseUndObst = new Intent(this, GemueseUndObstActivity.class);
             startActivity(intentGemueseUndObst);
         });
 
-        ibtnGetraenke.setOnClickListener(v -> {
-            Intent intentGetraenke = new Intent(MainActivity.this,GetraenkeActivity.class);
-            startActivity(intentGetraenke);
+        ibtnMilchprodukte.setOnClickListener(v -> {
+            Intent intentMilchprdoukte = new Intent(this, MilchprdoukteActivity.class);
+            startActivity(intentMilchprdoukte);
         });
 
         ibtnWarenkorb.setOnClickListener(v -> {
-            Intent intentWarenkorb = new Intent(MainActivity.this, WarenkorbActivity.class);
+            Intent intentWarenkorb = new Intent(this, WarenkorbActivity.class);
             startActivity(intentWarenkorb);
         });
 
         ibtnMenue.setOnClickListener(v -> {
-            Intent intentMenue = new Intent(MainActivity.this, UserUebersichtActivity.class);
+            Intent intentMenue = new Intent(this, UserOverviewActivity.class);
             startActivity(intentMenue);
         });
 
-
-
     }
+
+
 }

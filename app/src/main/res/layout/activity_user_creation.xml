@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".Menuebereich.UserCreationActivity">
+
+    <include
+        android:id="@+id/toolbarMAIN"
+        layout="@layout/toolbar"
+        app:layout_constraintEnd_toEndOf ="parent"
+        app:layout_constraintStart_toStartOf = "parent"
+        app:layout_constraintTop_toTopOf = "parent"
+        />
+
+    <TextView
+        android:id="@+id/TVtextTitel"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="100dp"
+        android:text="Bitte füllen Sie die unten stehenden Felder aus"
+        android:textSize="24dp" />
+
+    <EditText
+        android:id = "@+id/ETname"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Name"
+        android:textSize="24dp"
+        android:layout_below="@+id/TVtextTitel"
+        android:inputType="textPersonName"
+        />
+
+    <EditText
+        android:id = "@+id/ETgruen"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="grüner Flag"
+        android:textSize="24dp"
+        android:layout_below="@+id/ETname"
+        android:inputType="numberDecimal"
+        />
+
+    <EditText
+        android:id = "@+id/ETrot"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="roter Flag"
+        android:textSize="24dp"
+        android:layout_below="@+id/ETgruen"
+        android:inputType="numberDecimal"
+        />
+
+    <EditText
+        android:id = "@+id/ETblau"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="blauer Flag"
+        android:textSize="24dp"
+        android:layout_below="@+id/ETrot"
+        android:inputType="numberDecimal"
+        />
+
+    <Button
+        android:id="@+id/btnCreate"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/ETblau"
+        android:layout_marginTop="30dp"
+        android:text="Neuen Benutzer anlegen"
+        android:textSize="24dp" />
+
+</RelativeLayout>
