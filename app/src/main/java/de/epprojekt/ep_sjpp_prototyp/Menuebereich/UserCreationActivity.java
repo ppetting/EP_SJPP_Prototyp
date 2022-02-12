@@ -3,8 +3,10 @@ package de.epprojekt.ep_sjpp_prototyp.Menuebereich;
 import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.Toast;
 import de.epprojekt.ep_sjpp_prototyp.Helferlein.DBHelferlein;
 import de.epprojekt.ep_sjpp_prototyp.MainActivity;
@@ -13,6 +15,7 @@ import de.epprojekt.ep_sjpp_prototyp.R;
 public class UserCreationActivity extends AppCompatActivity {
 
     public EditText name, gruenerFlag, roterFlag, blauerFlag;
+    ImageButton ibtnHome, ibtnUseruebersicht;
     public Button benutzerAnlegen;
     DBHelferlein hilfMirDaddyDB;
     public static String nameTXT;
@@ -31,6 +34,9 @@ public class UserCreationActivity extends AppCompatActivity {
          roterFlag = findViewById(R.id.ETrot);
          blauerFlag = findViewById(R.id.ETblau);
          benutzerAnlegen = findViewById(R.id.btnCreate);
+         ibtnHome = findViewById(R.id.imageButtonHome);
+         ibtnUseruebersicht = findViewById(R.id.imageButtonWarenkorb);
+         ibtnUseruebersicht.setImageResource(R.drawable.frau);
 
         if(UserOverviewActivity.anlegen_bearbeiten.equals("Benutzer anlegen")){
             //Button Anzeigetext
@@ -44,6 +50,16 @@ public class UserCreationActivity extends AppCompatActivity {
             roterFlag.setText(hilfMirDaddyDB.getFlaganzahlString(aktiverUser,"flagrot"));
             blauerFlag.setText(hilfMirDaddyDB.getFlaganzahlString(aktiverUser,"flagblau"));
         }
+
+        ibtnHome.setOnClickListener(v -> {
+            Intent intentHome = new Intent(this, MainActivity.class);
+            startActivity(intentHome);
+        });
+
+        ibtnUseruebersicht.setOnClickListener(v -> {
+            Intent intentUser = new Intent(this, UserOverviewActivity.class);
+            startActivity(intentUser);
+        });
 
          benutzerAnlegen.setOnClickListener(v -> {
              //Benutzer anlegen

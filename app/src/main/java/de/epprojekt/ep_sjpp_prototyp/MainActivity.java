@@ -50,6 +50,7 @@ public class MainActivity extends AppCompatActivity {
         ibtnFleischundWurst = findViewById(R.id.imageButtonFleischundWurst);
 
         ibtnMenue = findViewById(R.id.imageButtonHome);
+        ibtnMenue. setImageResource(R.drawable.mann);
         ibtnWarenkorb = findViewById(R.id.imageButtonWarenkorb);
 
         ibtnSoundGetraenke = findViewById(R.id.imageButtonSoundGetraenke);
