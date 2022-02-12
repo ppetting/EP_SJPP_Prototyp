@@ -2,7 +2,9 @@ package de.epprojekt.ep_sjpp_prototyp.Einkauf;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+
 import android.content.Intent;
+import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.widget.ImageButton;
 import android.widget.TextView;
@@ -16,103 +18,102 @@ import de.epprojekt.ep_sjpp_prototyp.Menuebereich.UserOverviewActivity;
 import de.epprojekt.ep_sjpp_prototyp.R;
 import de.epprojekt.ep_sjpp_prototyp.WarenkorbActivity;
 
+
 public class KaeseActivity extends AppCompatActivity {
 
-    ImageButton ibtnStill, ibtnSprudel, ibtnHome, ibtnWarenkorb;
+    ImageButton ibtnHartkaese, ibtnStreichkaese, ibtnScheibenkaese, ibtnWarenkorb, ibtnMenue;
+    ImageButton ibtnSoundHartkaese, ibtnSoundStreichkaese, ibtnSoundScheibenkaese;
     DBHelferlein hilfMirDaddyDB;
     AnimationsHelferlein hilfMirMommyAnimation;
-    Integer counterSprudel;
-    Integer counterStill;
-    final static String KEY_SPRUDEL = "key_sprudel";
-    final static String KEY_STILL = "key_still";
-    String itemname1 = "Sprudelwasser";
-    String itemname2 = "Stilleswasser";
-    TextView textViewToolbar;
-
+    TextView tvToolbar;
+    final String hartkaese = "Hartkaese";
+    final String streichkaese = "Streichkaese";
+    final String scheibenkaese = "Kaeseaufschnitt";
+    Integer counterHartkaese;
+    Integer counterStreichkaese;
+    Integer counterScheibenkaese;
+    final static String KEY_HARTKAESE = "key_hartkaese";
+    final static String KEY_STREICHKAESE = "key_streichkaese";
+    final static String KEY_SCHEIBENKAESE = "key_scheibenkaese";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_kaese);
 
+        ibtnHartkaese = findViewById(R.id.imageButtonHartkaese);
+        ibtnStreichkaese = findViewById(R.id.imageButtonStreichkaese);
+        ibtnScheibenkaese = findViewById(R.id.imageButtonScheibenkaese);
 
+        counterHartkaese = PreferenceHelferlein.loadTotalFromPref(this,KEY_HARTKAESE);
+        counterStreichkaese = PreferenceHelferlein.loadTotalFromPref(this,KEY_STREICHKAESE);
+        counterScheibenkaese = PreferenceHelferlein.loadTotalFromPref(this, KEY_SCHEIBENKAESE);
+
+        ibtnWarenkorb = findViewById(R.id.imageButtonWarenkorb);
+        ibtnMenue = findViewById(R.id.imageButtonHome);
+
+        ibtnSoundHartkaese = findViewById(R.id.imageButtonSoundHartkaese);
+        ibtnSoundScheibenkaese = findViewById(R.id.imageButtonSoundScheibenkaese);
+        ibtnSoundStreichkaese = findViewById(R.id.imageButtonSoundStreichkaese);
 
         hilfMirDaddyDB = new DBHelferlein(this);
         hilfMirMommyAnimation = new AnimationsHelferlein();
 
-        counterSprudel = PreferenceHelferlein.loadTotalFromPref(this,KEY_SPRUDEL);
-        counterStill = PreferenceHelferlein.loadTotalFromPref(this,KEY_STILL);
+        tvToolbar = findViewById(R.id.TVToolbar);
+        tvToolbar.setText(UserOverviewActivity.aktiverNutzerUOA);
 
+        MediaPlayer mediaPlayerHartkaese = MediaPlayer.create(this, R.raw.hartkaese);
+        MediaPlayer mediaPlayerStreichkaese = MediaPlayer.create(this, R.raw.streichkaese);
+        MediaPlayer mediaPlayerScheibenkaese = MediaPlayer.create(this, R.raw.kaeseaufschnitt);
 
-        //Toolbar aktiver Username wird angezeigt
-        TextView tvAktiverUser = findViewById(R.id.TVToolbar);
-        tvAktiverUser.setText(UserOverviewActivity.aktiverNutzerUOA);
-
-        ibtnStill = findViewById(R.id.imageButtonStill);
-
-
-        ibtnSprudel = findViewById(R.id.imageButtonSprudel);
-
-
-
-       /*
-
-        if(savedInstanceState == null){
-            ibtnSprudel.setImageBitmap(BitmapFactory.decodeByteArray(hilfMirDaddyDB.getDrawableFromTable("roterApfel"),0,hilfMirDaddyDB.getDrawableFromTable("roterApfel").length));
-
-
-        }else{
-            ibtnSprudel.setImageBitmap(BitmapFactory.decodeByteArray(hilfMirDaddyDB.getDrawableFromTable("roterApfel"),0,hilfMirDaddyDB.getDrawableFromTable("roterApfel").length));
-        }
-*/
-
-
-        ibtnWarenkorb = findViewById(R.id.imageButtonWarenkorb);
-        ibtnWarenkorb.setImageResource(R.drawable.warenkorb);
-
-        ibtnHome = findViewById(R.id.imageButtonHome);
-        ibtnHome.setImageResource(R.drawable.home);
-
+        ibtnSoundHartkaese.setOnClickListener(v -> mediaPlayerHartkaese.start());
+        ibtnSoundStreichkaese.setOnClickListener(v -> mediaPlayerStreichkaese.start());
+        ibtnSoundScheibenkaese.setOnClickListener(v -> mediaPlayerScheibenkaese.start());
 
         ibtnWarenkorb.setOnClickListener(v -> {
-            Intent intentWarenkorb = new Intent(KaeseActivity.this, WarenkorbActivity.class);
+            Intent intentWarenkorb = new Intent(this, WarenkorbActivity.class);
             startActivity(intentWarenkorb);
         });
 
-        ibtnHome.setOnClickListener(v -> {
-            Intent intentHome = new Intent(KaeseActivity.this, MainActivity.class);
+        ibtnMenue.setOnClickListener(v -> {
+            Intent intentHome = new Intent(this, MainActivity.class);
             startActivity(intentHome);
         });
 
-        ibtnSprudel.setOnClickListener(v -> {
-
-
-            if (hilfMirDaddyDB.darfHinzugefügtWerden("Sprudelwasser", UserOverviewActivity.aktiverNutzerUOA)){
-                hilfMirDaddyDB.insertIntoWarenkorb(ibtnSprudel, R.drawable.warenkorb, itemname1 + counterSprudel, itemname1, UserOverviewActivity.aktiverNutzerUOA);
-                hilfMirMommyAnimation.ownAnimation(ibtnSprudel, ibtnWarenkorb);
-
-                counterSprudel++;
-                PreferenceHelferlein.saveTotalInPref(getApplicationContext(),counterSprudel,KEY_SPRUDEL);
+        ibtnHartkaese.setOnClickListener(v -> {
+            if (hilfMirDaddyDB.darfHinzugefügtWerden(hartkaese, UserOverviewActivity.aktiverNutzerUOA)){
+                hilfMirDaddyDB.insertIntoWarenkorb(ibtnHartkaese, R.drawable.hartkaese, hartkaese + counterHartkaese, hartkaese, UserOverviewActivity.aktiverNutzerUOA);
+                hilfMirMommyAnimation.ownAnimation(ibtnHartkaese, ibtnWarenkorb);
+                counterHartkaese++;
+                PreferenceHelferlein.saveTotalInPref(getApplicationContext(),counterHartkaese,KEY_HARTKAESE);
             }else{
-                Toast.makeText(KaeseActivity.this, "Es dürfen keine Produkte mehr hinzugefügt werden", Toast.LENGTH_SHORT).show();
+                Toast.makeText(this, "Es dürfen keine Produkte mehr hinzugefügt werden", Toast.LENGTH_SHORT).show();
             }
         });
 
-        ibtnStill.setOnClickListener(v -> {
-            if (hilfMirDaddyDB.darfHinzugefügtWerden("Stilleswasser", UserOverviewActivity.aktiverNutzerUOA)) {
-                hilfMirDaddyDB.insertIntoWarenkorb(ibtnStill, R.drawable.warenkorb, itemname2 + counterStill, itemname2, UserOverviewActivity.aktiverNutzerUOA);
-                hilfMirMommyAnimation.ownAnimation(ibtnStill, ibtnWarenkorb);
-
-                counterStill++;
-                PreferenceHelferlein.saveTotalInPref(getApplicationContext(),counterStill,KEY_STILL);
+        ibtnScheibenkaese.setOnClickListener(v -> {
+            if (hilfMirDaddyDB.darfHinzugefügtWerden(scheibenkaese, UserOverviewActivity.aktiverNutzerUOA)){
+                hilfMirDaddyDB.insertIntoWarenkorb(ibtnScheibenkaese, R.drawable.kaesescheibe, scheibenkaese + counterScheibenkaese, scheibenkaese, UserOverviewActivity.aktiverNutzerUOA);
+                hilfMirMommyAnimation.ownAnimation(ibtnScheibenkaese, ibtnWarenkorb);
+                counterScheibenkaese++;
+                PreferenceHelferlein.saveTotalInPref(getApplicationContext(),counterScheibenkaese,KEY_SCHEIBENKAESE);
             }else{
-                Toast.makeText(KaeseActivity.this, "Es dürfen keine Produkte mehr hinzugefügt werden", Toast.LENGTH_SHORT).show();
-
+                Toast.makeText(this, "Es dürfen keine Produkte mehr hinzugefügt werden", Toast.LENGTH_SHORT).show();
             }
-
-
-
         });
+
+        ibtnStreichkaese.setOnClickListener(v -> {
+            if (hilfMirDaddyDB.darfHinzugefügtWerden(streichkaese, UserOverviewActivity.aktiverNutzerUOA)){
+                hilfMirDaddyDB.insertIntoWarenkorb(ibtnStreichkaese, R.drawable.streichkaese, streichkaese + counterStreichkaese, streichkaese, UserOverviewActivity.aktiverNutzerUOA);
+                hilfMirMommyAnimation.ownAnimation(ibtnStreichkaese, ibtnWarenkorb);
+                counterStreichkaese++;
+                PreferenceHelferlein.saveTotalInPref(getApplicationContext(),counterStreichkaese,KEY_STREICHKAESE);
+            }else{
+                Toast.makeText(this, "Es dürfen keine Produkte mehr hinzugefügt werden", Toast.LENGTH_SHORT).show();
+            }
+        });
+
+
 
     }
 }

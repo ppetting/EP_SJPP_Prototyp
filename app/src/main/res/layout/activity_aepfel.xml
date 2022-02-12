@@ -1,9 +1,73 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:orientation="vertical"
     tools:context=".Einkauf.AepfelActivity">
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+    <include
+        android:id="@+id/toolbarMAIN"
+        layout="@layout/toolbar"
+        app:layout_constraintEnd_toEndOf ="parent"
+        app:layout_constraintStart_toStartOf = "parent"
+        app:layout_constraintTop_toTopOf = "parent"
+        />
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="100dp">
+
+            <ImageButton
+                android:id="@+id/iamgeButtonRoterApfel"
+                android:layout_width="150dp"
+                android:layout_height="150dp"
+                android:scaleType="fitCenter"
+                android:layout_below="@+id/toolbarMAIN"
+                app:srcCompat="@drawable/roterapfel"
+                tools:ignore="NotSibling"/>
+
+            <ImageButton
+                android:id="@+id/imageButtonSoundRoterApfel"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:layout_below="@id/toolbarMAIN"
+                android:layout_marginLeft="10dp"
+                android:layout_toRightOf="@id/iamgeButtonRoterApfel"
+                android:scaleType="fitCenter"
+                app:srcCompat="@drawable/sound"
+                tools:ignore="NotSibling" />
+
+            <ImageButton
+                android:id="@+id/imageButtonGruenerApfel"
+                android:layout_width="150dp"
+                android:layout_height="150dp"
+                android:scaleType="fitCenter"
+                android:layout_below="@+id/iamgeButtonRoterApfel"
+                tools:ignore="NotSibling"
+                app:srcCompat="@drawable/gruenerapfel" />
+
+            <ImageButton
+                android:id="@+id/imageButtonSoundGruenerApfel"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:layout_marginLeft="10dp"
+                android:layout_toRightOf="@+id/imageButtonGruenerApfel"
+                android:layout_below="@id/iamgeButtonRoterApfel"
+                android:scaleType="fitCenter"
+                app:srcCompat="@drawable/sound"/>
+
+
+
+        </RelativeLayout>
+
+    </ScrollView>
+
+</LinearLayout>

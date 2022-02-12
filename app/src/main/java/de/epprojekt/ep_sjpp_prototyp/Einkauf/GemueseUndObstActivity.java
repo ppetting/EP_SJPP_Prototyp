@@ -1,15 +1,12 @@
 package de.epprojekt.ep_sjpp_prototyp.Einkauf;
 
-
 import androidx.appcompat.app.AppCompatActivity;
-
 import android.content.Intent;
 import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.widget.ImageButton;
 import android.widget.TextView;
 import android.widget.Toast;
-
 import de.epprojekt.ep_sjpp_prototyp.Helferlein.AnimationsHelferlein;
 import de.epprojekt.ep_sjpp_prototyp.Helferlein.DBHelferlein;
 import de.epprojekt.ep_sjpp_prototyp.Helferlein.PreferenceHelferlein;
@@ -18,13 +15,12 @@ import de.epprojekt.ep_sjpp_prototyp.Menuebereich.UserOverviewActivity;
 import de.epprojekt.ep_sjpp_prototyp.R;
 import de.epprojekt.ep_sjpp_prototyp.WarenkorbActivity;
 
-
 public class GemueseUndObstActivity extends AppCompatActivity {
 
     ImageButton ibtnAepfel, ibtnGurke, ibtnWarenkorb, ibtnMenue;
     ImageButton ibtnSoundAepfel, ibtnSoundGurke;
     TextView tvToolbar;
-    String gurke = "Salatgurke";
+    final String gurke = "Salatgurke";
     final static String KEY_GURKE = "key_gurke";
     Integer counterGurke;
     DBHelferlein hilfMirDaddyDB;
@@ -75,7 +71,7 @@ public class GemueseUndObstActivity extends AppCompatActivity {
         });
 
         ibtnGurke.setOnClickListener(v -> {
-            if (hilfMirDaddyDB.darfHinzugefügtWerden("Salatgurke", UserOverviewActivity.aktiverNutzerUOA)){
+            if (hilfMirDaddyDB.darfHinzugefügtWerden(gurke, UserOverviewActivity.aktiverNutzerUOA)){
                 hilfMirDaddyDB.insertIntoWarenkorb(ibtnGurke, R.drawable.gurke, gurke + counterGurke, gurke, UserOverviewActivity.aktiverNutzerUOA);
                 hilfMirMommyAnimation.ownAnimation(ibtnGurke, ibtnWarenkorb);
                 counterGurke++;

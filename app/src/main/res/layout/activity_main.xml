@@ -88,8 +88,8 @@
             android:id="@+id/imageButtonMilchprodukte"
             android:layout_width="150dp"
             android:layout_height="150dp"
-            android:scaleType="fitCenter"
             android:layout_below="@id/imageButtonFleischundWurst"
+            android:scaleType="fitCenter"
             app:srcCompat="@drawable/milchprodukte"
             tools:ignore="NotSibling" />
 

@@ -3,10 +3,10 @@ package de.epprojekt.ep_sjpp_prototyp.Einkauf;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
+import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.widget.ImageButton;
 import android.widget.TextView;
-
 import de.epprojekt.ep_sjpp_prototyp.MainActivity;
 import de.epprojekt.ep_sjpp_prototyp.Menuebereich.UserOverviewActivity;
 import de.epprojekt.ep_sjpp_prototyp.R;
@@ -14,41 +14,50 @@ import de.epprojekt.ep_sjpp_prototyp.WarenkorbActivity;
 
 public class MilchprdoukteActivity extends AppCompatActivity {
 
-    ImageButton ibtnWasser, ibtnSaft, ibtnWarenkorb, ibtnHome;
+    ImageButton ibtnEier, ibtnKaese, ibtnWarenkorb, ibtnMenue;
+    ImageButton ibtnSoundEier, ibtnSoundKaese;
+    TextView tvToolbar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_milchprodukte);
 
-        //Toolbar aktiver Username wird angezeigt
-        TextView tvAktiverUser = findViewById(R.id.TVToolbar);
-        tvAktiverUser.setText(UserOverviewActivity.aktiverNutzerUOA);
+        tvToolbar = findViewById(R.id.TVToolbar);
+        tvToolbar.setText(UserOverviewActivity.aktiverNutzerUOA);
 
-        ibtnWasser = findViewById(R.id.imageButtonWasser);
+        ibtnEier = findViewById(R.id.imageButtonEier);
+        ibtnKaese = findViewById(R.id.imageButtonKaese);
 
+        ibtnSoundKaese = findViewById(R.id.imageButtonSoundKaese);
+        ibtnSoundEier = findViewById(R.id.imageButtonSoundEier);
 
+        ibtnMenue = findViewById(R.id.imageButtonHome);
         ibtnWarenkorb = findViewById(R.id.imageButtonWarenkorb);
-        ibtnWarenkorb.setImageResource(R.drawable.warenkorb);
 
-        ibtnSaft = findViewById(R.id.imageButtonSaft);
+        MediaPlayer mediaPlayerEier = MediaPlayer.create(this, R.raw.eier);
+        MediaPlayer mediaPlayerKaese = MediaPlayer.create(this, R.raw.kaese);
 
+        ibtnSoundEier.setOnClickListener(v -> mediaPlayerEier.start());
+        ibtnSoundKaese.setOnClickListener(v -> mediaPlayerKaese.start());
 
-        ibtnHome = findViewById(R.id.imageButtonHome);
-        ibtnHome.setImageResource(R.drawable.home);
+        ibtnEier.setOnClickListener(v -> {
+            Intent intentEier = new Intent(this, EierActivity.class);
+            startActivity(intentEier);
+        });
 
-        ibtnWasser.setOnClickListener(v -> {
-            Intent intentWasser = new Intent(MilchprdoukteActivity.this, KaeseActivity.class);
-            startActivity(intentWasser);
+        ibtnKaese.setOnClickListener(v -> {
+            Intent intentKaese = new Intent(this, KaeseActivity.class);
+            startActivity(intentKaese);
         });
 
         ibtnWarenkorb.setOnClickListener(v -> {
-            Intent intentWarenkorb = new Intent(MilchprdoukteActivity.this, WarenkorbActivity.class);
+            Intent intentWarenkorb = new Intent(this, WarenkorbActivity.class);
             startActivity(intentWarenkorb);
         });
 
-        ibtnHome.setOnClickListener(v -> {
-            Intent intentHome = new Intent(MilchprdoukteActivity.this, MainActivity.class);
+        ibtnMenue.setOnClickListener(v -> {
+            Intent intentHome = new Intent(this, MainActivity.class);
             startActivity(intentHome);
         });
 
