@@ -77,7 +77,7 @@ public class GemueseUndObstActivity extends AppCompatActivity {
                 counterGurke++;
                 PreferenceHelferlein.saveTotalInPref(getApplicationContext(),counterGurke,KEY_GURKE);
             }else{
-                Toast.makeText(GemueseUndObstActivity.this, "Es dürfen keine Produkte mehr hinzugefügt werden", Toast.LENGTH_SHORT).show();
+                Toast.makeText(this, "Es dürfen keine Produkte mehr hinzugefügt werden", Toast.LENGTH_SHORT).show();
             }
         });
 

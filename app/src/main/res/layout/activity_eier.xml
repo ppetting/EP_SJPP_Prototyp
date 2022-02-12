@@ -1,9 +1,72 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:orientation="vertical"
     tools:context=".Einkauf.EierActivity">
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+    <include
+        android:id="@+id/toolbarMAIN"
+        layout="@layout/toolbar"
+        app:layout_constraintEnd_toEndOf ="parent"
+        app:layout_constraintStart_toStartOf = "parent"
+        app:layout_constraintTop_toTopOf = "parent"
+        />
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="100dp">
+
+            <ImageButton
+                android:id="@+id/imageButtonSechserEier"
+                android:layout_width="150dp"
+                android:layout_height="150dp"
+                android:layout_below="@+id/toolbarMAIN"
+                android:scaleType="fitCenter"
+                app:srcCompat="@drawable/sechser_eier"
+                tools:ignore="NotSibling" />
+
+            <ImageButton
+                android:id="@+id/imageButtonSoundSechserEier"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:layout_below="@id/toolbarMAIN"
+                android:layout_marginLeft="10dp"
+                android:layout_toRightOf="@id/imageButtonSechserEier"
+                android:scaleType="fitCenter"
+                app:srcCompat="@drawable/sound"
+                tools:ignore="NotSibling" />
+
+            <ImageButton
+                android:id="@+id/imageButtonZehnerEier"
+                android:layout_width="150dp"
+                android:layout_height="150dp"
+                android:layout_below="@+id/imageButtonSechserEier"
+                android:scaleType="fitCenter"
+                app:srcCompat="@drawable/zehner_eier"
+                tools:ignore="NotSibling" />
+
+            <ImageButton
+                android:id="@+id/imageButtonSoundZehnerEier"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:layout_below="@id/imageButtonSechserEier"
+                android:layout_marginLeft="10dp"
+                android:layout_toRightOf="@+id/imageButtonZehnerEier"
+                android:scaleType="fitCenter"
+                app:srcCompat="@drawable/sound" />
+
+
+        </RelativeLayout>
+
+    </ScrollView>
+
+</LinearLayout>

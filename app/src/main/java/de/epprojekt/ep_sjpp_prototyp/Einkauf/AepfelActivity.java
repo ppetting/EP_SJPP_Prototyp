@@ -79,7 +79,7 @@ public class AepfelActivity extends AppCompatActivity {
                 counterRoterApfel++;
                 PreferenceHelferlein.saveTotalInPref(getApplicationContext(),counterRoterApfel,KEY_ROTERAPFEL);
             }else{
-                Toast.makeText(AepfelActivity.this, "Es dürfen keine Produkte mehr hinzugefügt werden", Toast.LENGTH_SHORT).show();
+                Toast.makeText(this, "Es dürfen keine Produkte mehr hinzugefügt werden", Toast.LENGTH_SHORT).show();
             }
         });
 
@@ -90,7 +90,7 @@ public class AepfelActivity extends AppCompatActivity {
                 counterGruenerApfel++;
                 PreferenceHelferlein.saveTotalInPref(getApplicationContext(),counterGruenerApfel,KEY_GRUENERAPFEL);
             }else{
-                Toast.makeText(AepfelActivity.this, "Es dürfen keine Produkte mehr hinzugefügt werden", Toast.LENGTH_SHORT).show();
+                Toast.makeText(this, "Es dürfen keine Produkte mehr hinzugefügt werden", Toast.LENGTH_SHORT).show();
             }
         });
     }

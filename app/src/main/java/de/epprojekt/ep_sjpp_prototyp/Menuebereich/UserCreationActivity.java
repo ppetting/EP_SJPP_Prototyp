@@ -32,7 +32,7 @@ public class UserCreationActivity extends AppCompatActivity {
 
 
 
-        name = findViewById(R.id.ETname);
+         name = findViewById(R.id.ETname);
          gruenerFlag = findViewById(R.id.ETgruen);
          roterFlag = findViewById(R.id.ETrot);
          blauerFlag = findViewById(R.id.ETblau);
