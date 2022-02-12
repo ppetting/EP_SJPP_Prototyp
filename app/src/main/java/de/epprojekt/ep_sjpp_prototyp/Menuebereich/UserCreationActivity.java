@@ -6,7 +6,6 @@ import android.os.Bundle;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
-
 import de.epprojekt.ep_sjpp_prototyp.Helferlein.DBHelferlein;
 import de.epprojekt.ep_sjpp_prototyp.MainActivity;
 import de.epprojekt.ep_sjpp_prototyp.R;
@@ -20,17 +19,12 @@ public class UserCreationActivity extends AppCompatActivity {
     public String aktiverUser = UserOverviewActivity.aktiverNutzerUOA;
     public Integer gruenerFlagTXT, roterFlagTXT, blauerFlagTXT;
 
-
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_user_creation);
 
          hilfMirDaddyDB = new DBHelferlein(this);
-
-
-
 
          name = findViewById(R.id.ETname);
          gruenerFlag = findViewById(R.id.ETgruen);
@@ -86,7 +80,7 @@ public class UserCreationActivity extends AppCompatActivity {
                  Toast.makeText(UserCreationActivity.this, "Benutzer aktualisiert", Toast.LENGTH_SHORT).show();
 
              }else{
-                 Toast.makeText(UserCreationActivity.this, "FEHELER!!!!", Toast.LENGTH_SHORT).show();
+                 Toast.makeText(UserCreationActivity.this, "Fehler", Toast.LENGTH_SHORT).show();
              }
 
 

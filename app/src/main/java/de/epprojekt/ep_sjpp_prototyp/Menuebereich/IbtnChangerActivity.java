@@ -23,22 +23,21 @@ import de.epprojekt.ep_sjpp_prototyp.R;
 
 public class IbtnChangerActivity extends AppCompatActivity{
 
-    ImageButton  ibtnhome, ibtnStillesWasserChanger, ibtnSprudelwasserChanger;
+    ImageButton  ibtnMenue, ibtnWarenkorb;
+    ImageButton ibtnRoterApfel,ibtnGruenerApfel,ibtnAepfel,ibtnGurke,ibtnSechserEier,ibtnZehnerEier,ibtnEier,ibtnHartkaese,ibtnStreichkaese,ibtnScheibenkaese,ibtnKaese,ibtnGemueseUndObst,ibtnGetraenke,ibtnWeizenprodukte,ibtnMilchprodukte,ibtnFleischundWurst;
     DBHelferlein hilfMirDaddyDB;
-    public static byte[] test;
+    public static byte[] byteArray;
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_ibtn_changer);
-
         hilfMirDaddyDB = new DBHelferlein(this);
 
-        ibtnSprudelwasserChanger = findViewById(R.id.imageButtonSprudelWasserChanger);
-        ibtnStillesWasserChanger = findViewById(R.id.imageButtonStillesWasserChanger);
 
-        ibtnSprudelwasserChanger.setOnClickListener(new View.OnClickListener() {
+
+  /*      ibtnSprudelwasserChanger.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 selectImage();
@@ -47,10 +46,10 @@ public class IbtnChangerActivity extends AppCompatActivity{
         ibtnStillesWasserChanger.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                hilfMirDaddyDB.setDrawableFromGallery("roterApfel",test);
+                hilfMirDaddyDB.setDrawableFromGallery("roterApfel", byteArray);
             }
         });
-
+*/
     }
 
     private void selectImage() {
@@ -87,21 +86,18 @@ public class IbtnChangerActivity extends AppCompatActivity{
             if (requestCode == 1) {
                 //Hier müsste man das Kamerabild verarbeiten
             } else if (requestCode == 2) {
-
                 try {
                     InputStream inputStream = getContentResolver().openInputStream(data.getData());
                     Bitmap bitmap = BitmapFactory.decodeStream(inputStream);
                     bitmap = getResizedBitmap(bitmap,400);
                     //test = BitMapToString(bitmap);
-                    test = getBytes(bitmap);
+                    byteArray = getBytes(bitmap);
                 } catch (FileNotFoundException e) {
                     e.printStackTrace();
                 }
             }
         }
     }
-
-
 
     // convert from bitmap to byte array
     public static byte[] getBytes(Bitmap bitmap) {
