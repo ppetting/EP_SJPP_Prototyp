@@ -15,7 +15,7 @@ import de.epprojekt.ep_sjpp_prototyp.R;
 
 public class UserOverviewActivity extends AppCompatActivity {
 
-    ImageButton ibtnBenutzerErstellen, ibtnHome;
+    ImageButton ibtnBenutzerErstellen, ibtnHome, ibtnPictureChange;
     LinearLayout ownLinearLayout;
     DBHelferlein hilfMirDaddyDB;
     public static String anlegen_bearbeiten = "Benutzer anlegen";
@@ -36,6 +36,7 @@ public class UserOverviewActivity extends AppCompatActivity {
         ibtnBenutzerErstellen = findViewById(R.id.imageButtonWarenkorb);
         ibtnBenutzerErstellen.setImageResource(R.drawable.plus);
         ibtnHome = findViewById(R.id.imageButtonHome);
+        ibtnPictureChange = findViewById(R.id.imageButtonPictureChangeMenue);
 
         tvToolbar = findViewById(R.id.TVToolbar);
         tvToolbar.setText(UserOverviewActivity.aktiverNutzerUOA);
@@ -50,6 +51,11 @@ public class UserOverviewActivity extends AppCompatActivity {
 
         ibtnHome.setOnClickListener(v -> {
             Intent intentHome = new Intent(this, MainActivity.class);
+            startActivity(intentHome);
+        });
+
+        ibtnPictureChange.setOnClickListener(v -> {
+            Intent intentHome = new Intent(this, IbtnChangerActivity.class);
             startActivity(intentHome);
         });
 

@@ -3,6 +3,7 @@ package de.epprojekt.ep_sjpp_prototyp.Einkauf;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
+import android.graphics.BitmapFactory;
 import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.widget.ImageButton;
@@ -47,7 +48,10 @@ public class AepfelActivity extends AppCompatActivity {
         tvToolbar.setText(UserOverviewActivity.aktiverNutzerUOA);
 
         ibtnRoterApfel = findViewById(R.id.iamgeButtonRoterApfel);
+        //ibtnRoterApfel.setImageBitmap(BitmapFactory.decodeByteArray(hilfMirDaddyDB.getDrawableFromTable("roterApfel"),0,hilfMirDaddyDB.getDrawableFromTable("roterApfel").length));
         ibtnGruenerApfel = findViewById(R.id.imageButtonGruenerApfel);
+        //ibtnGruenerApfel.setImageBitmap(BitmapFactory.decodeByteArray(hilfMirDaddyDB.getDrawableFromTable("gruenerApfel"),0,hilfMirDaddyDB.getDrawableFromTable("roterApfel").length));
+
 
         ibtnWarenkorb = findViewById(R.id.imageButtonWarenkorb);
         ibtnMenue = findViewById(R.id.imageButtonHome);
