@@ -23,6 +23,7 @@ public class MainActivity extends AppCompatActivity {
     Toolbar toolbar;
     DBHelferlein hilfMirDaddyDB;
     public final static String FIRST_APP_START_MAIN = "FirstAppStartMain";
+    public final static String FIRST_APP_START_MAIN_TWO = "FirstAppStartMainTwo";
     final static String KEY_AKTIVERNUTZER = "aktiver_nutzer";
     String aktiverNutzer;
 
@@ -98,16 +99,16 @@ public class MainActivity extends AppCompatActivity {
             startActivity(intentMenue);
         });
 
-
-        //SHARED PREF ONLY FRIST APP START
-        hilfMirDaddyDB.setDrawableFromGallery("roterApfel",hilfMirDaddyDB.drawableToByteArray(MainActivity.this,R.drawable.roterapfel));
-        hilfMirDaddyDB.setDrawableFromGallery("gruenerApfel",hilfMirDaddyDB.drawableToByteArray(MainActivity.this,R.drawable.gruenerapfel));
-        hilfMirDaddyDB.setDrawableFromGallery("Salatgurke",hilfMirDaddyDB.drawableToByteArray(MainActivity.this,R.drawable.gurke));
-        hilfMirDaddyDB.setDrawableFromGallery("Hartkaese",hilfMirDaddyDB.drawableToByteArray(MainActivity.this,R.drawable.hartkaese));
-        hilfMirDaddyDB.setDrawableFromGallery("Streichkaese",hilfMirDaddyDB.drawableToByteArray(MainActivity.this,R.drawable.streichkaese));
-        hilfMirDaddyDB.setDrawableFromGallery("Kaeseaufschnitt",hilfMirDaddyDB.drawableToByteArray(MainActivity.this,R.drawable.kaesescheibe));
-        hilfMirDaddyDB.setDrawableFromGallery("sechserPackungEier",hilfMirDaddyDB.drawableToByteArray(MainActivity.this,R.drawable.sechser_eier));
-        hilfMirDaddyDB.setDrawableFromGallery("zehnerPackungEier",hilfMirDaddyDB.drawableToByteArray(MainActivity.this,R.drawable.zehner_eier));
+        if(PreferenceHelferlein.firstAppStart(getApplicationContext(),FIRST_APP_START_MAIN_TWO)) {
+            hilfMirDaddyDB.setDrawableFromGallery("roterApfel", hilfMirDaddyDB.drawableToByteArray(MainActivity.this, R.drawable.roterapfel));
+            hilfMirDaddyDB.setDrawableFromGallery("gruenerApfel", hilfMirDaddyDB.drawableToByteArray(MainActivity.this, R.drawable.gruenerapfel));
+            hilfMirDaddyDB.setDrawableFromGallery("Salatgurke", hilfMirDaddyDB.drawableToByteArray(MainActivity.this, R.drawable.gurke));
+            hilfMirDaddyDB.setDrawableFromGallery("Hartkaese", hilfMirDaddyDB.drawableToByteArray(MainActivity.this, R.drawable.hartkaese));
+            hilfMirDaddyDB.setDrawableFromGallery("Streichkaese", hilfMirDaddyDB.drawableToByteArray(MainActivity.this, R.drawable.streichkaese));
+            hilfMirDaddyDB.setDrawableFromGallery("Kaeseaufschnitt", hilfMirDaddyDB.drawableToByteArray(MainActivity.this, R.drawable.kaesescheibe));
+            hilfMirDaddyDB.setDrawableFromGallery("sechserPackungEier", hilfMirDaddyDB.drawableToByteArray(MainActivity.this, R.drawable.sechser_eier));
+            hilfMirDaddyDB.setDrawableFromGallery("zehnerPackungEier", hilfMirDaddyDB.drawableToByteArray(MainActivity.this, R.drawable.zehner_eier));
+        }
     }
 
 

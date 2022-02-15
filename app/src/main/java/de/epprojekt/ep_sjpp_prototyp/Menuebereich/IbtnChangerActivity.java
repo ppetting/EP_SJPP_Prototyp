@@ -23,6 +23,7 @@ import java.io.FileNotFoundException;
 import java.io.InputStream;
 
 import de.epprojekt.ep_sjpp_prototyp.Helferlein.DBHelferlein;
+import de.epprojekt.ep_sjpp_prototyp.MainActivity;
 import de.epprojekt.ep_sjpp_prototyp.R;
 
 
@@ -67,7 +68,6 @@ public class IbtnChangerActivity extends AppCompatActivity{
         ibtnRoterApfelChanger.setOnClickListener(v -> selectImage("roterApfel"));
         ibtnGruenerApfelChanger.setOnClickListener(v -> selectImage("gruenerApfel"));
 
-
     }
 
     private void selectImage(String string) {
@@ -97,21 +97,6 @@ public class IbtnChangerActivity extends AppCompatActivity{
         builder.show();
     }
 
-    private void agreement(String string) {
-        final CharSequence[] options = { "Ja", "Nein" };
-        AlertDialog.Builder builder = new AlertDialog.Builder(this);
-        builder.setTitle("Neues Bild speichern?");
-        builder.setItems(options, (dialog, item) -> {
-            if (options[item].equals("Ja"))
-            {
-                hilfMirDaddyDB.setDrawableFromGallery(string, byteArray);
-            }
-            else if (options[item].equals("Nein")) {
-                dialog.dismiss();
-            }
-        });
-        builder.show();
-    }
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
@@ -154,6 +139,20 @@ public class IbtnChangerActivity extends AppCompatActivity{
         return Bitmap.createScaledBitmap(image, width, height, true);
     }
 
-
+    private void agreement(String string) {
+        final CharSequence[] options = { "Ja", "Nein" };
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setTitle("Neues Bild speichern?");
+        builder.setItems(options, (dialog, item) -> {
+            if (options[item].equals("Ja"))
+            {
+                hilfMirDaddyDB.setDrawableFromGallery(string, byteArray);
+            }
+            else if (options[item].equals("Nein")) {
+                dialog.dismiss();
+            }
+        });
+        builder.show();
+    }
 }
 
