@@ -11,7 +11,6 @@ import de.epprojekt.ep_sjpp_prototyp.Helferlein.AnimationsHelferlein;
 import de.epprojekt.ep_sjpp_prototyp.Helferlein.DBHelferlein;
 import de.epprojekt.ep_sjpp_prototyp.Helferlein.PreferenceHelferlein;
 import de.epprojekt.ep_sjpp_prototyp.MainActivity;
-import de.epprojekt.ep_sjpp_prototyp.Menuebereich.UserOverviewActivity;
 import de.epprojekt.ep_sjpp_prototyp.R;
 import de.epprojekt.ep_sjpp_prototyp.WarenkorbActivity;
 
@@ -25,6 +24,8 @@ public class GemueseUndObstActivity extends AppCompatActivity {
     Integer counterGurke;
     DBHelferlein hilfMirDaddyDB;
     AnimationsHelferlein hilfMirMommyAnimation;
+    final static String KEY_AKTIVERNUTZER = "aktiver_nutzer";
+    String aktiverNutzer;
 
 
     @Override
@@ -36,9 +37,10 @@ public class GemueseUndObstActivity extends AppCompatActivity {
         hilfMirMommyAnimation = new AnimationsHelferlein();
 
         counterGurke = PreferenceHelferlein.loadTotalFromPref(this,KEY_GURKE);
+        aktiverNutzer = PreferenceHelferlein.loadUserFromPref(getApplicationContext(), KEY_AKTIVERNUTZER);
 
         tvToolbar = findViewById(R.id.TVToolbar);
-        tvToolbar.setText(UserOverviewActivity.aktiverNutzerUOA);
+        tvToolbar.setText(aktiverNutzer);
 
         ibtnAepfel = findViewById(R.id.imageButtonAepfel);
         ibtnGurke = findViewById(R.id.imageButtonGurke);
@@ -71,8 +73,8 @@ public class GemueseUndObstActivity extends AppCompatActivity {
         });
 
         ibtnGurke.setOnClickListener(v -> {
-            if (hilfMirDaddyDB.darfHinzugefügtWerden(gurke, UserOverviewActivity.aktiverNutzerUOA)){
-                hilfMirDaddyDB.insertIntoWarenkorb(ibtnGurke, R.drawable.gurke, gurke + counterGurke, gurke, UserOverviewActivity.aktiverNutzerUOA);
+            if (hilfMirDaddyDB.darfHinzugefügtWerden(gurke, aktiverNutzer)){
+                hilfMirDaddyDB.insertIntoWarenkorb(ibtnGurke, R.drawable.gurke, gurke + counterGurke, gurke, aktiverNutzer);
                 hilfMirMommyAnimation.ownAnimation(ibtnGurke, ibtnWarenkorb);
                 counterGurke++;
                 PreferenceHelferlein.saveTotalInPref(getApplicationContext(),counterGurke,KEY_GURKE);

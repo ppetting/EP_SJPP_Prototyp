@@ -7,8 +7,8 @@ import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.widget.ImageButton;
 import android.widget.TextView;
+import de.epprojekt.ep_sjpp_prototyp.Helferlein.PreferenceHelferlein;
 import de.epprojekt.ep_sjpp_prototyp.MainActivity;
-import de.epprojekt.ep_sjpp_prototyp.Menuebereich.UserOverviewActivity;
 import de.epprojekt.ep_sjpp_prototyp.R;
 import de.epprojekt.ep_sjpp_prototyp.WarenkorbActivity;
 
@@ -17,14 +17,18 @@ public class MilchprdoukteActivity extends AppCompatActivity {
     ImageButton ibtnEier, ibtnKaese, ibtnWarenkorb, ibtnMenue;
     ImageButton ibtnSoundEier, ibtnSoundKaese;
     TextView tvToolbar;
+    final static String KEY_AKTIVERNUTZER = "aktiver_nutzer";
+    String aktiverNutzer;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_milchprodukte);
 
+        aktiverNutzer = PreferenceHelferlein.loadUserFromPref(getApplicationContext(), KEY_AKTIVERNUTZER);
+
         tvToolbar = findViewById(R.id.TVToolbar);
-        tvToolbar.setText(UserOverviewActivity.aktiverNutzerUOA);
+        tvToolbar.setText(aktiverNutzer);
 
         ibtnEier = findViewById(R.id.imageButtonEier);
         ibtnKaese = findViewById(R.id.imageButtonKaese);

@@ -9,6 +9,7 @@ import android.widget.TextView;
 import java.util.ArrayList;
 import de.epprojekt.ep_sjpp_prototyp.Helferlein.AddAndSetHelferlein;
 import de.epprojekt.ep_sjpp_prototyp.Helferlein.DBHelferlein;
+import de.epprojekt.ep_sjpp_prototyp.Helferlein.PreferenceHelferlein;
 import de.epprojekt.ep_sjpp_prototyp.Menuebereich.UserOverviewActivity;
 
 public class WarenkorbActivity extends AppCompatActivity {
@@ -18,6 +19,8 @@ public class WarenkorbActivity extends AppCompatActivity {
     DBHelferlein hilfMirDaddyDB;
     LinearLayout ownLinearLayout;
     int i = 0;
+    final static String KEY_AKTIVERNUTZER = "aktiver_nutzer";
+    String aktiverNutzer;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -26,26 +29,26 @@ public class WarenkorbActivity extends AppCompatActivity {
 
         hilfMirDaddyDB = new DBHelferlein(this);
 
+        aktiverNutzer = PreferenceHelferlein.loadUserFromPref(getApplicationContext(), KEY_AKTIVERNUTZER);
+
         ownLinearLayout = findViewById(R.id.LinearLayoutWarenkorb);
 
         tvToolbar = findViewById(R.id.TVToolbar);
-        tvToolbar.setText(UserOverviewActivity.aktiverNutzerUOA);
+        tvToolbar.setText(aktiverNutzer);
 
         ibtnHome = findViewById(R.id.imageButtonHome);
         ibtnLoeschen = findViewById(R.id.imageButtonWarenkorb);
         ibtnLoeschen.setImageResource(R.drawable.loeschen);
 
+        ArrayList<String> arrayListOfWarenkorbitems = hilfMirDaddyDB.createArrayListOfWarenkorbItems(aktiverNutzer);
 
-        ArrayList<Integer> arrayListOfDrawablesID = hilfMirDaddyDB.createArrayListOfWarenkorb(UserOverviewActivity.aktiverNutzerUOA);
-        ArrayList<String> arrayListOfWarenkorbitems = hilfMirDaddyDB.createArrayListOfWarenkorbItems(UserOverviewActivity.aktiverNutzerUOA);
-
-        while(i < arrayListOfDrawablesID.size()){
-            AddAndSetHelferlein.addViewIBTN(AddAndSetHelferlein.setPicture(arrayListOfDrawablesID.get(i),arrayListOfWarenkorbitems.get(i),WarenkorbActivity.this,hilfMirDaddyDB),ownLinearLayout);
+        while(i < arrayListOfWarenkorbitems.size()){
+            AddAndSetHelferlein.addViewIBTN(AddAndSetHelferlein.setPicture(hilfMirDaddyDB.getWarenkorbItemname(arrayListOfWarenkorbitems.get(i),aktiverNutzer),arrayListOfWarenkorbitems.get(i),WarenkorbActivity.this,hilfMirDaddyDB),ownLinearLayout);
             i++;
         }
 
         ibtnLoeschen.setOnClickListener(v -> {
-            hilfMirDaddyDB.deleteCompletefromWarenkorb(UserOverviewActivity.aktiverNutzerUOA);
+            hilfMirDaddyDB.deleteCompletefromWarenkorb(aktiverNutzer);
             Intent refresh = new Intent(this,WarenkorbActivity.class);
             startActivity(refresh);
         });

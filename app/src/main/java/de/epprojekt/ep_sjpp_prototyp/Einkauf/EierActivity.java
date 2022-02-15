@@ -13,7 +13,6 @@ import de.epprojekt.ep_sjpp_prototyp.Helferlein.AnimationsHelferlein;
 import de.epprojekt.ep_sjpp_prototyp.Helferlein.DBHelferlein;
 import de.epprojekt.ep_sjpp_prototyp.Helferlein.PreferenceHelferlein;
 import de.epprojekt.ep_sjpp_prototyp.MainActivity;
-import de.epprojekt.ep_sjpp_prototyp.Menuebereich.UserOverviewActivity;
 import de.epprojekt.ep_sjpp_prototyp.R;
 import de.epprojekt.ep_sjpp_prototyp.WarenkorbActivity;
 
@@ -30,6 +29,8 @@ public class EierActivity extends AppCompatActivity {
     Integer counterZehnerEier;
     DBHelferlein hilfMirDaddyDB;
     AnimationsHelferlein hilfMirMommyAnimation;
+    final static String KEY_AKTIVERNUTZER = "aktiver_nutzer";
+    String aktiverNutzer;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -41,9 +42,10 @@ public class EierActivity extends AppCompatActivity {
 
         counterZehnerEier = PreferenceHelferlein.loadTotalFromPref(this,KEY_ZEHNEREIER);
         counterSechserEier = PreferenceHelferlein.loadTotalFromPref(this,KEY_SECHSEREIER);
+        aktiverNutzer = PreferenceHelferlein.loadUserFromPref(getApplicationContext(), KEY_AKTIVERNUTZER);
 
         tvToolbar = findViewById(R.id.TVToolbar);
-        tvToolbar.setText(UserOverviewActivity.aktiverNutzerUOA);
+        tvToolbar.setText(aktiverNutzer);
 
         ibtnSechserEier = findViewById(R.id.imageButtonSechserEier);
         ibtnZehnerEier = findViewById(R.id.imageButtonZehnerEier);
@@ -72,8 +74,8 @@ public class EierActivity extends AppCompatActivity {
 
 
         ibtnSechserEier.setOnClickListener(v -> {
-            if (hilfMirDaddyDB.darfHinzugefügtWerden(sechserEier, UserOverviewActivity.aktiverNutzerUOA)){
-                hilfMirDaddyDB.insertIntoWarenkorb(ibtnSechserEier, R.drawable.sechser_eier, sechserEier + counterSechserEier, sechserEier, UserOverviewActivity.aktiverNutzerUOA);
+            if (hilfMirDaddyDB.darfHinzugefügtWerden(sechserEier, aktiverNutzer)){
+                hilfMirDaddyDB.insertIntoWarenkorb(ibtnSechserEier, R.drawable.sechser_eier, sechserEier + counterSechserEier, sechserEier, aktiverNutzer);
                 hilfMirMommyAnimation.ownAnimation(ibtnSechserEier, ibtnWarenkorb);
                 counterSechserEier++;
                 PreferenceHelferlein.saveTotalInPref(getApplicationContext(),counterSechserEier,KEY_SECHSEREIER);
@@ -83,8 +85,8 @@ public class EierActivity extends AppCompatActivity {
         });
 
         ibtnZehnerEier.setOnClickListener(v -> {
-            if (hilfMirDaddyDB.darfHinzugefügtWerden(zehnerEier, UserOverviewActivity.aktiverNutzerUOA)){
-                hilfMirDaddyDB.insertIntoWarenkorb(ibtnZehnerEier, R.drawable.zehner_eier, zehnerEier + counterZehnerEier, zehnerEier, UserOverviewActivity.aktiverNutzerUOA);
+            if (hilfMirDaddyDB.darfHinzugefügtWerden(zehnerEier, aktiverNutzer)){
+                hilfMirDaddyDB.insertIntoWarenkorb(ibtnZehnerEier, R.drawable.zehner_eier, zehnerEier + counterZehnerEier, zehnerEier, aktiverNutzer);
                 hilfMirMommyAnimation.ownAnimation(ibtnZehnerEier, ibtnWarenkorb);
                 counterZehnerEier++;
                 PreferenceHelferlein.saveTotalInPref(getApplicationContext(),counterZehnerEier,KEY_ZEHNEREIER);

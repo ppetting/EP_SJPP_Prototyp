@@ -14,7 +14,6 @@ import de.epprojekt.ep_sjpp_prototyp.Helferlein.AnimationsHelferlein;
 import de.epprojekt.ep_sjpp_prototyp.Helferlein.DBHelferlein;
 import de.epprojekt.ep_sjpp_prototyp.Helferlein.PreferenceHelferlein;
 import de.epprojekt.ep_sjpp_prototyp.MainActivity;
-import de.epprojekt.ep_sjpp_prototyp.Menuebereich.UserOverviewActivity;
 import de.epprojekt.ep_sjpp_prototyp.R;
 import de.epprojekt.ep_sjpp_prototyp.WarenkorbActivity;
 
@@ -31,6 +30,8 @@ public class AepfelActivity extends AppCompatActivity {
     Integer counterGruenerApfel;
     DBHelferlein hilfMirDaddyDB;
     AnimationsHelferlein hilfMirMommyAnimation;
+    final static String KEY_AKTIVERNUTZER = "aktiver_nutzer";
+    String aktiverNutzer;
 
 
     @Override
@@ -43,14 +44,15 @@ public class AepfelActivity extends AppCompatActivity {
 
         counterRoterApfel = PreferenceHelferlein.loadTotalFromPref(this,KEY_ROTERAPFEL);
         counterGruenerApfel = PreferenceHelferlein.loadTotalFromPref(this,KEY_GRUENERAPFEL);
+        aktiverNutzer = PreferenceHelferlein.loadUserFromPref(getApplicationContext(), KEY_AKTIVERNUTZER);
 
         tvToolbar = findViewById(R.id.TVToolbar);
-        tvToolbar.setText(UserOverviewActivity.aktiverNutzerUOA);
+        tvToolbar.setText(aktiverNutzer);
 
         ibtnRoterApfel = findViewById(R.id.iamgeButtonRoterApfel);
-        //ibtnRoterApfel.setImageBitmap(BitmapFactory.decodeByteArray(hilfMirDaddyDB.getDrawableFromTable("roterApfel"),0,hilfMirDaddyDB.getDrawableFromTable("roterApfel").length));
+        ibtnRoterApfel.setImageBitmap(BitmapFactory.decodeByteArray(hilfMirDaddyDB.getDrawableFromTable("roterApfel"),0,hilfMirDaddyDB.getDrawableFromTable("roterApfel").length));
         ibtnGruenerApfel = findViewById(R.id.imageButtonGruenerApfel);
-        //ibtnGruenerApfel.setImageBitmap(BitmapFactory.decodeByteArray(hilfMirDaddyDB.getDrawableFromTable("gruenerApfel"),0,hilfMirDaddyDB.getDrawableFromTable("roterApfel").length));
+        ibtnGruenerApfel.setImageBitmap(BitmapFactory.decodeByteArray(hilfMirDaddyDB.getDrawableFromTable("gruenerApfel"),0,hilfMirDaddyDB.getDrawableFromTable("roterApfel").length));
 
 
         ibtnWarenkorb = findViewById(R.id.imageButtonWarenkorb);
@@ -77,8 +79,8 @@ public class AepfelActivity extends AppCompatActivity {
 
 
         ibtnRoterApfel.setOnClickListener(v -> {
-            if (hilfMirDaddyDB.darfHinzugefügtWerden(roterApfel, UserOverviewActivity.aktiverNutzerUOA)){
-                hilfMirDaddyDB.insertIntoWarenkorb(ibtnRoterApfel, R.drawable.roterapfel, roterApfel + counterRoterApfel, roterApfel, UserOverviewActivity.aktiverNutzerUOA);
+            if (hilfMirDaddyDB.darfHinzugefügtWerden(roterApfel, aktiverNutzer)){
+                hilfMirDaddyDB.insertIntoWarenkorb(ibtnRoterApfel, R.drawable.roterapfel, roterApfel + counterRoterApfel, roterApfel, aktiverNutzer);
                 hilfMirMommyAnimation.ownAnimation(ibtnRoterApfel, ibtnWarenkorb);
                 counterRoterApfel++;
                 PreferenceHelferlein.saveTotalInPref(getApplicationContext(),counterRoterApfel,KEY_ROTERAPFEL);
@@ -88,8 +90,8 @@ public class AepfelActivity extends AppCompatActivity {
         });
 
         ibtnGruenerApfel.setOnClickListener(v -> {
-            if (hilfMirDaddyDB.darfHinzugefügtWerden(gruenerApfel, UserOverviewActivity.aktiverNutzerUOA)){
-                hilfMirDaddyDB.insertIntoWarenkorb(ibtnGruenerApfel, R.drawable.gruenerapfel, gruenerApfel + counterGruenerApfel, gruenerApfel, UserOverviewActivity.aktiverNutzerUOA);
+            if (hilfMirDaddyDB.darfHinzugefügtWerden(gruenerApfel, aktiverNutzer)){
+                hilfMirDaddyDB.insertIntoWarenkorb(ibtnGruenerApfel, R.drawable.gruenerapfel, gruenerApfel + counterGruenerApfel, gruenerApfel, aktiverNutzer);
                 hilfMirMommyAnimation.ownAnimation(ibtnGruenerApfel, ibtnWarenkorb);
                 counterGruenerApfel++;
                 PreferenceHelferlein.saveTotalInPref(getApplicationContext(),counterGruenerApfel,KEY_GRUENERAPFEL);

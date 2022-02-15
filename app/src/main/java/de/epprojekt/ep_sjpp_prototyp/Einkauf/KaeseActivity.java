@@ -14,7 +14,6 @@ import de.epprojekt.ep_sjpp_prototyp.Helferlein.AnimationsHelferlein;
 import de.epprojekt.ep_sjpp_prototyp.Helferlein.DBHelferlein;
 import de.epprojekt.ep_sjpp_prototyp.Helferlein.PreferenceHelferlein;
 import de.epprojekt.ep_sjpp_prototyp.MainActivity;
-import de.epprojekt.ep_sjpp_prototyp.Menuebereich.UserOverviewActivity;
 import de.epprojekt.ep_sjpp_prototyp.R;
 import de.epprojekt.ep_sjpp_prototyp.WarenkorbActivity;
 
@@ -35,6 +34,8 @@ public class KaeseActivity extends AppCompatActivity {
     final static String KEY_HARTKAESE = "key_hartkaese";
     final static String KEY_STREICHKAESE = "key_streichkaese";
     final static String KEY_SCHEIBENKAESE = "key_scheibenkaese";
+    final static String KEY_AKTIVERNUTZER = "aktiver_nutzer";
+    String aktiverNutzer;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -48,6 +49,7 @@ public class KaeseActivity extends AppCompatActivity {
         counterHartkaese = PreferenceHelferlein.loadTotalFromPref(this,KEY_HARTKAESE);
         counterStreichkaese = PreferenceHelferlein.loadTotalFromPref(this,KEY_STREICHKAESE);
         counterScheibenkaese = PreferenceHelferlein.loadTotalFromPref(this, KEY_SCHEIBENKAESE);
+        aktiverNutzer = PreferenceHelferlein.loadUserFromPref(getApplicationContext(), KEY_AKTIVERNUTZER);
 
         ibtnWarenkorb = findViewById(R.id.imageButtonWarenkorb);
         ibtnMenue = findViewById(R.id.imageButtonHome);
@@ -60,7 +62,7 @@ public class KaeseActivity extends AppCompatActivity {
         hilfMirMommyAnimation = new AnimationsHelferlein();
 
         tvToolbar = findViewById(R.id.TVToolbar);
-        tvToolbar.setText(UserOverviewActivity.aktiverNutzerUOA);
+        tvToolbar.setText(aktiverNutzer);
 
         MediaPlayer mediaPlayerHartkaese = MediaPlayer.create(this, R.raw.hartkaese);
         MediaPlayer mediaPlayerStreichkaese = MediaPlayer.create(this, R.raw.streichkaese);
@@ -81,8 +83,8 @@ public class KaeseActivity extends AppCompatActivity {
         });
 
         ibtnHartkaese.setOnClickListener(v -> {
-            if (hilfMirDaddyDB.darfHinzugefügtWerden(hartkaese, UserOverviewActivity.aktiverNutzerUOA)){
-                hilfMirDaddyDB.insertIntoWarenkorb(ibtnHartkaese, R.drawable.hartkaese, hartkaese + counterHartkaese, hartkaese, UserOverviewActivity.aktiverNutzerUOA);
+            if (hilfMirDaddyDB.darfHinzugefügtWerden(hartkaese, aktiverNutzer)){
+                hilfMirDaddyDB.insertIntoWarenkorb(ibtnHartkaese, R.drawable.hartkaese, hartkaese + counterHartkaese, hartkaese, aktiverNutzer);
                 hilfMirMommyAnimation.ownAnimation(ibtnHartkaese, ibtnWarenkorb);
                 counterHartkaese++;
                 PreferenceHelferlein.saveTotalInPref(getApplicationContext(),counterHartkaese,KEY_HARTKAESE);
@@ -92,8 +94,8 @@ public class KaeseActivity extends AppCompatActivity {
         });
 
         ibtnScheibenkaese.setOnClickListener(v -> {
-            if (hilfMirDaddyDB.darfHinzugefügtWerden(scheibenkaese, UserOverviewActivity.aktiverNutzerUOA)){
-                hilfMirDaddyDB.insertIntoWarenkorb(ibtnScheibenkaese, R.drawable.kaesescheibe, scheibenkaese + counterScheibenkaese, scheibenkaese, UserOverviewActivity.aktiverNutzerUOA);
+            if (hilfMirDaddyDB.darfHinzugefügtWerden(scheibenkaese, aktiverNutzer)){
+                hilfMirDaddyDB.insertIntoWarenkorb(ibtnScheibenkaese, R.drawable.kaesescheibe, scheibenkaese + counterScheibenkaese, scheibenkaese, aktiverNutzer);
                 hilfMirMommyAnimation.ownAnimation(ibtnScheibenkaese, ibtnWarenkorb);
                 counterScheibenkaese++;
                 PreferenceHelferlein.saveTotalInPref(getApplicationContext(),counterScheibenkaese,KEY_SCHEIBENKAESE);
@@ -103,8 +105,8 @@ public class KaeseActivity extends AppCompatActivity {
         });
 
         ibtnStreichkaese.setOnClickListener(v -> {
-            if (hilfMirDaddyDB.darfHinzugefügtWerden(streichkaese, UserOverviewActivity.aktiverNutzerUOA)){
-                hilfMirDaddyDB.insertIntoWarenkorb(ibtnStreichkaese, R.drawable.streichkaese, streichkaese + counterStreichkaese, streichkaese, UserOverviewActivity.aktiverNutzerUOA);
+            if (hilfMirDaddyDB.darfHinzugefügtWerden(streichkaese, aktiverNutzer)){
+                hilfMirDaddyDB.insertIntoWarenkorb(ibtnStreichkaese, R.drawable.streichkaese, streichkaese + counterStreichkaese, streichkaese, aktiverNutzer);
                 hilfMirMommyAnimation.ownAnimation(ibtnStreichkaese, ibtnWarenkorb);
                 counterStreichkaese++;
                 PreferenceHelferlein.saveTotalInPref(getApplicationContext(),counterStreichkaese,KEY_STREICHKAESE);

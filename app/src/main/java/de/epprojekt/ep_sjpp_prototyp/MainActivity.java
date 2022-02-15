@@ -7,13 +7,13 @@ import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.widget.ImageButton;
 import android.widget.TextView;
-
 import de.epprojekt.ep_sjpp_prototyp.Einkauf.GemueseUndObstActivity;
 import de.epprojekt.ep_sjpp_prototyp.Einkauf.MilchprdoukteActivity;
 import de.epprojekt.ep_sjpp_prototyp.Helferlein.DBHelferlein;
 import de.epprojekt.ep_sjpp_prototyp.Helferlein.PreferenceHelferlein;
 import de.epprojekt.ep_sjpp_prototyp.Menuebereich.UserCreationActivity;
 import de.epprojekt.ep_sjpp_prototyp.Menuebereich.UserOverviewActivity;
+
 
 public class MainActivity extends AppCompatActivity {
 
@@ -23,6 +23,9 @@ public class MainActivity extends AppCompatActivity {
     Toolbar toolbar;
     DBHelferlein hilfMirDaddyDB;
     public final static String FIRST_APP_START_MAIN = "FirstAppStartMain";
+    final static String KEY_AKTIVERNUTZER = "aktiver_nutzer";
+    String aktiverNutzer;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -36,10 +39,12 @@ public class MainActivity extends AppCompatActivity {
 
         hilfMirDaddyDB = new DBHelferlein(this);
 
+        aktiverNutzer = PreferenceHelferlein.loadUserFromPref(getApplicationContext(), KEY_AKTIVERNUTZER);
+
         //TOOLBAR
         toolbar = findViewById(R.id.toolbarMAIN);
         tvToolbar = findViewById(R.id.TVToolbar);
-        tvToolbar.setText(UserOverviewActivity.aktiverNutzerUOA);
+        tvToolbar.setText(aktiverNutzer);
         setSupportActionBar(toolbar);
 
         //BTN ZUWEISUNG
@@ -93,6 +98,16 @@ public class MainActivity extends AppCompatActivity {
             startActivity(intentMenue);
         });
 
+
+        //SHARED PREF ONLY FRIST APP START
+        hilfMirDaddyDB.setDrawableFromGallery("roterApfel",hilfMirDaddyDB.drawableToByteArray(MainActivity.this,R.drawable.roterapfel));
+        hilfMirDaddyDB.setDrawableFromGallery("gruenerApfel",hilfMirDaddyDB.drawableToByteArray(MainActivity.this,R.drawable.gruenerapfel));
+        hilfMirDaddyDB.setDrawableFromGallery("Salatgurke",hilfMirDaddyDB.drawableToByteArray(MainActivity.this,R.drawable.gurke));
+        hilfMirDaddyDB.setDrawableFromGallery("Hartkaese",hilfMirDaddyDB.drawableToByteArray(MainActivity.this,R.drawable.hartkaese));
+        hilfMirDaddyDB.setDrawableFromGallery("Streichkaese",hilfMirDaddyDB.drawableToByteArray(MainActivity.this,R.drawable.streichkaese));
+        hilfMirDaddyDB.setDrawableFromGallery("Kaeseaufschnitt",hilfMirDaddyDB.drawableToByteArray(MainActivity.this,R.drawable.kaesescheibe));
+        hilfMirDaddyDB.setDrawableFromGallery("sechserPackungEier",hilfMirDaddyDB.drawableToByteArray(MainActivity.this,R.drawable.sechser_eier));
+        hilfMirDaddyDB.setDrawableFromGallery("zehnerPackungEier",hilfMirDaddyDB.drawableToByteArray(MainActivity.this,R.drawable.zehner_eier));
     }
 
 

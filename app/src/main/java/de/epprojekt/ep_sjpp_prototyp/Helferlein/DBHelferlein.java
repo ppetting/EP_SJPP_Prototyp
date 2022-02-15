@@ -7,16 +7,13 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.graphics.Bitmap;
-import android.graphics.drawable.Drawable;
-import android.net.Uri;
+import android.graphics.BitmapFactory;
 import android.widget.ImageButton;
-import android.widget.Toast;
-
+import java.io.ByteArrayOutputStream;
+import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.Collections;
-
 import de.epprojekt.ep_sjpp_prototyp.R;
-
 
 public class DBHelferlein extends SQLiteOpenHelper {
 
@@ -27,6 +24,7 @@ public class DBHelferlein extends SQLiteOpenHelper {
     final String flagblau = "flagblau";
     final String flagrot = "flagrot";
     int countUserdaten = 1;
+
 
     public DBHelferlein(Context context) {
         super(context, "Einkaufsdatenbank.db", null, 1);
@@ -51,28 +49,28 @@ public class DBHelferlein extends SQLiteOpenHelper {
 
         ContentValues contentValues = new ContentValues();
 
-        contentValues.put("id_key", 1); contentValues.put("bildname", "roterApfel"); contentValues.put("bild", R.drawable.roterapfel); contentValues.put("flag", flaggruen);
+        contentValues.put("id_key", 1); contentValues.put("bildname", "roterApfel"); contentValues.put("bild",""); contentValues.put("flag", flaggruen);
         database.insert(sortiment, null, contentValues);
 
-        contentValues.put("id_key", 2); contentValues.put("bildname", "gruenerApfel"); contentValues.put("bild", R.drawable.gruenerapfel); contentValues.put("flag", flaggruen);
+        contentValues.put("id_key", 2); contentValues.put("bildname", "gruenerApfel"); contentValues.put("bild", ""); contentValues.put("flag", flaggruen);
         database.insert(sortiment, null, contentValues);
 
-        contentValues.put("id_key", 3); contentValues.put("bildname", "Salatgurke"); contentValues.put("bild", R.drawable.gurke); contentValues.put("flag", flaggruen);
+        contentValues.put("id_key", 3); contentValues.put("bildname", "Salatgurke"); contentValues.put("bild", ""); contentValues.put("flag", flaggruen);
         database.insert(sortiment, null, contentValues);
 
-        contentValues.put("id_key", 4); contentValues.put("bildname", "Hartkaese"); contentValues.put("bild", R.drawable.hartkaese); contentValues.put("flag", flagrot);
+        contentValues.put("id_key", 4); contentValues.put("bildname", "Hartkaese"); contentValues.put("bild", ""); contentValues.put("flag", flagrot);
         database.insert(sortiment, null, contentValues);
 
-        contentValues.put("id_key", 5); contentValues.put("bildname", "Streichkaese"); contentValues.put("bild", R.drawable.streichkaese); contentValues.put("flag", flagrot);
+        contentValues.put("id_key", 5); contentValues.put("bildname", "Streichkaese"); contentValues.put("bild", ""); contentValues.put("flag", flagrot);
         database.insert(sortiment, null, contentValues);
 
-        contentValues.put("id_key", 6); contentValues.put("bildname", "Kaeseaufschnitt"); contentValues.put("bild", R.drawable.streichkaese); contentValues.put("flag", flagrot);
+        contentValues.put("id_key", 6); contentValues.put("bildname", "Kaeseaufschnitt"); contentValues.put("bild", ""); contentValues.put("flag", flagrot);
         database.insert(sortiment, null, contentValues);
 
-        contentValues.put("id_key", 7); contentValues.put("bildname", "sechserPackungEier"); contentValues.put("bild", R.drawable.sechser_eier); contentValues.put("flag", flagblau);
+        contentValues.put("id_key", 7); contentValues.put("bildname", "sechserPackungEier"); contentValues.put("bild", ""); contentValues.put("flag", flagblau);
         database.insert(sortiment, null, contentValues);
 
-        contentValues.put("id_key", 8); contentValues.put("bildname", "zehnerPackungEier"); contentValues.put("bild", R.drawable.zehner_eier); contentValues.put("flag", flagblau);
+        contentValues.put("id_key", 8); contentValues.put("bildname", "zehnerPackungEier"); contentValues.put("bild",""); contentValues.put("flag", flagblau);
         database.insert(sortiment, null, contentValues);
     }
 
@@ -309,17 +307,6 @@ public class DBHelferlein extends SQLiteOpenHelper {
 
     }
 
-
-
-
-
-
-
-
-
-
-
-
     public byte[] getDrawableFromTable(String bildname){
 
         SQLiteDatabase database = this.getWritableDatabase();
@@ -345,6 +332,34 @@ public class DBHelferlein extends SQLiteOpenHelper {
 
     }
 
+
+    public byte[] drawableToByteArray (Context context, Integer i) {
+        InputStream inputStream = context.getResources().openRawResource(i);
+        Bitmap bitmap = BitmapFactory.decodeStream(inputStream);
+        bitmap = getResizedBitmap(bitmap,400);
+        return getBytes(bitmap);
+    }
+
+    public static byte[] getBytes(Bitmap bitmap) {
+        ByteArrayOutputStream stream = new ByteArrayOutputStream();
+        bitmap.compress(Bitmap.CompressFormat.PNG, 0, stream);
+        return stream.toByteArray();
+    }
+
+    public static Bitmap getResizedBitmap(Bitmap image, int maxSize) {
+        int width = image.getWidth();
+        int height = image.getHeight();
+
+        float bitmapRatio = (float)width / (float) height;
+        if (bitmapRatio > 1) {
+            width = maxSize;
+            height = (int) (width / bitmapRatio);
+        } else {
+            height = maxSize;
+            width = (int) (height * bitmapRatio);
+        }
+        return Bitmap.createScaledBitmap(image, width, height, true);
+    }
 
 }
 

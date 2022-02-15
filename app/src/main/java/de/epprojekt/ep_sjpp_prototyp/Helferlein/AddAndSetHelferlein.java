@@ -1,14 +1,15 @@
 package de.epprojekt.ep_sjpp_prototyp.Helferlein;
 
-import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.BitmapFactory;
+
 import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
-
 import androidx.appcompat.app.AlertDialog;
+
 
 import de.epprojekt.ep_sjpp_prototyp.MainActivity;
 import de.epprojekt.ep_sjpp_prototyp.Menuebereich.UserCreationActivity;
@@ -17,6 +18,8 @@ import de.epprojekt.ep_sjpp_prototyp.WarenkorbActivity;
 
 public class AddAndSetHelferlein {
 
+    final static String KEY_AKTIVERNUTZER = "aktiver_nutzer";
+
     public static void addViewIBTN (ImageButton imageButton, LinearLayout linearLayout){
         LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(400,400);
         params.setMargins(0,10,0,10);
@@ -24,13 +27,13 @@ public class AddAndSetHelferlein {
         linearLayout.addView(imageButton);
     }
 
-    public static ImageButton setPicture(Integer i, String j, Context context, DBHelferlein dbHelferlein){
+    public static ImageButton setPicture(String itemname, String itemnamekey, Context context, DBHelferlein dbHelferlein){
         ImageButton imageButton = new ImageButton(context);
-        imageButton.setImageResource(i);
+        imageButton.setImageBitmap(BitmapFactory.decodeByteArray(dbHelferlein.getDrawableFromTable(itemname),0,dbHelferlein.getDrawableFromTable(itemname).length));
         imageButton.setScaleType(ImageView.ScaleType.FIT_CENTER);
 
         imageButton.setOnClickListener(v -> {
-            dbHelferlein.deleteIndividuallyfromWarenkorb(j, UserOverviewActivity.aktiverNutzerUOA);
+            dbHelferlein.deleteIndividuallyfromWarenkorb(itemnamekey, PreferenceHelferlein.loadUserFromPref(context, KEY_AKTIVERNUTZER));
             Intent refresh = new Intent(context,WarenkorbActivity.class);
             context.startActivity(refresh);
         });
@@ -50,7 +53,7 @@ public class AddAndSetHelferlein {
         button.setBackgroundColor(farbe);
 
         button.setOnClickListener(v -> {
-            UserOverviewActivity.aktiverNutzerUOA = username;
+           PreferenceHelferlein.saveUserInPref(context,username, KEY_AKTIVERNUTZER);
             menueauswahl(context,dbHelferlein);
         });
 
@@ -60,7 +63,7 @@ public class AddAndSetHelferlein {
     private static void menueauswahl(Context context, DBHelferlein dbHelferlein) {
         final CharSequence[] options = {"Benutzer wechsel", "Benutzer bearbeiten", "Benutzer löschen", "Abbrechen"};
         AlertDialog.Builder builder = new AlertDialog.Builder(context);
-        builder.setTitle("Einstellungen für " + UserOverviewActivity.aktiverNutzerUOA);
+        builder.setTitle("Einstellungen für " + PreferenceHelferlein.loadUserFromPref(context, KEY_AKTIVERNUTZER));
         builder.setItems(options, (dialog, item) -> {
             if (options[item].equals("Benutzer wechsel")) {
                 dialog.dismiss();
@@ -74,9 +77,9 @@ public class AddAndSetHelferlein {
                 context.startActivity(intentNutzerErstellen);
 
             } else if (options[item].equals("Benutzer löschen")) {
-                dbHelferlein.deletefromUserdaten(UserOverviewActivity.aktiverNutzerUOA);
+                dbHelferlein.deletefromUserdaten(PreferenceHelferlein.loadUserFromPref(context, KEY_AKTIVERNUTZER));
                 dialog.dismiss();
-                UserOverviewActivity.aktiverNutzerUOA = "";
+                PreferenceHelferlein.saveUserInPref(context,"", KEY_AKTIVERNUTZER);
                 Intent refresh = new Intent(context, MainActivity.class);
                 context.startActivity(refresh);
             } else if (options[item].equals("Abbrechen")) {
@@ -85,5 +88,6 @@ public class AddAndSetHelferlein {
         });
         builder.show();
     }
+
 
 }

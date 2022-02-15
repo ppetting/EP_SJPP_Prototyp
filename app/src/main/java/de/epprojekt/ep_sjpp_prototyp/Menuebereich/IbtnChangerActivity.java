@@ -6,20 +6,21 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.graphics.Canvas;
+import android.graphics.drawable.BitmapDrawable;
+import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Environment;
 import android.provider.MediaStore;
 import android.widget.ImageButton;
+import android.widget.ImageView;
+
 import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.FileNotFoundException;
-import java.io.IOException;
 import java.io.InputStream;
-import java.nio.file.Files;
-import java.nio.file.Path;
-import java.nio.file.Paths;
 
 import de.epprojekt.ep_sjpp_prototyp.Helferlein.DBHelferlein;
 import de.epprojekt.ep_sjpp_prototyp.R;
@@ -31,6 +32,7 @@ public class IbtnChangerActivity extends AppCompatActivity{
     ImageButton ibtnRoterApfelChanger,ibtnGruenerApfelChanger,ibtnAepfelChanger,ibtnGurkeChanger,ibtnSechserEierChanger,ibtnZehnerEierChanger,ibtnEierChanger,ibtnHartkaeseChanger,ibtnStreichkaeseChanger,ibtnScheibenkaeseChanger,ibtnKaeseChanger,ibtnGemueseUndObstChanger,ibtnGetraenkeChanger,ibtnWeizenprodukteChanger,ibtnMilchprodukteChanger,ibtnFleischundWurstChanger;
     DBHelferlein hilfMirDaddyDB;
     public static byte[] byteArray = null;
+
 
 
     @RequiresApi(api = Build.VERSION_CODES.O)
@@ -111,13 +113,9 @@ public class IbtnChangerActivity extends AppCompatActivity{
         builder.show();
     }
 
-
-
-
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-        BitmapFactory.Options bitmapOptions = new BitmapFactory.Options();
         if (resultCode == RESULT_OK) {
             if (requestCode == 1) {
                 //Hier müsste man das Kamerabild verarbeiten
@@ -126,7 +124,6 @@ public class IbtnChangerActivity extends AppCompatActivity{
                     InputStream inputStream = getContentResolver().openInputStream(data.getData());
                     Bitmap bitmap = BitmapFactory.decodeStream(inputStream);
                     bitmap = getResizedBitmap(bitmap,400);
-                    //test = BitMapToString(bitmap);
                     byteArray = getBytes(bitmap);
                 } catch (FileNotFoundException e) {
                     e.printStackTrace();
@@ -156,6 +153,7 @@ public class IbtnChangerActivity extends AppCompatActivity{
         }
         return Bitmap.createScaledBitmap(image, width, height, true);
     }
+
 
 }
 

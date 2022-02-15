@@ -33,4 +33,16 @@ public class PreferenceHelferlein {
         }
     }
 
+    public static String loadUserFromPref(Context context, String key){
+        SharedPreferences sharedPreferences = context.getSharedPreferences(MY_PREFERENCE_NAME, Context.MODE_PRIVATE);
+        return sharedPreferences.getString(key, "");
+    }
+
+    public static void saveUserInPref(Context context, String user, String key){
+        SharedPreferences sharedPreferences = context.getSharedPreferences(MY_PREFERENCE_NAME, Context.MODE_PRIVATE);
+        SharedPreferences.Editor editor = sharedPreferences.edit();
+        editor.putString(key, user);
+        editor.apply();
+    }
+
 }

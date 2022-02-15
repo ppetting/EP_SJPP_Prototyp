@@ -3,12 +3,12 @@ package de.epprojekt.ep_sjpp_prototyp.Menuebereich;
 import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.os.Bundle;
-import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.Toast;
 import de.epprojekt.ep_sjpp_prototyp.Helferlein.DBHelferlein;
+import de.epprojekt.ep_sjpp_prototyp.Helferlein.PreferenceHelferlein;
 import de.epprojekt.ep_sjpp_prototyp.MainActivity;
 import de.epprojekt.ep_sjpp_prototyp.R;
 
@@ -19,8 +19,9 @@ public class UserCreationActivity extends AppCompatActivity {
     public Button benutzerAnlegen;
     DBHelferlein hilfMirDaddyDB;
     public static String nameTXT;
-    public String aktiverUser = UserOverviewActivity.aktiverNutzerUOA;
     public Integer gruenerFlagTXT, roterFlagTXT, blauerFlagTXT;
+    final static String KEY_AKTIVERNUTZER = "aktiver_nutzer";
+    String aktiverNutzer;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -28,6 +29,8 @@ public class UserCreationActivity extends AppCompatActivity {
         setContentView(R.layout.activity_user_creation);
 
          hilfMirDaddyDB = new DBHelferlein(this);
+
+         aktiverNutzer = PreferenceHelferlein.loadUserFromPref(getApplicationContext(), KEY_AKTIVERNUTZER);
 
          name = findViewById(R.id.ETname);
          gruenerFlag = findViewById(R.id.ETgruen);
@@ -45,10 +48,10 @@ public class UserCreationActivity extends AppCompatActivity {
             //Button Anzeigetext
             benutzerAnlegen.setText(UserOverviewActivity.anlegen_bearbeiten);
             //Vorausgefüllt mit den aktuellen Userdaten
-            name.setText(aktiverUser);
-            gruenerFlag.setText(hilfMirDaddyDB.getFlaganzahlString(aktiverUser,"flaggruen"));
-            roterFlag.setText(hilfMirDaddyDB.getFlaganzahlString(aktiverUser,"flagrot"));
-            blauerFlag.setText(hilfMirDaddyDB.getFlaganzahlString(aktiverUser,"flagblau"));
+            name.setText(aktiverNutzer);
+            gruenerFlag.setText(hilfMirDaddyDB.getFlaganzahlString(aktiverNutzer,"flaggruen"));
+            roterFlag.setText(hilfMirDaddyDB.getFlaganzahlString(aktiverNutzer,"flagrot"));
+            blauerFlag.setText(hilfMirDaddyDB.getFlaganzahlString(aktiverNutzer,"flagblau"));
         }
 
         ibtnHome.setOnClickListener(v -> {
@@ -72,7 +75,7 @@ public class UserCreationActivity extends AppCompatActivity {
                  hilfMirDaddyDB.insertIntoUserdaten(nameTXT, gruenerFlagTXT, blauerFlagTXT, roterFlagTXT);
                  hilfMirDaddyDB.createWarenkorbOnClick(nameTXT);
 
-                 UserOverviewActivity.aktiverNutzerUOA = nameTXT;
+                PreferenceHelferlein.saveUserInPref(getApplicationContext(),nameTXT,KEY_AKTIVERNUTZER);
                  Intent refresh = new Intent(UserCreationActivity.this, MainActivity.class);
                  startActivity(refresh);
 
@@ -86,9 +89,9 @@ public class UserCreationActivity extends AppCompatActivity {
                  roterFlagTXT = Integer.parseInt(roterFlag.getText().toString());
                  blauerFlagTXT = Integer.parseInt(blauerFlag.getText().toString());
 
-                 hilfMirDaddyDB.updateUserdata(aktiverUser,nameTXT, gruenerFlagTXT, blauerFlagTXT, roterFlagTXT);
+                 hilfMirDaddyDB.updateUserdata(aktiverNutzer,nameTXT, gruenerFlagTXT, blauerFlagTXT, roterFlagTXT);
 
-                 UserOverviewActivity.aktiverNutzerUOA = nameTXT;
+                 PreferenceHelferlein.saveUserInPref(getApplicationContext(),nameTXT,KEY_AKTIVERNUTZER);
 
                  Intent refresh = new Intent(UserCreationActivity.this, MainActivity.class);
                  startActivity(refresh);
