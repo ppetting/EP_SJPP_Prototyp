@@ -2,6 +2,7 @@ package de.epprojekt.ep_sjpp_prototyp.Einkauf;
 
 import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
+import android.graphics.BitmapFactory;
 import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.widget.ImageButton;
@@ -44,6 +45,8 @@ public class GemueseUndObstActivity extends AppCompatActivity {
 
         ibtnAepfel = findViewById(R.id.imageButtonAepfel);
         ibtnGurke = findViewById(R.id.imageButtonGurke);
+        ibtnGurke.setImageBitmap(BitmapFactory.decodeByteArray(hilfMirDaddyDB.getDrawableFromTable("Salatgurke"),0,hilfMirDaddyDB.getDrawableFromTable("Salatgurke").length));
+
 
         ibtnWarenkorb = findViewById(R.id.imageButtonWarenkorb);
         ibtnMenue = findViewById(R.id.imageButtonHome);

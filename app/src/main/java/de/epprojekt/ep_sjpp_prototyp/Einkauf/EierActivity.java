@@ -3,6 +3,7 @@ package de.epprojekt.ep_sjpp_prototyp.Einkauf;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
+import android.graphics.BitmapFactory;
 import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.widget.ImageButton;
@@ -48,7 +49,9 @@ public class EierActivity extends AppCompatActivity {
         tvToolbar.setText(aktiverNutzer);
 
         ibtnSechserEier = findViewById(R.id.imageButtonSechserEier);
+        ibtnSechserEier.setImageBitmap(BitmapFactory.decodeByteArray(hilfMirDaddyDB.getDrawableFromTable("sechserPackungEier"),0,hilfMirDaddyDB.getDrawableFromTable("sechserPackungEier").length));
         ibtnZehnerEier = findViewById(R.id.imageButtonZehnerEier);
+        ibtnZehnerEier.setImageBitmap(BitmapFactory.decodeByteArray(hilfMirDaddyDB.getDrawableFromTable("zehnerPackungEier"),0,hilfMirDaddyDB.getDrawableFromTable("zehnerPackungEier").length));
 
         ibtnSoundSechserEier = findViewById(R.id.imageButtonSoundSechserEier);
         ibtnSoundZehnerEier = findViewById(R.id.imageButtonSoundZehnerEier);

@@ -18,73 +18,20 @@
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="vertical">
+        android:orientation="vertical"
+        android:layout_below="@id/toolbarMAIN">
 
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginStart="100dp">
 
-            <ImageButton
-                android:id="@+id/imageButtonGetraenkeChanger"
-                android:layout_width="150dp"
-                android:layout_height="150dp"
-                android:scaleType="fitCenter"
-                android:layout_below="@+id/toolbarMAIN"
-                app:srcCompat="@drawable/getraenke"
-                tools:ignore="NotSibling"/>
-
-            <ImageButton
-                android:id="@+id/imageButtonGemueseUndObstChanger"
-                android:layout_width="150dp"
-                android:layout_height="150dp"
-                android:scaleType="fitCenter"
-                android:layout_below="@+id/imageButtonGetraenkeChanger"
-                tools:ignore="NotSibling"
-                app:srcCompat="@drawable/obstundgemuese" />
-
-            <ImageButton
-                android:id="@+id/imageButtonFleischundWurstChanger"
-                android:layout_width="150dp"
-                android:layout_height="150dp"
-                android:scaleType="fitCenter"
-                android:layout_below="@id/imageButtonGemueseUndObstChanger"
-                app:srcCompat="@drawable/fleischundwurst"
-                tools:ignore="NotSibling" />
-
-            <ImageButton
-                android:id="@+id/imageButtonMilchprodukteChanger"
-                android:layout_width="150dp"
-                android:layout_height="150dp"
-                android:layout_below="@id/imageButtonFleischundWurstChanger"
-                android:scaleType="fitCenter"
-                app:srcCompat="@drawable/milchprodukte"
-                tools:ignore="NotSibling" />
-
-            <ImageButton
-                android:id="@+id/imageButtonWeizenprodukteChanger"
-                android:layout_width="150dp"
-                android:layout_height="150dp"
-                android:layout_below="@id/imageButtonMilchprodukteChanger"
-                android:scaleType="fitCenter"
-                app:srcCompat="@drawable/weizenprodukte"
-                tools:ignore="NotSibling" />
-
-            <ImageButton
-                android:id="@+id/imageButtonAepfelChanger"
-                android:layout_width="150dp"
-                android:layout_height="150dp"
-                android:scaleType="fitCenter"
-                android:layout_below="@id/imageButtonWeizenprodukteChanger"
-                app:srcCompat="@drawable/aepfel"
-                tools:ignore="NotSibling" />
 
             <ImageButton
                 android:id="@+id/imageButtonGruenerApfelChanger"
                 android:layout_width="150dp"
                 android:layout_height="150dp"
                 android:scaleType="fitCenter"
-                android:layout_below="@id/imageButtonAepfelChanger"
                 app:srcCompat="@drawable/gruenerapfel"
                 tools:ignore="NotSibling" />
 
@@ -125,29 +72,11 @@
                 tools:ignore="NotSibling" />
 
             <ImageButton
-                android:id="@+id/imageButtonEierChanger"
-                android:layout_width="150dp"
-                android:layout_height="150dp"
-                android:scaleType="fitCenter"
-                android:layout_below="@id/imageButtonZehnerEierChanger"
-                app:srcCompat="@drawable/braunes_ei"
-                tools:ignore="NotSibling" />
-
-            <ImageButton
-                android:id="@+id/imageButtonKaeseChanger"
-                android:layout_width="150dp"
-                android:layout_height="150dp"
-                android:scaleType="fitCenter"
-                android:layout_below="@id/imageButtonEierChanger"
-                app:srcCompat="@drawable/hartkaese"
-                tools:ignore="NotSibling" />
-
-            <ImageButton
                 android:id="@+id/imageButtonScheibenkaeseChanger"
                 android:layout_width="150dp"
                 android:layout_height="150dp"
                 android:scaleType="fitCenter"
-                android:layout_below="@id/imageButtonKaeseChanger"
+                android:layout_below="@id/imageButtonZehnerEierChanger"
                 app:srcCompat="@drawable/kaesescheibe"
                 tools:ignore="NotSibling" />
 

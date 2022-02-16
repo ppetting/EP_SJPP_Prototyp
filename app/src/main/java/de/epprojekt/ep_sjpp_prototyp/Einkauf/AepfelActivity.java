@@ -52,8 +52,7 @@ public class AepfelActivity extends AppCompatActivity {
         ibtnRoterApfel = findViewById(R.id.iamgeButtonRoterApfel);
         ibtnRoterApfel.setImageBitmap(BitmapFactory.decodeByteArray(hilfMirDaddyDB.getDrawableFromTable("roterApfel"),0,hilfMirDaddyDB.getDrawableFromTable("roterApfel").length));
         ibtnGruenerApfel = findViewById(R.id.imageButtonGruenerApfel);
-        ibtnGruenerApfel.setImageBitmap(BitmapFactory.decodeByteArray(hilfMirDaddyDB.getDrawableFromTable("gruenerApfel"),0,hilfMirDaddyDB.getDrawableFromTable("roterApfel").length));
-
+        ibtnGruenerApfel.setImageBitmap(BitmapFactory.decodeByteArray(hilfMirDaddyDB.getDrawableFromTable("gruenerApfel"),0,hilfMirDaddyDB.getDrawableFromTable("gruenerApfel").length));
 
         ibtnWarenkorb = findViewById(R.id.imageButtonWarenkorb);
         ibtnMenue = findViewById(R.id.imageButtonHome);

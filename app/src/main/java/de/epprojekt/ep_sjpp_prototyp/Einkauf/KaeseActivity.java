@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 
 import android.content.Intent;
+import android.graphics.BitmapFactory;
 import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.widget.ImageButton;
@@ -43,8 +44,11 @@ public class KaeseActivity extends AppCompatActivity {
         setContentView(R.layout.activity_kaese);
 
         ibtnHartkaese = findViewById(R.id.imageButtonHartkaese);
+        ibtnHartkaese.setImageBitmap(BitmapFactory.decodeByteArray(hilfMirDaddyDB.getDrawableFromTable("Hartkaese"),0,hilfMirDaddyDB.getDrawableFromTable("Hartkaese").length));
         ibtnStreichkaese = findViewById(R.id.imageButtonStreichkaese);
+        ibtnStreichkaese.setImageBitmap(BitmapFactory.decodeByteArray(hilfMirDaddyDB.getDrawableFromTable("Streichkaese"),0,hilfMirDaddyDB.getDrawableFromTable("Streichkaese").length));
         ibtnScheibenkaese = findViewById(R.id.imageButtonScheibenkaese);
+        ibtnScheibenkaese.setImageBitmap(BitmapFactory.decodeByteArray(hilfMirDaddyDB.getDrawableFromTable("Kaeseaufschnitt"),0,hilfMirDaddyDB.getDrawableFromTable("Kaeseaufschnitt").length));
 
         counterHartkaese = PreferenceHelferlein.loadTotalFromPref(this,KEY_HARTKAESE);
         counterStreichkaese = PreferenceHelferlein.loadTotalFromPref(this,KEY_STREICHKAESE);

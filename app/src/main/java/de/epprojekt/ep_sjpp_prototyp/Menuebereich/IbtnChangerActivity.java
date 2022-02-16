@@ -30,7 +30,7 @@ import de.epprojekt.ep_sjpp_prototyp.R;
 public class IbtnChangerActivity extends AppCompatActivity{
 
     ImageButton  ibtnMenue, ibtnWarenkorb;
-    ImageButton ibtnRoterApfelChanger,ibtnGruenerApfelChanger,ibtnAepfelChanger,ibtnGurkeChanger,ibtnSechserEierChanger,ibtnZehnerEierChanger,ibtnEierChanger,ibtnHartkaeseChanger,ibtnStreichkaeseChanger,ibtnScheibenkaeseChanger,ibtnKaeseChanger,ibtnGemueseUndObstChanger,ibtnGetraenkeChanger,ibtnWeizenprodukteChanger,ibtnMilchprodukteChanger,ibtnFleischundWurstChanger;
+    ImageButton ibtnRoterApfelChanger,ibtnGruenerApfelChanger,ibtnGurkeChanger,ibtnSechserEierChanger,ibtnZehnerEierChanger,ibtnHartkaeseChanger,ibtnStreichkaeseChanger,ibtnScheibenkaeseChanger,ibtnKaeseChanger;
     DBHelferlein hilfMirDaddyDB;
     public static byte[] byteArray = null;
 
@@ -49,21 +49,12 @@ public class IbtnChangerActivity extends AppCompatActivity{
 
         ibtnRoterApfelChanger = findViewById(R.id.imageButtonRoterApfeleChanger);
         ibtnGruenerApfelChanger = findViewById(R.id.imageButtonGruenerApfelChanger);
-        ibtnAepfelChanger = findViewById(R.id.imageButtonAepfelChanger);
         ibtnGurkeChanger = findViewById(R.id.imageButtonGurkeChanger);
         ibtnSechserEierChanger = findViewById(R.id.imageButtonSechserEierChanger);
         ibtnZehnerEierChanger = findViewById(R.id.imageButtonZehnerEierChanger);
-        ibtnEierChanger = findViewById(R.id.imageButtonEierChanger);
         ibtnHartkaeseChanger = findViewById(R.id.imageButtonHartkaeseChanger);
         ibtnStreichkaeseChanger = findViewById(R.id.imageButtonStreichkaeseChanger);
         ibtnScheibenkaeseChanger = findViewById(R.id.imageButtonScheibenkaeseChanger);
-        ibtnKaeseChanger = findViewById(R.id.imageButtonKaeseChanger);
-        ibtnGemueseUndObstChanger = findViewById(R.id.imageButtonGemueseUndObstChanger);
-        ibtnGetraenkeChanger = findViewById(R.id.imageButtonGetraenkeChanger);
-        ibtnWeizenprodukteChanger = findViewById(R.id.imageButtonWeizenprodukteChanger);
-        ibtnMilchprodukteChanger = findViewById(R.id.imageButtonMilchprodukteChanger);
-        ibtnFleischundWurstChanger = findViewById(R.id.imageButtonFleischundWurstChanger);
-
 
         ibtnRoterApfelChanger.setOnClickListener(v -> selectImage("roterApfel"));
         ibtnGruenerApfelChanger.setOnClickListener(v -> selectImage("gruenerApfel"));

@@ -13,7 +13,6 @@ import java.io.ByteArrayOutputStream;
 import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.Collections;
-import de.epprojekt.ep_sjpp_prototyp.R;
 
 public class DBHelferlein extends SQLiteOpenHelper {
 
