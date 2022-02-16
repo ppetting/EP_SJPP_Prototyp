@@ -7,13 +7,14 @@
     android:background="@color/teal_200"
     android:elevation="4dp"
     android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
-    app:popupTheme="@style/ThemeOverlay.AppCompat.Light">
+    app:popupTheme="@style/ThemeOverlay.AppCompat.Light"
+    >
 
     <TextView
         android:id="@+id/TVToolbar"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text=""/>
+        />
 
     <ImageButton
         android:id="@+id/imageButtonWarenkorb"

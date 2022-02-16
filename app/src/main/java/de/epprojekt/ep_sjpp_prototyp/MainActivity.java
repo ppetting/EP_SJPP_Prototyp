@@ -11,6 +11,9 @@ import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import java.util.Objects;
+
 import de.epprojekt.ep_sjpp_prototyp.Einkauf.GemueseUndObstActivity;
 import de.epprojekt.ep_sjpp_prototyp.Einkauf.MilchprdoukteActivity;
 import de.epprojekt.ep_sjpp_prototyp.Helferlein.DBHelferlein;
@@ -52,6 +55,7 @@ public class MainActivity extends AppCompatActivity {
         tvToolbar = findViewById(R.id.TVToolbar);
         tvToolbar.setText(aktiverNutzer);
         setSupportActionBar(toolbar);
+        Objects.requireNonNull(getSupportActionBar()).setDisplayShowTitleEnabled(false);
 
         //BTN ZUWEISUNG
         ibtnGemueseUndObst = findViewById(R.id.imageButtonGemueseUndObst);

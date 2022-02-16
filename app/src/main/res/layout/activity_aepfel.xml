@@ -29,9 +29,9 @@
                 android:id="@+id/iamgeButtonRoterApfel"
                 android:layout_width="150dp"
                 android:layout_height="150dp"
+                android:layout_below="@+id/toolbarMAIN"
                 android:layout_centerHorizontal="true"
                 android:scaleType="fitCenter"
-                android:layout_below="@+id/toolbarMAIN"
                 app:srcCompat="@drawable/roterapfel"
                 tools:ignore="NotSibling"/>
 
@@ -50,11 +50,11 @@
                 android:id="@+id/imageButtonGruenerApfel"
                 android:layout_width="150dp"
                 android:layout_height="150dp"
+                android:layout_below="@+id/iamgeButtonRoterApfel"
                 android:layout_centerHorizontal="true"
                 android:scaleType="fitCenter"
-                android:layout_below="@+id/iamgeButtonRoterApfel"
-                tools:ignore="NotSibling"
-                app:srcCompat="@drawable/gruenerapfel" />
+                app:srcCompat="@drawable/gruenerapfel"
+                tools:ignore="NotSibling" />
 
             <ImageButton
                 android:id="@+id/imageButtonSoundGruenerApfel"
