@@ -11,26 +11,26 @@
 
     <TextView
         android:id="@+id/TVToolbar"
-        android:layout_width="50dp"
-        android:layout_height="50dp"
-        android:layout_marginEnd="10dp">
-
-    </TextView>
-
-    <ImageButton
-        android:id="@+id/imageButtonHome"
-        android:layout_width="50dp"
-        android:layout_height="50dp"
-        android:layout_marginStart="220dp"
-        android:scaleType="fitCenter"
-        app:srcCompat="@drawable/home"/>
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text=""/>
 
     <ImageButton
         android:id="@+id/imageButtonWarenkorb"
         android:layout_width="50dp"
         android:layout_height="50dp"
-        android:layout_marginLeft="10dp"
         android:scaleType="fitCenter"
+        android:layout_gravity="right"
         app:srcCompat="@drawable/warenkorb"/>
+
+
+    <ImageButton
+        android:id="@+id/imageButtonHome"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:layout_gravity="right"
+        android:scaleType="fitCenter"
+        app:srcCompat="@drawable/home"/>
+
 
 </androidx.appcompat.widget.Toolbar>
