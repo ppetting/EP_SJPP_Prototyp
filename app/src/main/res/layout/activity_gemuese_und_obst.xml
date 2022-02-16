@@ -22,13 +22,13 @@
 
         <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="100dp">
+            android:layout_height="wrap_content">
 
             <ImageButton
                 android:id="@+id/imageButtonAepfel"
                 android:layout_width="150dp"
                 android:layout_height="150dp"
+                android:layout_centerHorizontal="true"
                 android:scaleType="fitCenter"
                 android:layout_below="@+id/toolbarMAIN"
                 app:srcCompat="@drawable/aepfel"
@@ -49,6 +49,7 @@
                 android:id="@+id/imageButtonGurke"
                 android:layout_width="150dp"
                 android:layout_height="150dp"
+                android:layout_centerHorizontal="true"
                 android:scaleType="fitCenter"
                 android:layout_below="@+id/imageButtonAepfel"
                 tools:ignore="NotSibling"

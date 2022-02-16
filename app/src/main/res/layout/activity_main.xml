@@ -23,13 +23,13 @@
 
 <RelativeLayout
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:layout_marginStart="100dp">
+    android:layout_height="wrap_content">
 
         <ImageButton
             android:id="@+id/imageButtonGetraenke"
             android:layout_width="150dp"
             android:layout_height="150dp"
+            android:layout_centerHorizontal="true"
             android:scaleType="fitCenter"
             android:layout_below="@+id/toolbarMAIN"
             app:srcCompat="@drawable/getraenke"
@@ -50,6 +50,7 @@
             android:id="@+id/imageButtonGemueseUndObst"
             android:layout_width="150dp"
             android:layout_height="150dp"
+            android:layout_centerHorizontal="true"
             android:scaleType="fitCenter"
             android:layout_below="@+id/imageButtonGetraenke"
             tools:ignore="NotSibling"
@@ -69,6 +70,7 @@
             android:id="@+id/imageButtonFleischundWurst"
             android:layout_width="150dp"
             android:layout_height="150dp"
+            android:layout_centerHorizontal="true"
             android:scaleType="fitCenter"
             android:layout_below="@id/imageButtonGemueseUndObst"
             app:srcCompat="@drawable/fleischundwurst"
@@ -88,6 +90,7 @@
             android:id="@+id/imageButtonMilchprodukte"
             android:layout_width="150dp"
             android:layout_height="150dp"
+            android:layout_centerHorizontal="true"
             android:layout_below="@id/imageButtonFleischundWurst"
             android:scaleType="fitCenter"
             app:srcCompat="@drawable/milchprodukte"
@@ -107,6 +110,7 @@
             android:id="@+id/imageButtonWeizenprodukte"
             android:layout_width="150dp"
             android:layout_height="150dp"
+            android:layout_centerHorizontal="true"
             android:scaleType="fitCenter"
             android:layout_below="@id/imageButtonMilchprodukte"
             app:srcCompat="@drawable/weizenprodukte"

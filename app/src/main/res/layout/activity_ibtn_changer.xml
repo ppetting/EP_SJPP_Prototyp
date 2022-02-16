@@ -23,14 +23,14 @@
 
         <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="100dp">
+            android:layout_height="wrap_content">
 
 
             <ImageButton
                 android:id="@+id/imageButtonGruenerApfelChanger"
                 android:layout_width="150dp"
                 android:layout_height="150dp"
+                android:layout_centerHorizontal="true"
                 android:scaleType="fitCenter"
                 app:srcCompat="@drawable/gruenerapfel"
                 tools:ignore="NotSibling" />
@@ -39,6 +39,7 @@
                 android:id="@+id/imageButtonRoterApfeleChanger"
                 android:layout_width="150dp"
                 android:layout_height="150dp"
+                android:layout_centerHorizontal="true"
                 android:scaleType="fitCenter"
                 android:layout_below="@id/imageButtonGruenerApfelChanger"
                 app:srcCompat="@drawable/roterapfel"
@@ -48,6 +49,7 @@
                 android:id="@+id/imageButtonGurkeChanger"
                 android:layout_width="150dp"
                 android:layout_height="150dp"
+                android:layout_centerHorizontal="true"
                 android:scaleType="fitCenter"
                 android:layout_below="@id/imageButtonRoterApfeleChanger"
                 app:srcCompat="@drawable/gurke"
@@ -57,6 +59,7 @@
                 android:id="@+id/imageButtonSechserEierChanger"
                 android:layout_width="150dp"
                 android:layout_height="150dp"
+                android:layout_centerHorizontal="true"
                 android:scaleType="fitCenter"
                 android:layout_below="@id/imageButtonGurkeChanger"
                 app:srcCompat="@drawable/sechser_eier"
@@ -66,6 +69,7 @@
                 android:id="@+id/imageButtonZehnerEierChanger"
                 android:layout_width="150dp"
                 android:layout_height="150dp"
+                android:layout_centerHorizontal="true"
                 android:scaleType="fitCenter"
                 android:layout_below="@id/imageButtonSechserEierChanger"
                 app:srcCompat="@drawable/zehner_eier"
@@ -75,6 +79,7 @@
                 android:id="@+id/imageButtonScheibenkaeseChanger"
                 android:layout_width="150dp"
                 android:layout_height="150dp"
+                android:layout_centerHorizontal="true"
                 android:scaleType="fitCenter"
                 android:layout_below="@id/imageButtonZehnerEierChanger"
                 app:srcCompat="@drawable/kaesescheibe"
@@ -84,6 +89,7 @@
                 android:id="@+id/imageButtonHartkaeseChanger"
                 android:layout_width="150dp"
                 android:layout_height="150dp"
+                android:layout_centerHorizontal="true"
                 android:scaleType="fitCenter"
                 android:layout_below="@id/imageButtonScheibenkaeseChanger"
                 app:srcCompat="@drawable/hartkaese"
@@ -93,6 +99,7 @@
                 android:id="@+id/imageButtonStreichkaeseChanger"
                 android:layout_width="150dp"
                 android:layout_height="150dp"
+                android:layout_centerHorizontal="true"
                 android:scaleType="fitCenter"
                 android:layout_below="@id/imageButtonHartkaeseChanger"
                 app:srcCompat="@drawable/streichkaese"

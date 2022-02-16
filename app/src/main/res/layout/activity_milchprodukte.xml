@@ -22,13 +22,13 @@
 
         <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="100dp">
+            android:layout_height="wrap_content">
 
             <ImageButton
                 android:id="@+id/imageButtonKaese"
                 android:layout_width="150dp"
                 android:layout_height="150dp"
+                android:layout_centerHorizontal="true"
                 android:scaleType="fitCenter"
                 android:layout_below="@+id/toolbarMAIN"
                 app:srcCompat="@drawable/hartkaese"
@@ -49,6 +49,7 @@
                 android:id="@+id/imageButtonEier"
                 android:layout_width="150dp"
                 android:layout_height="150dp"
+                android:layout_centerHorizontal="true"
                 android:scaleType="fitCenter"
                 android:layout_below="@+id/imageButtonKaese"
                 tools:ignore="NotSibling"

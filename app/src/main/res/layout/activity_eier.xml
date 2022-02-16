@@ -17,18 +17,18 @@
 
     <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="wrap_content"
         android:orientation="vertical">
 
         <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="100dp">
+            android:layout_height="wrap_content">
 
             <ImageButton
                 android:id="@+id/imageButtonSechserEier"
                 android:layout_width="150dp"
                 android:layout_height="150dp"
+                android:layout_centerHorizontal="true"
                 android:layout_below="@+id/toolbarMAIN"
                 android:scaleType="fitCenter"
                 app:srcCompat="@drawable/sechser_eier"
@@ -49,6 +49,7 @@
                 android:id="@+id/imageButtonZehnerEier"
                 android:layout_width="150dp"
                 android:layout_height="150dp"
+                android:layout_centerHorizontal="true"
                 android:layout_below="@+id/imageButtonSechserEier"
                 android:scaleType="fitCenter"
                 app:srcCompat="@drawable/zehner_eier"

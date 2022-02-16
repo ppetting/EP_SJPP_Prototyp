@@ -30,13 +30,13 @@
 
                 <RelativeLayout
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="100dp">
+                    android:layout_height="wrap_content">
 
                         <ImageButton
                             android:id="@+id/imageButtonHartkaese"
                             android:layout_width="150dp"
                             android:layout_height="150dp"
+                            android:layout_centerHorizontal="true"
                             android:scaleType="fitCenter"
                             android:layout_below="@+id/toolbarMAIN"
                             app:srcCompat="@drawable/hartkaese"
@@ -57,6 +57,7 @@
                             android:id="@+id/imageButtonStreichkaese"
                             android:layout_width="150dp"
                             android:layout_height="150dp"
+                            android:layout_centerHorizontal="true"
                             android:scaleType="fitCenter"
                             android:layout_below="@+id/imageButtonHartkaese"
                             tools:ignore="NotSibling"
@@ -76,6 +77,7 @@
                             android:id="@+id/imageButtonScheibenkaese"
                             android:layout_width="150dp"
                             android:layout_height="150dp"
+                            android:layout_centerHorizontal="true"
                             android:scaleType="fitCenter"
                             android:layout_below="@id/imageButtonStreichkaese"
                             app:srcCompat="@drawable/kaesescheibe"
