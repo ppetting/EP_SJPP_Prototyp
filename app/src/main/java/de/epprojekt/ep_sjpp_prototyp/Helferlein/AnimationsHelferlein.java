@@ -27,7 +27,7 @@ public class AnimationsHelferlein {
         animationSet.addAnimation(translateToRightAnimation);
 
         //NACH OBEN FAHREN
-        TranslateAnimation translateToTopAnimation = new TranslateAnimation(0, 0,0,warenkorb.getY()-item.getY());
+        TranslateAnimation translateToTopAnimation = new TranslateAnimation(0, 0,0,warenkorb.getY()-item.getY()-50);
         translateToTopAnimation.setDuration(400);
         translateToTopAnimation.setStartOffset(800);
         animationSet.addAnimation(translateToTopAnimation);

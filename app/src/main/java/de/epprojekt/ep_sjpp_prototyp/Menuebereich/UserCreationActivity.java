@@ -78,7 +78,7 @@ public class UserCreationActivity extends AppCompatActivity {
                  hilfMirDaddyDB.insertIntoUserdaten(nameTXT, gruenerFlagTXT, blauerFlagTXT, roterFlagTXT);
                  hilfMirDaddyDB.createWarenkorbOnClick(nameTXT);
 
-                PreferenceHelferlein.saveUserInPref(getApplicationContext(),nameTXT,KEY_AKTIVERNUTZER);
+                 PreferenceHelferlein.saveUserInPref(getApplicationContext(),nameTXT,KEY_AKTIVERNUTZER);
                  Intent refresh = new Intent(UserCreationActivity.this, MainActivity.class);
                  startActivity(refresh);
 

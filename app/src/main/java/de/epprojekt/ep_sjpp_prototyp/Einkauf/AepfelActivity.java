@@ -9,7 +9,6 @@ import android.os.Bundle;
 import android.widget.ImageButton;
 import android.widget.TextView;
 import android.widget.Toast;
-
 import de.epprojekt.ep_sjpp_prototyp.Helferlein.AnimationsHelferlein;
 import de.epprojekt.ep_sjpp_prototyp.Helferlein.DBHelferlein;
 import de.epprojekt.ep_sjpp_prototyp.Helferlein.PreferenceHelferlein;

@@ -17,6 +17,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.EP_SJPP_Prototyp">
         <activity
+            android:name=".Menuebereich.RegistrationActivity"
+            android:exported="false" />
+        <activity
             android:name=".Einkauf.EierActivity"
             android:exported="false" />
         <activity

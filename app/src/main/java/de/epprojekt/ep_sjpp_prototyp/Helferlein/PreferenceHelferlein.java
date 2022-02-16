@@ -2,6 +2,7 @@ package de.epprojekt.ep_sjpp_prototyp.Helferlein;
 
 import android.content.Context;
 import android.content.SharedPreferences;
+import android.text.Editable;
 
 public class PreferenceHelferlein {
 
@@ -43,6 +44,18 @@ public class PreferenceHelferlein {
         SharedPreferences.Editor editor = sharedPreferences.edit();
         editor.putString(key, user);
         editor.apply();
+    }
+
+    public static void savePassword(Context context, Editable password, String key){
+        SharedPreferences sharedPreferences = context.getSharedPreferences(MY_PREFERENCE_NAME, Context.MODE_PRIVATE);
+        SharedPreferences.Editor editor = sharedPreferences.edit();
+        editor.putString(key, String.valueOf(password));
+        editor.apply();
+    }
+
+    public static String loadPassword(Context context, String key){
+        SharedPreferences sharedPreferences = context.getSharedPreferences(MY_PREFERENCE_NAME, Context.MODE_PRIVATE);
+        return sharedPreferences.getString(key, "");
     }
 
 }

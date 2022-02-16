@@ -7,22 +7,18 @@ import androidx.appcompat.widget.Toolbar;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.media.MediaPlayer;
-import android.net.Uri;
 import android.os.Bundle;
-import android.os.Environment;
-import android.provider.MediaStore;
-import android.view.LayoutInflater;
-import android.view.View;
+import android.text.InputType;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.TextView;
-
-import java.io.File;
+import android.widget.Toast;
 
 import de.epprojekt.ep_sjpp_prototyp.Einkauf.GemueseUndObstActivity;
 import de.epprojekt.ep_sjpp_prototyp.Einkauf.MilchprdoukteActivity;
 import de.epprojekt.ep_sjpp_prototyp.Helferlein.DBHelferlein;
 import de.epprojekt.ep_sjpp_prototyp.Helferlein.PreferenceHelferlein;
+import de.epprojekt.ep_sjpp_prototyp.Menuebereich.RegistrationActivity;
 import de.epprojekt.ep_sjpp_prototyp.Menuebereich.UserCreationActivity;
 import de.epprojekt.ep_sjpp_prototyp.Menuebereich.UserOverviewActivity;
 
@@ -37,6 +33,7 @@ public class MainActivity extends AppCompatActivity {
     public final static String FIRST_APP_START_MAIN = "FirstAppStartMain";
     public final static String FIRST_APP_START_MAIN_TWO = "FirstAppStartMainTwo";
     final static String KEY_AKTIVERNUTZER = "aktiver_nutzer";
+    final static String KEY_PASSWORT = "key_passwort";
     String aktiverNutzer;
 
 
@@ -46,7 +43,7 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         if(PreferenceHelferlein.firstAppStart(getApplicationContext(),FIRST_APP_START_MAIN)){
-            Intent intent = new Intent(this, UserCreationActivity.class);
+            Intent intent = new Intent(this, RegistrationActivity.class);
             startActivity(intent);
         }
 
@@ -107,8 +104,21 @@ public class MainActivity extends AppCompatActivity {
         });
 
         ibtnMenue.setOnClickListener(v -> {
-            Intent intentMenue = new Intent(this, UserOverviewActivity.class);
-            startActivity(intentMenue);
+            AlertDialog.Builder builder = new AlertDialog.Builder(this);
+            builder.setTitle("Bitte Passwort eingeben");
+            final EditText passwortText = new EditText(this);
+            passwortText.setInputType(InputType.TYPE_CLASS_TEXT | InputType.TYPE_TEXT_VARIATION_PASSWORD);
+            builder.setView(passwortText);
+            builder.setPositiveButton("Einloggen", (dialog, item) -> {
+                if(PreferenceHelferlein.loadPassword(getApplicationContext(), KEY_PASSWORT).equals(passwortText.getText().toString())){
+                    Intent intentMenue = new Intent(MainActivity.this,UserOverviewActivity.class);
+                    startActivity(intentMenue);
+                }else if(!PreferenceHelferlein.loadPassword(getApplicationContext(), KEY_PASSWORT).equals(passwortText.getText().toString())){
+                    Toast.makeText(this, "Passwort nicht korrekt", Toast.LENGTH_LONG).show();
+                }
+            });
+            builder.setNegativeButton("Abbrechen", null);
+            builder.show();
         });
 
         if(PreferenceHelferlein.firstAppStart(getApplicationContext(),FIRST_APP_START_MAIN_TWO)) {
@@ -121,7 +131,7 @@ public class MainActivity extends AppCompatActivity {
             hilfMirDaddyDB.setDrawableFromGallery("sechserPackungEier", hilfMirDaddyDB.drawableToByteArray(MainActivity.this, R.drawable.sechser_eier));
             hilfMirDaddyDB.setDrawableFromGallery("zehnerPackungEier", hilfMirDaddyDB.drawableToByteArray(MainActivity.this, R.drawable.zehner_eier));
         }
+    }
 
-        }
 
 }
