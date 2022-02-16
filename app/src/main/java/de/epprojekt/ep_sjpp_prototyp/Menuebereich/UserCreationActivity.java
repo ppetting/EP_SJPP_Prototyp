@@ -1,6 +1,9 @@
 package de.epprojekt.ep_sjpp_prototyp.Menuebereich;
 
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
+
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.widget.Button;
@@ -48,10 +51,10 @@ public class UserCreationActivity extends AppCompatActivity {
             //Button Anzeigetext
             benutzerAnlegen.setText(UserOverviewActivity.anlegen_bearbeiten);
             //Vorausgefüllt mit den aktuellen Userdaten
-            name.setText(aktiverNutzer);
             gruenerFlag.setText(hilfMirDaddyDB.getFlaganzahlString(aktiverNutzer,"flaggruen"));
             roterFlag.setText(hilfMirDaddyDB.getFlaganzahlString(aktiverNutzer,"flagrot"));
             blauerFlag.setText(hilfMirDaddyDB.getFlaganzahlString(aktiverNutzer,"flagblau"));
+            name.setText(aktiverNutzer);
         }
 
         ibtnHome.setOnClickListener(v -> {
@@ -84,27 +87,41 @@ public class UserCreationActivity extends AppCompatActivity {
              //Benutzer bearbeiten
              }else if(UserOverviewActivity.anlegen_bearbeiten.equals("Benutzer aktualisieren")){
 
-                 nameTXT = name.getText().toString();
-                 gruenerFlagTXT = Integer.parseInt(gruenerFlag.getText().toString());
-                 roterFlagTXT = Integer.parseInt(roterFlag.getText().toString());
-                 blauerFlagTXT = Integer.parseInt(blauerFlag.getText().toString());
+                 final CharSequence[] options = {"Ja", "Nein"};
+                 AlertDialog.Builder builder = new AlertDialog.Builder(this);
+                 builder.setTitle("Jeglicher Warenkorbinhalt geht verloren. Fortfahren?");
+                 builder.setItems(options, (dialog, item) -> {
+                     if (options[item].equals("Ja")) {
+                         dialog.dismiss();
+                         hilfMirDaddyDB.deletefromUserdaten(PreferenceHelferlein.loadUserFromPref(this, KEY_AKTIVERNUTZER));
+                         dialog.dismiss();
+                         PreferenceHelferlein.saveUserInPref(this,"", KEY_AKTIVERNUTZER);
 
-                 hilfMirDaddyDB.updateUserdata(aktiverNutzer,nameTXT, gruenerFlagTXT, blauerFlagTXT, roterFlagTXT);
+                         nameTXT = name.getText().toString();
+                         gruenerFlagTXT = Integer.parseInt(gruenerFlag.getText().toString());
+                         roterFlagTXT = Integer.parseInt(roterFlag.getText().toString());
+                         blauerFlagTXT = Integer.parseInt(blauerFlag.getText().toString());
 
-                 PreferenceHelferlein.saveUserInPref(getApplicationContext(),nameTXT,KEY_AKTIVERNUTZER);
+                         hilfMirDaddyDB.insertIntoUserdaten(nameTXT, gruenerFlagTXT, blauerFlagTXT, roterFlagTXT);
+                         hilfMirDaddyDB.createWarenkorbOnClick(nameTXT);
 
-                 Intent refresh = new Intent(UserCreationActivity.this, MainActivity.class);
-                 startActivity(refresh);
+                         PreferenceHelferlein.saveUserInPref(getApplicationContext(),nameTXT,KEY_AKTIVERNUTZER);
+                         Intent refresh = new Intent(UserCreationActivity.this, MainActivity.class);
+                         startActivity(refresh);
 
-                 Toast.makeText(UserCreationActivity.this, "Benutzer aktualisiert", Toast.LENGTH_SHORT).show();
+                         Toast.makeText(UserCreationActivity.this, "Benutzer wurde aktuallisiert", Toast.LENGTH_SHORT).show();
 
+                     } else if (options[item].equals("Nein")) {
+                         dialog.dismiss();
+                         Intent intent = new Intent(this,UserOverviewActivity.class);
+                         startActivity(intent);
+                     }
+                 });
+                 builder.show();
              }else{
                  Toast.makeText(UserCreationActivity.this, "Fehler", Toast.LENGTH_SHORT).show();
              }
-
-
          });
 
     }
-
 }

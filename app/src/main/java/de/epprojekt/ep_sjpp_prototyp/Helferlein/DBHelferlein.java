@@ -119,27 +119,7 @@ public class DBHelferlein extends SQLiteOpenHelper {
     }
 
 
-    public ArrayList<Integer> createArrayListOfWarenkorb(String username) {
-        SQLiteDatabase database = this.getReadableDatabase();
-        Cursor cursor = database.rawQuery("SELECT bildwert FROM Warenkorb" + username, null);
-        cursor.moveToFirst();
 
-        ArrayList<Integer> arrayOfWarenkorbItems = new ArrayList<>();
-
-        if(cursor.getCount() == 0){
-            arrayOfWarenkorbItems.clear();
-        }
-
-        while(!cursor.isAfterLast()){
-            arrayOfWarenkorbItems.add(cursor.getInt(cursor.getColumnIndexOrThrow("bildwert")));
-            cursor.moveToNext();
-        }
-
-        Collections.sort(arrayOfWarenkorbItems);
-
-        cursor.close();
-        return arrayOfWarenkorbItems;
-    }
 
     public ArrayList<String> createArrayListOfWarenkorbItems(String username) {
         SQLiteDatabase database = this.getReadableDatabase();
@@ -290,20 +270,6 @@ public class DBHelferlein extends SQLiteOpenHelper {
         if(countEinkaufswagen < personenmaximum){
             return true;
         } else return false;
-    }
-
-    public void updateUserdata(String aktiveruser, String neuerUsername, Integer flaggruen, Integer flagblau, Integer flagrot){
-
-        SQLiteDatabase database = this.getWritableDatabase();
-
-        ContentValues contentValues = new ContentValues();
-        contentValues.put("username", neuerUsername);
-        contentValues.put("flaggruen", flaggruen);
-        contentValues.put("flagrot", flagrot);
-        contentValues.put("flagblau", flagblau);
-
-        database.update(userdaten,contentValues,"username =?",new String[]{aktiveruser});
-
     }
 
     public byte[] getDrawableFromTable(String bildname){

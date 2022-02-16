@@ -1,12 +1,24 @@
 package de.epprojekt.ep_sjpp_prototyp;
 
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
+
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.media.MediaPlayer;
+import android.net.Uri;
 import android.os.Bundle;
+import android.os.Environment;
+import android.provider.MediaStore;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.TextView;
+
+import java.io.File;
+
 import de.epprojekt.ep_sjpp_prototyp.Einkauf.GemueseUndObstActivity;
 import de.epprojekt.ep_sjpp_prototyp.Einkauf.MilchprdoukteActivity;
 import de.epprojekt.ep_sjpp_prototyp.Helferlein.DBHelferlein;
@@ -109,7 +121,7 @@ public class MainActivity extends AppCompatActivity {
             hilfMirDaddyDB.setDrawableFromGallery("sechserPackungEier", hilfMirDaddyDB.drawableToByteArray(MainActivity.this, R.drawable.sechser_eier));
             hilfMirDaddyDB.setDrawableFromGallery("zehnerPackungEier", hilfMirDaddyDB.drawableToByteArray(MainActivity.this, R.drawable.zehner_eier));
         }
-    }
 
+        }
 
 }
