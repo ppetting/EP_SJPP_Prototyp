@@ -8,6 +8,8 @@ import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.Toast;
+
 import androidx.appcompat.app.AlertDialog;
 
 
@@ -77,11 +79,9 @@ public class AddAndSetHelferlein {
                 context.startActivity(intentNutzerErstellen);
 
             } else if (options[item].equals("Benutzer löschen")) {
-                dbHelferlein.deletefromUserdaten(PreferenceHelferlein.loadUserFromPref(context, KEY_AKTIVERNUTZER));
+                wirklichLoeschen(context,dbHelferlein);
                 dialog.dismiss();
-                PreferenceHelferlein.saveUserInPref(context,"", KEY_AKTIVERNUTZER);
-                Intent refresh = new Intent(context, MainActivity.class);
-                context.startActivity(refresh);
+
             } else if (options[item].equals("Abbrechen")) {
                 dialog.dismiss();
             }
@@ -89,5 +89,24 @@ public class AddAndSetHelferlein {
         builder.show();
     }
 
-
+    private static void wirklichLoeschen(Context context, DBHelferlein dbHelferlein) {
+        final CharSequence[] options = {"Ja", "Nein"};
+        AlertDialog.Builder builder = new AlertDialog.Builder(context);
+        builder.setTitle("Wollen Sie den Nutzer wirklich löschen?");
+        builder.setItems(options, (dialog, item) -> {
+            if (options[item].equals("Ja")) {
+                dialog.dismiss();
+                dbHelferlein.deletefromUserdaten(PreferenceHelferlein.loadUserFromPref(context, KEY_AKTIVERNUTZER));
+                dialog.dismiss();
+                PreferenceHelferlein.saveUserInPref(context,"", KEY_AKTIVERNUTZER);
+                Intent refresh = new Intent(context, MainActivity.class);
+                context.startActivity(refresh);
+            } else if (options[item].equals("Nein")) {
+                dialog.dismiss();
+                Intent intent = new Intent(context,UserOverviewActivity.class);
+                context.startActivity(intent);
+            }
+        });
+        builder.show();
+    }
 }
