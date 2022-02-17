@@ -44,6 +44,10 @@ public class KaeseActivity extends AppCompatActivity {
         hilfMirDaddyDB = new DBHelferlein(this);
         hilfMirMommyAnimation = new AnimationsHelferlein();
 
+
+        hilfMirDaddyDB = new DBHelferlein(this);
+        hilfMirMommyAnimation = new AnimationsHelferlein();
+
         ibtnHartkaese = findViewById(R.id.imageButtonHartkaese);
         ibtnHartkaese.setImageBitmap(BitmapFactory.decodeByteArray(hilfMirDaddyDB.getDrawableFromTable(hartkaese),0,hilfMirDaddyDB.getDrawableFromTable(hartkaese).length));
         ibtnStreichkaese = findViewById(R.id.imageButtonStreichkaese);

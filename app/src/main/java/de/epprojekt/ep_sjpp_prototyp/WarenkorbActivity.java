@@ -4,6 +4,7 @@ import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import android.annotation.SuppressLint;
 import android.content.Intent;
+import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.text.InputType;
 import android.view.View;
@@ -49,6 +50,8 @@ public class WarenkorbActivity extends AppCompatActivity {
         ibtnLoeschen = findViewById(R.id.imageButtonWarenkorb);
         ibtnLoeschen.setImageResource(R.drawable.loeschen);
 
+        MediaPlayer mediaPlayerAllesLoeschen = MediaPlayer.create(this, R.raw.dengesamtenwarenkobleeren);
+
         ArrayList<String> arrayListOfWarenkorbitems = hilfMirDaddyDB.createArrayListOfWarenkorbItems(aktiverNutzer);
 
         while(i < arrayListOfWarenkorbitems.size()){
@@ -63,6 +66,9 @@ public class WarenkorbActivity extends AppCompatActivity {
         });
 
         ibtnLoeschen.setOnClickListener(v -> {
+
+            mediaPlayerAllesLoeschen.start();
+
             AlertDialog.Builder builder = new AlertDialog.Builder(WarenkorbActivity.this);
             builder.setTitle("Den Warenkorb vollständig löschen?");
             builder.setPositiveButtonIcon(getDrawable(R.drawable.gruenerapfel));
