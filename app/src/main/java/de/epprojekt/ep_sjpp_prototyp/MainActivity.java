@@ -46,6 +46,9 @@ public class MainActivity extends AppCompatActivity {
         if(PreferenceHelferlein.firstAppStart(getApplicationContext(),FIRST_APP_START_MAIN)){
             Intent intent = new Intent(this, RegistrationActivity.class);
             startActivity(intent);
+        }else if(PreferenceHelferlein.loadPassword(getApplicationContext(), KEY_PASSWORT).equals("")){
+            Intent intent = new Intent(this, RegistrationActivity.class);
+            startActivity(intent);
         }
 
         hilfMirDaddyDB = new DBHelferlein(this);
