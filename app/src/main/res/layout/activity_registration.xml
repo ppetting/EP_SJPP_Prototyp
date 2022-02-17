@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/g700"
     tools:context=".Menuebereich.RegistrationActivity">
 
 
@@ -19,6 +20,8 @@
                     android:layout_height="wrap_content"
                     android:ems="10"
                     android:hint="Passwort"
+                    android:textColorHint="@color/g200"
+                    android:textColor="@color/g200"
                     android:inputType="textPassword" />
 
                 <Button
@@ -26,7 +29,9 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_below="@+id/editTextPassword"
-                    android:text="Registrierung"/>
+                    android:backgroundTint="@color/g200"
+                    android:text="Registrierung"
+                    />
 
             </RelativeLayout>
 

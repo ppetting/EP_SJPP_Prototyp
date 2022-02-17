@@ -5,6 +5,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/g700"
     tools:context=".Menuebereich.IbtnChangerActivity">
 
     <include
@@ -33,6 +34,7 @@
                 android:layout_centerHorizontal="true"
                 android:scaleType="fitCenter"
                 app:srcCompat="@drawable/gruenerapfel"
+                android:backgroundTint="@color/g200"
                 tools:ignore="NotSibling" />
 
             <ImageButton
@@ -43,6 +45,7 @@
                 android:scaleType="fitCenter"
                 android:layout_below="@id/imageButtonGruenerApfelChanger"
                 app:srcCompat="@drawable/roterapfel"
+                android:backgroundTint="@color/g200"
                 tools:ignore="NotSibling" />
 
             <ImageButton
@@ -53,6 +56,7 @@
                 android:scaleType="fitCenter"
                 android:layout_below="@id/imageButtonRoterApfeleChanger"
                 app:srcCompat="@drawable/gurke"
+                android:backgroundTint="@color/g200"
                 tools:ignore="NotSibling" />
 
             <ImageButton
@@ -63,6 +67,7 @@
                 android:scaleType="fitCenter"
                 android:layout_below="@id/imageButtonGurkeChanger"
                 app:srcCompat="@drawable/sechser_eier"
+                android:backgroundTint="@color/g200"
                 tools:ignore="NotSibling" />
 
             <ImageButton
@@ -73,6 +78,7 @@
                 android:scaleType="fitCenter"
                 android:layout_below="@id/imageButtonSechserEierChanger"
                 app:srcCompat="@drawable/zehner_eier"
+                android:backgroundTint="@color/g200"
                 tools:ignore="NotSibling" />
 
             <ImageButton
@@ -83,6 +89,7 @@
                 android:scaleType="fitCenter"
                 android:layout_below="@id/imageButtonZehnerEierChanger"
                 app:srcCompat="@drawable/kaesescheibe"
+                android:backgroundTint="@color/g200"
                 tools:ignore="NotSibling" />
 
             <ImageButton
@@ -93,6 +100,7 @@
                 android:scaleType="fitCenter"
                 android:layout_below="@id/imageButtonScheibenkaeseChanger"
                 app:srcCompat="@drawable/hartkaese"
+                android:backgroundTint="@color/g200"
                 tools:ignore="NotSibling" />
 
             <ImageButton
@@ -103,6 +111,7 @@
                 android:scaleType="fitCenter"
                 android:layout_below="@id/imageButtonHartkaeseChanger"
                 app:srcCompat="@drawable/streichkaese"
+                android:backgroundTint="@color/g200"
                 tools:ignore="NotSibling" />
 
 

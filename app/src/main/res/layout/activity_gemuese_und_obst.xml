@@ -5,6 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
+    android:background="@color/g700"
     tools:context=".Einkauf.GemueseUndObstActivity">
 
     <include
@@ -32,6 +33,7 @@
                 android:scaleType="fitCenter"
                 android:layout_below="@+id/toolbarMAIN"
                 app:srcCompat="@drawable/aepfel"
+                android:backgroundTint="@color/g200"
                 tools:ignore="NotSibling"/>
 
             <ImageButton
@@ -43,6 +45,7 @@
                 android:layout_toRightOf="@id/imageButtonAepfel"
                 android:scaleType="fitCenter"
                 app:srcCompat="@drawable/sound"
+                android:backgroundTint="@color/g200"
                 tools:ignore="NotSibling" />
 
             <ImageButton
@@ -53,6 +56,7 @@
                 android:scaleType="fitCenter"
                 android:layout_below="@+id/imageButtonAepfel"
                 tools:ignore="NotSibling"
+                android:backgroundTint="@color/g200"
                 app:srcCompat="@drawable/gurke" />
 
             <ImageButton
@@ -63,6 +67,7 @@
                 android:layout_toRightOf="@+id/imageButtonGurke"
                 android:layout_below="@id/imageButtonAepfel"
                 android:scaleType="fitCenter"
+                android:backgroundTint="@color/g200"
                 app:srcCompat="@drawable/sound"/>
 
 

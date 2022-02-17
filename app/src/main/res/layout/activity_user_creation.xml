@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/g700"
     tools:context=".Menuebereich.UserCreationActivity">
 
     <include
@@ -19,16 +20,22 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="100dp"
-        android:text="Bitte füllen Sie die unten stehenden Felder aus"
-        android:textSize="24dp" />
+        android:text="Bitte Felder mit Name und erlaubter Kaufmenge befüllen"
+        android:textColor="@color/g200"
+        android:textColorHint="@color/g200"
+        android:textAlignment="center"
+        android:textSize="20dp" />
 
     <EditText
         android:id = "@+id/ETname"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="Name"
-        android:textSize="24dp"
+        android:hint="Name, Vorname"
+        android:textSize="15dp"
+        android:textColorHint="@color/g200"
+        android:textColor="@color/g200"
         android:layout_below="@+id/TVtextTitel"
+        android:layout_marginTop="20dp"
         android:inputType="textPersonName"
         />
 
@@ -36,39 +43,45 @@
         android:id = "@+id/ETgruen"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="grüner Flag"
-        android:textSize="24dp"
+        android:hint="Zahl für Gemüse und Obst"
+        android:textSize="15dp"
+        android:textColorHint="@color/g200"
+        android:textColor="@color/g200"
         android:layout_below="@+id/ETname"
         android:inputType="numberDecimal"
         />
 
     <EditText
-        android:id = "@+id/ETrot"
+        android:id="@+id/ETrot"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="roter Flag"
-        android:textSize="24dp"
         android:layout_below="@+id/ETgruen"
+        android:hint="Zahl für Milchprodukte"
+        android:textColorHint="@color/g200"
+        android:textColor="@color/g200"
         android:inputType="numberDecimal"
-        />
+        android:textSize="15dp" />
 
     <EditText
         android:id = "@+id/ETblau"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="blauer Flag"
-        android:textSize="24dp"
+        android:hint="Zahl für Weizenprodukte"
+        android:textSize="15dp"
+        android:textColorHint="@color/g200"
+        android:textColor="@color/g200"
         android:layout_below="@+id/ETrot"
         android:inputType="numberDecimal"
         />
 
     <Button
         android:id="@+id/btnCreate"
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@id/ETblau"
         android:layout_marginTop="30dp"
+        android:layout_centerHorizontal="true"
         android:text="Neuen Benutzer anlegen"
-        android:textSize="24dp" />
+        android:textSize="15dp" />
 
 </RelativeLayout>

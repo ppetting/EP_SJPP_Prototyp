@@ -7,6 +7,7 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     tools:context=".Einkauf.KaeseActivity"
+    android:background="@color/g700"
     tools:ignore="ExtraText">
 
         android:id="@+id/RelativesLayoutWasser"
@@ -40,6 +41,7 @@
                             android:scaleType="fitCenter"
                             android:layout_below="@+id/toolbarMAIN"
                             app:srcCompat="@drawable/hartkaese"
+                            android:backgroundTint="@color/g200"
                             tools:ignore="NotSibling"/>
 
                         <ImageButton
@@ -51,6 +53,7 @@
                             android:layout_toRightOf="@id/imageButtonHartkaese"
                             android:scaleType="fitCenter"
                             app:srcCompat="@drawable/sound"
+                            android:backgroundTint="@color/g200"
                             tools:ignore="NotSibling" />
 
                         <ImageButton
@@ -61,6 +64,7 @@
                             android:scaleType="fitCenter"
                             android:layout_below="@+id/imageButtonHartkaese"
                             tools:ignore="NotSibling"
+                            android:backgroundTint="@color/g200"
                             app:srcCompat="@drawable/streichkaese" />
 
                         <ImageButton
@@ -71,6 +75,7 @@
                             android:layout_toRightOf="@+id/imageButtonStreichkaese"
                             android:layout_below="@id/imageButtonHartkaese"
                             android:scaleType="fitCenter"
+                            android:backgroundTint="@color/g200"
                             app:srcCompat="@drawable/sound"/>
 
                         <ImageButton
@@ -81,6 +86,7 @@
                             android:scaleType="fitCenter"
                             android:layout_below="@id/imageButtonStreichkaese"
                             app:srcCompat="@drawable/kaesescheibe"
+                            android:backgroundTint="@color/g200"
                             tools:ignore="NotSibling" />
 
                         <ImageButton
@@ -91,6 +97,7 @@
                             android:layout_toRightOf="@id/imageButtonScheibenkaese"
                             android:layout_below="@id/imageButtonStreichkaese"
                             android:scaleType="fitCenter"
+                            android:backgroundTint="@color/g200"
                             app:srcCompat="@drawable/sound" />
 
 

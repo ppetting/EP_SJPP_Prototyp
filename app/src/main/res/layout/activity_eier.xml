@@ -5,6 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
+    android:background="@color/g700"
     tools:context=".Einkauf.EierActivity">
 
     <include
@@ -32,6 +33,7 @@
                 android:layout_below="@+id/toolbarMAIN"
                 android:scaleType="fitCenter"
                 app:srcCompat="@drawable/sechser_eier"
+                android:backgroundTint="@color/g200"
                 tools:ignore="NotSibling" />
 
             <ImageButton
@@ -43,6 +45,7 @@
                 android:layout_toRightOf="@id/imageButtonSechserEier"
                 android:scaleType="fitCenter"
                 app:srcCompat="@drawable/sound"
+                android:backgroundTint="@color/g200"
                 tools:ignore="NotSibling" />
 
             <ImageButton
@@ -53,6 +56,7 @@
                 android:layout_below="@+id/imageButtonSechserEier"
                 android:scaleType="fitCenter"
                 app:srcCompat="@drawable/zehner_eier"
+                android:backgroundTint="@color/g200"
                 tools:ignore="NotSibling" />
 
             <ImageButton
@@ -63,6 +67,7 @@
                 android:layout_marginLeft="10dp"
                 android:layout_toRightOf="@+id/imageButtonZehnerEier"
                 android:scaleType="fitCenter"
+                android:backgroundTint="@color/g200"
                 app:srcCompat="@drawable/sound" />
 
 

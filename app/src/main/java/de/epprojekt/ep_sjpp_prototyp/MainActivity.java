@@ -120,7 +120,6 @@ public class MainActivity extends AppCompatActivity {
                 }
             });
             builder.setNegativeButton("Abbrechen", null);
-            builder.setNegativeButtonIcon(getDrawable(R.drawable.gruenerapfel));
             builder.show();
         });
 

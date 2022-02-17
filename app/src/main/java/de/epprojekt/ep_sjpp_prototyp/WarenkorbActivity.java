@@ -6,20 +6,14 @@ import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.media.MediaPlayer;
 import android.os.Bundle;
-import android.text.InputType;
-import android.view.View;
-import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.LinearLayout;
 import android.widget.TextView;
-import android.widget.Toast;
-
 import java.util.ArrayList;
+
 import de.epprojekt.ep_sjpp_prototyp.Helferlein.AddAndSetHelferlein;
 import de.epprojekt.ep_sjpp_prototyp.Helferlein.DBHelferlein;
 import de.epprojekt.ep_sjpp_prototyp.Helferlein.PreferenceHelferlein;
-import de.epprojekt.ep_sjpp_prototyp.Menuebereich.UserOverviewActivity;
-
 
 public class WarenkorbActivity extends AppCompatActivity {
 
@@ -87,9 +81,5 @@ public class WarenkorbActivity extends AppCompatActivity {
         });
 
     }
-
-
-
-
 
 }

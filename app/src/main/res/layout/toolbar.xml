@@ -4,7 +4,7 @@
     android:id="@+id/toolbarMAIN"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:background="@color/teal_200"
+    android:background="@color/g400"
     android:elevation="4dp"
     android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
     app:popupTheme="@style/ThemeOverlay.AppCompat.Light"
@@ -14,7 +14,11 @@
         android:id="@+id/TVToolbar"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        />
+        android:textColor="@color/g900"
+        android:textAllCaps="true"
+        android:textSize="15dp"
+        android:textStyle="bold"/>
+
 
     <ImageButton
         android:id="@+id/imageButtonWarenkorb"
@@ -22,6 +26,7 @@
         android:layout_height="50dp"
         android:scaleType="fitCenter"
         android:layout_gravity="right"
+        android:backgroundTint="@color/g200"
         app:srcCompat="@drawable/warenkorb"/>
 
 
@@ -31,6 +36,7 @@
         android:layout_height="50dp"
         android:layout_gravity="right"
         android:scaleType="fitCenter"
+        android:backgroundTint="@color/g200"
         app:srcCompat="@drawable/home"/>
 
 

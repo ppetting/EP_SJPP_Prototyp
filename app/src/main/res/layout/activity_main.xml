@@ -6,6 +6,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
+    android:background="@color/g700"
     tools:context=".MainActivity">
 
     <include
@@ -33,6 +34,7 @@
             android:scaleType="fitCenter"
             android:layout_below="@+id/toolbarMAIN"
             app:srcCompat="@drawable/getraenke"
+            android:backgroundTint="@color/g200"
             tools:ignore="NotSibling"/>
 
         <ImageButton
@@ -44,6 +46,7 @@
             android:layout_toRightOf="@id/imageButtonGetraenke"
             android:scaleType="fitCenter"
             app:srcCompat="@drawable/sound"
+            android:backgroundTint="@color/g200"
             tools:ignore="NotSibling" />
 
         <ImageButton
@@ -54,6 +57,7 @@
             android:scaleType="fitCenter"
             android:layout_below="@+id/imageButtonGetraenke"
             tools:ignore="NotSibling"
+            android:backgroundTint="@color/g200"
             app:srcCompat="@drawable/obstundgemuese" />
 
         <ImageButton
@@ -64,6 +68,7 @@
             android:layout_toRightOf="@+id/imageButtonGemueseUndObst"
             android:layout_below="@id/imageButtonGetraenke"
             android:scaleType="fitCenter"
+            android:backgroundTint="@color/g200"
             app:srcCompat="@drawable/sound"/>
 
         <ImageButton
@@ -74,6 +79,7 @@
             android:scaleType="fitCenter"
             android:layout_below="@id/imageButtonGemueseUndObst"
             app:srcCompat="@drawable/fleischundwurst"
+            android:backgroundTint="@color/g200"
             tools:ignore="NotSibling" />
 
         <ImageButton
@@ -84,6 +90,7 @@
             android:layout_toRightOf="@id/imageButtonFleischundWurst"
             android:layout_below="@id/imageButtonGemueseUndObst"
             android:scaleType="fitCenter"
+            android:backgroundTint="@color/g200"
             app:srcCompat="@drawable/sound" />
 
         <ImageButton
@@ -94,6 +101,7 @@
             android:layout_below="@id/imageButtonFleischundWurst"
             android:scaleType="fitCenter"
             app:srcCompat="@drawable/milchprodukte"
+            android:backgroundTint="@color/g200"
             tools:ignore="NotSibling" />
 
         <ImageButton
@@ -104,6 +112,7 @@
             android:layout_toRightOf="@id/imageButtonMilchprodukte"
             android:layout_below="@id/imageButtonFleischundWurst"
             android:scaleType="fitCenter"
+            android:backgroundTint="@color/g200"
             app:srcCompat="@drawable/sound" />
 
         <ImageButton
@@ -114,6 +123,7 @@
             android:scaleType="fitCenter"
             android:layout_below="@id/imageButtonMilchprodukte"
             app:srcCompat="@drawable/weizenprodukte"
+            android:backgroundTint="@color/g200"
             tools:ignore="NotSibling" />
 
         <ImageButton
@@ -124,6 +134,7 @@
             android:layout_toRightOf="@id/imageButtonWeizenprodukte"
             android:layout_below="@id/imageButtonMilchprodukte"
             android:scaleType="fitCenter"
+            android:backgroundTint="@color/g200"
             app:srcCompat="@drawable/sound" />
 
 </RelativeLayout>

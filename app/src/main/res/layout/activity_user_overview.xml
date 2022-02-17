@@ -5,6 +5,7 @@
     android:id="@+id/LinearLayoutDeletePageEbeneONE"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/g700"
     tools:context=".Menuebereich.UserOverviewActivity"
     android:orientation="vertical">
 
@@ -19,8 +20,6 @@
         android:id="@+id/imageButtonPictureChangeMenue"
         android:layout_width="50dp"
         android:layout_height="50dp"
-        android:layout_marginStart="220dp"
-        android:layout_below="@id/toolbarMAIN"
         tools:srcCompat="@tools:sample/avatars" />
 
     <ScrollView
