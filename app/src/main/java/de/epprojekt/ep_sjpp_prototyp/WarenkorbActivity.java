@@ -4,6 +4,7 @@ import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import android.annotation.SuppressLint;
 import android.content.Intent;
+import android.graphics.Color;
 import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.widget.ImageButton;
@@ -12,6 +13,7 @@ import android.widget.TextView;
 import java.util.ArrayList;
 
 import de.epprojekt.ep_sjpp_prototyp.Helferlein.AddAndSetHelferlein;
+import de.epprojekt.ep_sjpp_prototyp.Helferlein.AnimationsHelferlein;
 import de.epprojekt.ep_sjpp_prototyp.Helferlein.DBHelferlein;
 import de.epprojekt.ep_sjpp_prototyp.Helferlein.PreferenceHelferlein;
 
@@ -20,10 +22,12 @@ public class WarenkorbActivity extends AppCompatActivity {
     ImageButton ibtnLoeschen, ibtnHome;
     TextView tvToolbar;
     DBHelferlein hilfMirDaddyDB;
+    AnimationsHelferlein hilfMirMommyAnimation;
     LinearLayout ownLinearLayout;
     int i = 0;
     final static String KEY_AKTIVERNUTZER = "aktiver_nutzer";
     String aktiverNutzer;
+    int fiftyshadesofgrey = Color.parseColor("#CBD2D9");
 
     @SuppressLint("UseCompatLoadingForDrawables")
     @Override
@@ -32,6 +36,7 @@ public class WarenkorbActivity extends AppCompatActivity {
         setContentView(R.layout.activity_warenkorb);
 
         hilfMirDaddyDB = new DBHelferlein(this);
+        hilfMirMommyAnimation = new AnimationsHelferlein();
 
         aktiverNutzer = PreferenceHelferlein.loadUserFromPref(getApplicationContext(), KEY_AKTIVERNUTZER);
 
@@ -49,7 +54,7 @@ public class WarenkorbActivity extends AppCompatActivity {
         ArrayList<String> arrayListOfWarenkorbitems = hilfMirDaddyDB.createArrayListOfWarenkorbItems(aktiverNutzer);
 
         while(i < arrayListOfWarenkorbitems.size()){
-            AddAndSetHelferlein.addViewIBTN(AddAndSetHelferlein.setPicture(hilfMirDaddyDB.getWarenkorbItemname(arrayListOfWarenkorbitems.get(i),aktiverNutzer),arrayListOfWarenkorbitems.get(i),WarenkorbActivity.this,hilfMirDaddyDB),ownLinearLayout);
+            AddAndSetHelferlein.addViewIBTN(AddAndSetHelferlein.setPicture(hilfMirDaddyDB.getWarenkorbItemname(arrayListOfWarenkorbitems.get(i),aktiverNutzer),arrayListOfWarenkorbitems.get(i),WarenkorbActivity.this,hilfMirDaddyDB,fiftyshadesofgrey,hilfMirMommyAnimation,ibtnLoeschen),ownLinearLayout);
             i++;
         }
 
@@ -65,13 +70,13 @@ public class WarenkorbActivity extends AppCompatActivity {
 
             AlertDialog.Builder builder = new AlertDialog.Builder(WarenkorbActivity.this);
             builder.setTitle("Den Warenkorb vollständig löschen?");
-            builder.setPositiveButtonIcon(getDrawable(R.drawable.gruenerapfel));
+            builder.setPositiveButtonIcon(getDrawable(R.drawable.check));
             builder.setPositiveButton("", (dialog, item) -> {
                 hilfMirDaddyDB.deleteCompletefromWarenkorb(aktiverNutzer);
                 Intent refresh = new Intent(WarenkorbActivity.this, WarenkorbActivity.class);
                 startActivity(refresh);
             });
-            builder.setNegativeButtonIcon(getDrawable(R.drawable.roterapfel));
+            builder.setNegativeButtonIcon(getDrawable(R.drawable.remove));
             builder.show();
         });
 

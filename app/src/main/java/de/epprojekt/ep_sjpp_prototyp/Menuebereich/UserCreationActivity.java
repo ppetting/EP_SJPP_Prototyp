@@ -40,7 +40,7 @@ public class UserCreationActivity extends AppCompatActivity {
          benutzerAnlegen = findViewById(R.id.btnCreate);
          ibtnHome = findViewById(R.id.imageButtonHome);
          ibtnUseruebersicht = findViewById(R.id.imageButtonWarenkorb);
-         ibtnUseruebersicht.setImageResource(R.drawable.frau);
+         ibtnUseruebersicht.setImageResource(R.drawable.mann);
 
         if(UserOverviewActivity.anlegen_bearbeiten.equals("Benutzer anlegen")){
             //Button Anzeigetext

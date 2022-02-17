@@ -41,6 +41,7 @@ public class IbtnChangerActivity extends AppCompatActivity{
 
         ibtnMenue = findViewById(R.id.imageButtonHome);
         ibtnWarenkorb = findViewById(R.id.imageButtonWarenkorb);
+        ibtnWarenkorb.setImageResource(R.drawable.mann);
 
         ibtnRoterApfelChanger = findViewById(R.id.imageButtonRoterApfeleChanger);
         ibtnGruenerApfelChanger = findViewById(R.id.imageButtonGruenerApfelChanger);

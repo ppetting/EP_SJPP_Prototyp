@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/LinearLayoutDeletePageEbeneONE"
+    android:id="@+id/RelativeLayoutDeletePageEbeneONE"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/g700"
@@ -18,9 +18,12 @@
 
     <ImageButton
         android:id="@+id/imageButtonPictureChangeMenue"
-        android:layout_width="50dp"
+        android:layout_width="wrap_content"
         android:layout_height="50dp"
-        tools:srcCompat="@tools:sample/avatars" />
+        android:backgroundTint="@color/g200"
+        android:scaleType="fitCenter"
+        app:srcCompat="@drawable/replace"
+        tools:ignore="NotSibling" />
 
     <ScrollView
         android:layout_width="wrap_content"
@@ -30,13 +33,10 @@
             android:id="@+id/LinearLayoutDeletePage"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:background="@color/g700"
             android:orientation="vertical">
-
-
         </LinearLayout>
-
 
     </ScrollView>
 
-
-</RelativeLayout>
+</LinearLayout>

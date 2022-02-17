@@ -22,7 +22,7 @@ public class UserOverviewActivity extends AppCompatActivity {
     TextView tvToolbar;
     //public static String aktiverNutzerUOA;
     int j = 0;
-    int grandbudapesthotelrosa = Color.parseColor("#FA86C4");
+    int fiftyshadesofgrey = Color.parseColor("#CBD2D9");
     final static String KEY_AKTIVERNUTZER = "aktiver_nutzer";
     String aktiverNutzer;
 
@@ -64,7 +64,7 @@ public class UserOverviewActivity extends AppCompatActivity {
         });
 
         while (j < hilfMirDaddyDB.createArrayListOfUserdaten().size()) {
-            AddAndSetHelferlein.addViewBTN(AddAndSetHelferlein.generateButtonsAndSetName(hilfMirDaddyDB.createArrayListOfUserdaten().get(j),UserOverviewActivity.this,grandbudapesthotelrosa,hilfMirDaddyDB),ownLinearLayout);
+            AddAndSetHelferlein.addViewBTN(AddAndSetHelferlein.generateButtonsAndSetName(hilfMirDaddyDB.createArrayListOfUserdaten().get(j),UserOverviewActivity.this, fiftyshadesofgrey,hilfMirDaddyDB),ownLinearLayout);
             j++;
         }
     }
