@@ -7,7 +7,6 @@ import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.widget.ImageButton;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import de.epprojekt.ep_sjpp_prototyp.Helferlein.AddAndSetHelferlein;
 import de.epprojekt.ep_sjpp_prototyp.Helferlein.AnimationsHelferlein;

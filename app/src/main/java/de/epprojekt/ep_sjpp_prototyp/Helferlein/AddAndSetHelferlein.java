@@ -13,8 +13,8 @@ import androidx.appcompat.app.AlertDialog;
 import de.epprojekt.ep_sjpp_prototyp.MainActivity;
 import de.epprojekt.ep_sjpp_prototyp.Menuebereich.UserCreationActivity;
 import de.epprojekt.ep_sjpp_prototyp.Menuebereich.UserOverviewActivity;
-import de.epprojekt.ep_sjpp_prototyp.R;
 import de.epprojekt.ep_sjpp_prototyp.WarenkorbActivity;
+import de.epprojekt.ep_sjpp_prototyp.R;
 
 public class AddAndSetHelferlein {
 
@@ -111,8 +111,7 @@ public class AddAndSetHelferlein {
    public static void playAudioFlagVoll(Context context) {
         MediaPlayer mediaPlayernichtsmehr = MediaPlayer.create(context, R.raw.nichtsmehr);
         mediaPlayernichtsmehr.start();
-       Toast.makeText(context, "Es dürfen keine Produkte mehr hinzugefügt werden", Toast.LENGTH_SHORT).show();
+        Toast.makeText(context, "Es dürfen keine Produkte mehr hinzugefügt werden", Toast.LENGTH_SHORT).show();
     }
-
 
 }
