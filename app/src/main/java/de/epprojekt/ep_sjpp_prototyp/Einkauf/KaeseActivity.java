@@ -11,6 +11,7 @@ import android.widget.ImageButton;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import de.epprojekt.ep_sjpp_prototyp.Helferlein.AddAndSetHelferlein;
 import de.epprojekt.ep_sjpp_prototyp.Helferlein.AnimationsHelferlein;
 import de.epprojekt.ep_sjpp_prototyp.Helferlein.DBHelferlein;
 import de.epprojekt.ep_sjpp_prototyp.Helferlein.PreferenceHelferlein;
@@ -93,7 +94,7 @@ public class KaeseActivity extends AppCompatActivity {
                 counterHartkaese++;
                 PreferenceHelferlein.saveTotalInPref(getApplicationContext(),counterHartkaese,KEY_HARTKAESE);
             }else{
-                Toast.makeText(this, "Es dürfen keine Produkte mehr hinzugefügt werden", Toast.LENGTH_SHORT).show();
+                AddAndSetHelferlein.playAudioFlagVoll(this);
             }
         });
 
@@ -104,7 +105,7 @@ public class KaeseActivity extends AppCompatActivity {
                 counterScheibenkaese++;
                 PreferenceHelferlein.saveTotalInPref(getApplicationContext(),counterScheibenkaese,KEY_SCHEIBENKAESE);
             }else{
-                Toast.makeText(this, "Es dürfen keine Produkte mehr hinzugefügt werden", Toast.LENGTH_SHORT).show();
+                AddAndSetHelferlein.playAudioFlagVoll(this);
             }
         });
 
@@ -115,7 +116,7 @@ public class KaeseActivity extends AppCompatActivity {
                 counterStreichkaese++;
                 PreferenceHelferlein.saveTotalInPref(getApplicationContext(),counterStreichkaese,KEY_STREICHKAESE);
             }else{
-                Toast.makeText(this, "Es dürfen keine Produkte mehr hinzugefügt werden", Toast.LENGTH_SHORT).show();
+                AddAndSetHelferlein.playAudioFlagVoll(this);
             }
         });
 

@@ -9,6 +9,8 @@ import android.os.Bundle;
 import android.widget.ImageButton;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import de.epprojekt.ep_sjpp_prototyp.Helferlein.AddAndSetHelferlein;
 import de.epprojekt.ep_sjpp_prototyp.Helferlein.AnimationsHelferlein;
 import de.epprojekt.ep_sjpp_prototyp.Helferlein.DBHelferlein;
 import de.epprojekt.ep_sjpp_prototyp.Helferlein.PreferenceHelferlein;
@@ -83,7 +85,7 @@ public class AepfelActivity extends AppCompatActivity {
                 counterRoterApfel++;
                 PreferenceHelferlein.saveTotalInPref(getApplicationContext(),counterRoterApfel,KEY_ROTERAPFEL);
             }else{
-                Toast.makeText(this, "Es dürfen keine Produkte mehr hinzugefügt werden", Toast.LENGTH_SHORT).show();
+                AddAndSetHelferlein.playAudioFlagVoll(this);
             }
         });
 
@@ -94,7 +96,7 @@ public class AepfelActivity extends AppCompatActivity {
                 counterGruenerApfel++;
                 PreferenceHelferlein.saveTotalInPref(getApplicationContext(),counterGruenerApfel,KEY_GRUENERAPFEL);
             }else{
-                Toast.makeText(this, "Es dürfen keine Produkte mehr hinzugefügt werden", Toast.LENGTH_SHORT).show();
+                AddAndSetHelferlein.playAudioFlagVoll(this);
             }
         });
     }

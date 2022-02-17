@@ -1,6 +1,9 @@
 package de.epprojekt.ep_sjpp_prototyp;
 
 import androidx.appcompat.app.AppCompatActivity;
+
+import android.annotation.SuppressLint;
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.widget.ImageButton;
@@ -22,6 +25,7 @@ public class WarenkorbActivity extends AppCompatActivity {
     final static String KEY_AKTIVERNUTZER = "aktiver_nutzer";
     String aktiverNutzer;
 
+    @SuppressLint("UseCompatLoadingForDrawables")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -48,6 +52,7 @@ public class WarenkorbActivity extends AppCompatActivity {
         }
 
         ibtnLoeschen.setOnClickListener(v -> {
+
             hilfMirDaddyDB.deleteCompletefromWarenkorb(aktiverNutzer);
             Intent refresh = new Intent(this,WarenkorbActivity.class);
             startActivity(refresh);

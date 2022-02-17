@@ -10,6 +10,7 @@ import android.widget.ImageButton;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import de.epprojekt.ep_sjpp_prototyp.Helferlein.AddAndSetHelferlein;
 import de.epprojekt.ep_sjpp_prototyp.Helferlein.AnimationsHelferlein;
 import de.epprojekt.ep_sjpp_prototyp.Helferlein.DBHelferlein;
 import de.epprojekt.ep_sjpp_prototyp.Helferlein.PreferenceHelferlein;
@@ -83,7 +84,7 @@ public class EierActivity extends AppCompatActivity {
                 counterSechserEier++;
                 PreferenceHelferlein.saveTotalInPref(getApplicationContext(),counterSechserEier,KEY_SECHSEREIER);
             }else{
-                Toast.makeText(this, "Es dürfen keine Produkte mehr hinzugefügt werden", Toast.LENGTH_SHORT).show();
+                AddAndSetHelferlein.playAudioFlagVoll(this);
             }
         });
 
@@ -94,7 +95,7 @@ public class EierActivity extends AppCompatActivity {
                 counterZehnerEier++;
                 PreferenceHelferlein.saveTotalInPref(getApplicationContext(),counterZehnerEier,KEY_ZEHNEREIER);
             }else{
-                Toast.makeText(this, "Es dürfen keine Produkte mehr hinzugefügt werden", Toast.LENGTH_SHORT).show();
+                AddAndSetHelferlein.playAudioFlagVoll(this);
             }
         });
 
