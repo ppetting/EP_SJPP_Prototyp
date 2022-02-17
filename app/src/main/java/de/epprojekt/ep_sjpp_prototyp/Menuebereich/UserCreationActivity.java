@@ -2,8 +2,6 @@ package de.epprojekt.ep_sjpp_prototyp.Menuebereich;
 
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
-
-import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.widget.Button;

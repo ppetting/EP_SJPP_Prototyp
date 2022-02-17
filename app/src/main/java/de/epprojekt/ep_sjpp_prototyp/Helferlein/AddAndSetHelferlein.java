@@ -3,28 +3,18 @@ package de.epprojekt.ep_sjpp_prototyp.Helferlein;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.BitmapFactory;
-
-import android.graphics.drawable.Drawable;
 import android.media.MediaPlayer;
-import android.text.InputType;
 import android.widget.Button;
-import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.Toast;
-
 import androidx.appcompat.app.AlertDialog;
-
-
-import java.io.SequenceInputStream;
-
-import de.epprojekt.ep_sjpp_prototyp.Einkauf.AepfelActivity;
 import de.epprojekt.ep_sjpp_prototyp.MainActivity;
 import de.epprojekt.ep_sjpp_prototyp.Menuebereich.UserCreationActivity;
 import de.epprojekt.ep_sjpp_prototyp.Menuebereich.UserOverviewActivity;
-import de.epprojekt.ep_sjpp_prototyp.R;
 import de.epprojekt.ep_sjpp_prototyp.WarenkorbActivity;
+import de.epprojekt.ep_sjpp_prototyp.R;
 
 public class AddAndSetHelferlein {
 
@@ -118,14 +108,10 @@ public class AddAndSetHelferlein {
         builder.show();
     }
 
-
-
-
    public static void playAudioFlagVoll(Context context) {
         MediaPlayer mediaPlayernichtsmehr = MediaPlayer.create(context, R.raw.nichtsmehr);
         mediaPlayernichtsmehr.start();
-       Toast.makeText(context, "Es dürfen keine Produkte mehr hinzugefügt werden", Toast.LENGTH_SHORT).show();
+        Toast.makeText(context, "Es dürfen keine Produkte mehr hinzugefügt werden", Toast.LENGTH_SHORT).show();
     }
-
 
 }

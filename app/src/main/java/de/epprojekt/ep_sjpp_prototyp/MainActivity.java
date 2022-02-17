@@ -11,7 +11,6 @@ import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.TextView;
 import android.widget.Toast;
-
 import java.util.Objects;
 
 import de.epprojekt.ep_sjpp_prototyp.Einkauf.GemueseUndObstActivity;
