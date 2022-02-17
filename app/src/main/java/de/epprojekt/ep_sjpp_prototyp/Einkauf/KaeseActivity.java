@@ -41,12 +41,15 @@ public class KaeseActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_kaese);
 
+        hilfMirDaddyDB = new DBHelferlein(this);
+        hilfMirMommyAnimation = new AnimationsHelferlein();
+
         ibtnHartkaese = findViewById(R.id.imageButtonHartkaese);
-        ibtnHartkaese.setImageBitmap(BitmapFactory.decodeByteArray(hilfMirDaddyDB.getDrawableFromTable("Hartkaese"),0,hilfMirDaddyDB.getDrawableFromTable("Hartkaese").length));
+        ibtnHartkaese.setImageBitmap(BitmapFactory.decodeByteArray(hilfMirDaddyDB.getDrawableFromTable(hartkaese),0,hilfMirDaddyDB.getDrawableFromTable(hartkaese).length));
         ibtnStreichkaese = findViewById(R.id.imageButtonStreichkaese);
-        ibtnStreichkaese.setImageBitmap(BitmapFactory.decodeByteArray(hilfMirDaddyDB.getDrawableFromTable("Streichkaese"),0,hilfMirDaddyDB.getDrawableFromTable("Streichkaese").length));
+        ibtnStreichkaese.setImageBitmap(BitmapFactory.decodeByteArray(hilfMirDaddyDB.getDrawableFromTable(streichkaese),0,hilfMirDaddyDB.getDrawableFromTable(streichkaese).length));
         ibtnScheibenkaese = findViewById(R.id.imageButtonScheibenkaese);
-        ibtnScheibenkaese.setImageBitmap(BitmapFactory.decodeByteArray(hilfMirDaddyDB.getDrawableFromTable("Kaeseaufschnitt"),0,hilfMirDaddyDB.getDrawableFromTable("Kaeseaufschnitt").length));
+        ibtnScheibenkaese.setImageBitmap(BitmapFactory.decodeByteArray(hilfMirDaddyDB.getDrawableFromTable(scheibenkaese),0,hilfMirDaddyDB.getDrawableFromTable(scheibenkaese).length));
 
         counterHartkaese = PreferenceHelferlein.loadTotalFromPref(this,KEY_HARTKAESE);
         counterStreichkaese = PreferenceHelferlein.loadTotalFromPref(this,KEY_STREICHKAESE);
@@ -59,9 +62,6 @@ public class KaeseActivity extends AppCompatActivity {
         ibtnSoundHartkaese = findViewById(R.id.imageButtonSoundHartkaese);
         ibtnSoundScheibenkaese = findViewById(R.id.imageButtonSoundScheibenkaese);
         ibtnSoundStreichkaese = findViewById(R.id.imageButtonSoundStreichkaese);
-
-        hilfMirDaddyDB = new DBHelferlein(this);
-        hilfMirMommyAnimation = new AnimationsHelferlein();
 
         tvToolbar = findViewById(R.id.TVToolbar);
         tvToolbar.setText(aktiverNutzer);
@@ -116,8 +116,6 @@ public class KaeseActivity extends AppCompatActivity {
                 AddAndSetHelferlein.playAudioFlagVoll(this);
             }
         });
-
-
 
     }
 }

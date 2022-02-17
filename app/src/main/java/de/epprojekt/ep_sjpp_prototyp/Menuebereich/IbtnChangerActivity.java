@@ -11,12 +11,14 @@ import android.os.Build;
 import android.os.Bundle;
 import android.os.Environment;
 import android.provider.MediaStore;
+import android.view.View;
 import android.widget.ImageButton;
 import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.InputStream;
 import de.epprojekt.ep_sjpp_prototyp.Helferlein.DBHelferlein;
+import de.epprojekt.ep_sjpp_prototyp.MainActivity;
 import de.epprojekt.ep_sjpp_prototyp.R;
 
 
@@ -51,6 +53,22 @@ public class IbtnChangerActivity extends AppCompatActivity{
 
         ibtnRoterApfelChanger.setOnClickListener(v -> selectImage("roterApfel"));
         ibtnGruenerApfelChanger.setOnClickListener(v -> selectImage("gruenerApfel"));
+        ibtnGurkeChanger.setOnClickListener(v -> selectImage("Salatgurke"));
+        ibtnSechserEierChanger.setOnClickListener(v -> selectImage("sechserPackungEier"));
+        ibtnZehnerEierChanger.setOnClickListener(v -> selectImage("zehnerPackungEier"));
+        ibtnHartkaeseChanger.setOnClickListener(v -> selectImage("Hartkaese"));
+        ibtnStreichkaeseChanger.setOnClickListener(v -> selectImage("Streichkaese"));
+        ibtnScheibenkaeseChanger.setOnClickListener(v -> selectImage("Kaeseaufschnitt"));
+
+        ibtnWarenkorb.setOnClickListener(v -> {
+            Intent intentUOA = new Intent(this, UserOverviewActivity.class);
+            startActivity(intentUOA);
+        });
+
+        ibtnMenue.setOnClickListener(v -> {
+            Intent intentHome = new Intent(this, MainActivity.class);
+            startActivity(intentHome);
+        });
 
     }
 
