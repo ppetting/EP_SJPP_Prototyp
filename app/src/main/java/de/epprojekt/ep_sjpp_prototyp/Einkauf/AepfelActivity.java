@@ -7,7 +7,6 @@ import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.widget.ImageButton;
 import android.widget.TextView;
-
 import de.epprojekt.ep_sjpp_prototyp.Helferlein.AddAndSetHelferlein;
 import de.epprojekt.ep_sjpp_prototyp.Helferlein.AnimationsHelferlein;
 import de.epprojekt.ep_sjpp_prototyp.Helferlein.DBHelferlein;
@@ -74,7 +73,6 @@ public class AepfelActivity extends AppCompatActivity {
             Intent intentHome = new Intent(this, MainActivity.class);
             startActivity(intentHome);
         });
-
 
         ibtnRoterApfel.setOnClickListener(v -> {
             if (hilfMirDaddyDB.darfHinzugefügtWerden(roterApfel, aktiverNutzer)){

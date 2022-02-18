@@ -11,7 +11,6 @@ import android.os.Build;
 import android.os.Bundle;
 import android.os.Environment;
 import android.provider.MediaStore;
-import android.view.View;
 import android.widget.ImageButton;
 import java.io.ByteArrayOutputStream;
 import java.io.File;
@@ -21,15 +20,12 @@ import de.epprojekt.ep_sjpp_prototyp.Helferlein.DBHelferlein;
 import de.epprojekt.ep_sjpp_prototyp.MainActivity;
 import de.epprojekt.ep_sjpp_prototyp.R;
 
-
 public class IbtnChangerActivity extends AppCompatActivity{
 
     ImageButton  ibtnMenue, ibtnWarenkorb;
     ImageButton ibtnRoterApfelChanger,ibtnGruenerApfelChanger,ibtnGurkeChanger,ibtnSechserEierChanger,ibtnZehnerEierChanger,ibtnHartkaeseChanger,ibtnStreichkaeseChanger,ibtnScheibenkaeseChanger,ibtnKaeseChanger;
     DBHelferlein hilfMirDaddyDB;
     public static byte[] byteArray = null;
-
-
 
     @RequiresApi(api = Build.VERSION_CODES.O)
     @Override
@@ -100,7 +96,6 @@ public class IbtnChangerActivity extends AppCompatActivity{
         builder.show();
     }
 
-
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
@@ -120,7 +115,6 @@ public class IbtnChangerActivity extends AppCompatActivity{
         }
     }
 
-    // convert from bitmap to byte array
     public static byte[] getBytes(Bitmap bitmap) {
         ByteArrayOutputStream stream = new ByteArrayOutputStream();
         bitmap.compress(Bitmap.CompressFormat.PNG, 0, stream);

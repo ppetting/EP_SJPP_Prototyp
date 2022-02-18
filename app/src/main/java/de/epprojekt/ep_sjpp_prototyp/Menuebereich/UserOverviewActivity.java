@@ -20,7 +20,6 @@ public class UserOverviewActivity extends AppCompatActivity {
     DBHelferlein hilfMirDaddyDB;
     public static String anlegen_bearbeiten = "Benutzer anlegen";
     TextView tvToolbar;
-    //public static String aktiverNutzerUOA;
     int j = 0;
     int fiftyshadesofgrey = Color.parseColor("#CBD2D9");
     final static String KEY_AKTIVERNUTZER = "aktiver_nutzer";

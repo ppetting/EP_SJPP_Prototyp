@@ -7,7 +7,6 @@ import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.widget.ImageButton;
 import android.widget.TextView;
-
 import de.epprojekt.ep_sjpp_prototyp.Helferlein.AddAndSetHelferlein;
 import de.epprojekt.ep_sjpp_prototyp.Helferlein.AnimationsHelferlein;
 import de.epprojekt.ep_sjpp_prototyp.Helferlein.DBHelferlein;
@@ -47,7 +46,6 @@ public class GemueseUndObstActivity extends AppCompatActivity {
         ibtnAepfel = findViewById(R.id.imageButtonAepfel);
         ibtnGurke = findViewById(R.id.imageButtonGurke);
         ibtnGurke.setImageBitmap(BitmapFactory.decodeByteArray(hilfMirDaddyDB.getDrawableFromTable("Salatgurke"),0,hilfMirDaddyDB.getDrawableFromTable("Salatgurke").length));
-
 
         ibtnWarenkorb = findViewById(R.id.imageButtonWarenkorb);
         ibtnMenue = findViewById(R.id.imageButtonHome);

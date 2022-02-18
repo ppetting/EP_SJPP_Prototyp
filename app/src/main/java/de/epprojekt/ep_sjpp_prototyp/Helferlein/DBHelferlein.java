@@ -74,9 +74,6 @@ public class DBHelferlein extends SQLiteOpenHelper {
         database.insert(sortiment, null, contentValues);
     }
 
-
-
-    //Warenkorb OnClick erstellen
     @SuppressLint("SQLiteString")
     public void createWarenkorbOnClick(String name){
         SQLiteDatabase db = this.getWritableDatabase();
@@ -84,9 +81,6 @@ public class DBHelferlein extends SQLiteOpenHelper {
         close();
     }
 
-
-
-    //WARENKORB FUNKTIONEN
     public long insertIntoWarenkorb(ImageButton ibtn, Integer bildInteger, String itemnamekey, String itemname, String username) {
 
         SQLiteDatabase database = this.getWritableDatabase();
@@ -119,9 +113,6 @@ public class DBHelferlein extends SQLiteOpenHelper {
         database.close();
     }
 
-
-
-
     public ArrayList<String> createArrayListOfWarenkorbItems(String username) {
         SQLiteDatabase database = this.getReadableDatabase();
         Cursor cursor = database.rawQuery("SELECT itemnamekey FROM Warenkorb" +username, null);
@@ -144,8 +135,6 @@ public class DBHelferlein extends SQLiteOpenHelper {
         return arrayOfWarenkorbItemsNAME;
     }
 
-
-    //USERDATEN FUNKTIONEN
     public long insertIntoUserdaten(String username, Integer flaggruen, Integer flagblau, Integer flagrot) {
 
         SQLiteDatabase database = this.getWritableDatabase();
@@ -167,7 +156,6 @@ public class DBHelferlein extends SQLiteOpenHelper {
         cursor.close();
 
         return database.insert(userdaten, null, contentValues);
-
     }
 
     public ArrayList<String> createArrayListOfUserdaten() {
@@ -201,8 +189,6 @@ public class DBHelferlein extends SQLiteOpenHelper {
         database.close();
     }
 
-    //gibt die Flag-Art des Produkts als String zurück
-    // Sucht Flag (ob grün,rot,blau) zum entsprechenden Produkt
     public String fetchSortiment(String produktname) {
        SQLiteDatabase database = this.getWritableDatabase();
        Cursor cursor = database.query(sortiment, new String[]{"flag" }, "bildname =?", new String[]{produktname }, null, null, null);
@@ -212,8 +198,6 @@ public class DBHelferlein extends SQLiteOpenHelper {
         return cursor.getString(0);
     }
 
-    // Sucht maximale Flaganzahl einer bestimmten Flagart für den übergebenen User
-        //gibt es für weitere Berechnungen als Integer zurück
     public Integer getFlaganzahl(String aktuellerUser,String flag) {
         SQLiteDatabase database = this.getWritableDatabase();
         Cursor cursor = database.query(userdaten, new String[]{flag}, "username =?", new String[]{aktuellerUser }, null, null, null);
@@ -222,8 +206,7 @@ public class DBHelferlein extends SQLiteOpenHelper {
         }
         return cursor.getInt(0);
     }
-    // Sucht maximale Flaganzahl einer bestimmten Flagart für den übergebenen User
-        //gibt es für Textfelder als String zurück
+
     public String getFlaganzahlString(String aktuellerUser,String flag) {
         SQLiteDatabase database = this.getWritableDatabase();
         Cursor cursor = database.query(userdaten, new String[]{flag}, "username =?", new String[]{aktuellerUser }, null, null, null);
@@ -233,8 +216,6 @@ public class DBHelferlein extends SQLiteOpenHelper {
         return cursor.getString(0);
     }
 
-
-    // gibt den Namen des Produkts zurück (nicht des individuellen Produktnamens Item1)
     public String getWarenkorbItemname (String itemnamekey, String aktuellerUser) {
         SQLiteDatabase database = this.getWritableDatabase();
         Cursor cursor = database.query(warenkorb + aktuellerUser, new String[]{"itemname"}, "itemnamekey =?", new String[]{itemnamekey}, null, null, null);
@@ -244,7 +225,6 @@ public class DBHelferlein extends SQLiteOpenHelper {
         return cursor.getString(0);
     }
 
-    //Zählt die Anzahl einer bestimmten Flagart im Einkaufswagen des aktiven Nutzers
     public Integer flagCountEinkaufswagen(String flagart, String aktivernutzer) {
         int count = 0;
         int x = 0;

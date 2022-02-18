@@ -43,12 +43,12 @@ public class UserCreationActivity extends AppCompatActivity {
          ibtnUseruebersicht.setImageResource(R.drawable.mann);
 
         if(UserOverviewActivity.anlegen_bearbeiten.equals("Benutzer anlegen")){
-            //Button Anzeigetext
+
             benutzerAnlegen.setText(UserOverviewActivity.anlegen_bearbeiten);
         }else if(UserOverviewActivity.anlegen_bearbeiten.equals("Benutzer aktualisieren")){
-            //Button Anzeigetext
+
             benutzerAnlegen.setText(UserOverviewActivity.anlegen_bearbeiten);
-            //Vorausgefüllt mit den aktuellen Userdaten
+
             gruenerFlag.setText(hilfMirDaddyDB.getFlaganzahlString(aktiverNutzer,"flaggruen"));
             roterFlag.setText(hilfMirDaddyDB.getFlaganzahlString(aktiverNutzer,"flagrot"));
             blauerFlag.setText(hilfMirDaddyDB.getFlaganzahlString(aktiverNutzer,"flagblau"));
@@ -66,7 +66,7 @@ public class UserCreationActivity extends AppCompatActivity {
         });
 
          benutzerAnlegen.setOnClickListener(v -> {
-             //Benutzer anlegen
+
              if(UserOverviewActivity.anlegen_bearbeiten.equals("Benutzer anlegen")) {
                  nameTXT = name.getText().toString();
                  gruenerFlagTXT = Integer.parseInt(gruenerFlag.getText().toString());
@@ -82,7 +82,7 @@ public class UserCreationActivity extends AppCompatActivity {
 
                  Toast.makeText(UserCreationActivity.this, "Benutzer wurde angelegt", Toast.LENGTH_SHORT).show();
 
-             //Benutzer bearbeiten
+
              }else if(UserOverviewActivity.anlegen_bearbeiten.equals("Benutzer aktualisieren")){
 
                  final CharSequence[] options = {"Ja", "Nein"};

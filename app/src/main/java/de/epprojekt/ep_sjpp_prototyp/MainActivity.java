@@ -3,7 +3,6 @@ package de.epprojekt.ep_sjpp_prototyp;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
-
 import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.media.MediaPlayer;
@@ -14,7 +13,6 @@ import android.widget.ImageButton;
 import android.widget.TextView;
 import android.widget.Toast;
 import java.util.Objects;
-
 import de.epprojekt.ep_sjpp_prototyp.Einkauf.GemueseUndObstActivity;
 import de.epprojekt.ep_sjpp_prototyp.Einkauf.MilchprdoukteActivity;
 import de.epprojekt.ep_sjpp_prototyp.Helferlein.DBHelferlein;
@@ -36,7 +34,6 @@ public class MainActivity extends AppCompatActivity {
     final static String KEY_PASSWORT = "key_passwort";
     String aktiverNutzer;
 
-
     @SuppressLint("UseCompatLoadingForDrawables")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -55,14 +52,12 @@ public class MainActivity extends AppCompatActivity {
 
         aktiverNutzer = PreferenceHelferlein.loadUserFromPref(getApplicationContext(), KEY_AKTIVERNUTZER);
 
-        //TOOLBAR
         toolbar = findViewById(R.id.toolbarMAIN);
         tvToolbar = findViewById(R.id.TVToolbar);
         tvToolbar.setText(aktiverNutzer);
         setSupportActionBar(toolbar);
         Objects.requireNonNull(getSupportActionBar()).setDisplayShowTitleEnabled(false);
 
-        //BTN ZUWEISUNG
         ibtnGemueseUndObst = findViewById(R.id.imageButtonGemueseUndObst);
         ibtnGetraenke = findViewById(R.id.imageButtonGetraenke);
         ibtnWeizenprodukte = findViewById(R.id.imageButtonWeizenprodukte);
@@ -79,7 +74,6 @@ public class MainActivity extends AppCompatActivity {
         ibtnSoundMilchprdoukte = findViewById(R.id.imageButtonSoundMilchprodukte);
         ibtnSoundFleischundWurst = findViewById(R.id.imageButtonSoundFleischundWurst);
 
-        //SOUND
         MediaPlayer mediaPlayerGemueseundObst = MediaPlayer.create(this, R.raw.obstundgemuese);
         MediaPlayer mediaPlayerGetraenke = MediaPlayer.create(this, R.raw.getraenke);
         MediaPlayer mediaPlayerWeizenprodukte = MediaPlayer.create(this, R.raw.weizenprodukte);
@@ -92,7 +86,6 @@ public class MainActivity extends AppCompatActivity {
         ibtnSoundMilchprdoukte.setOnClickListener(v -> mediaPlayerMilchprodukte.start());
         ibtnSoundFleischundWurst.setOnClickListener(v -> mediaPlayerFleischUndWurst.start());
 
-        //ONCLICKLISTENER
         ibtnGemueseUndObst.setOnClickListener(v -> {
             Intent intentGemueseUndObst = new Intent(this, GemueseUndObstActivity.class);
             startActivity(intentGemueseUndObst);

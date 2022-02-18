@@ -7,7 +7,6 @@ import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.widget.ImageButton;
 import android.widget.TextView;
-
 import de.epprojekt.ep_sjpp_prototyp.Helferlein.AddAndSetHelferlein;
 import de.epprojekt.ep_sjpp_prototyp.Helferlein.AnimationsHelferlein;
 import de.epprojekt.ep_sjpp_prototyp.Helferlein.DBHelferlein;
@@ -15,7 +14,6 @@ import de.epprojekt.ep_sjpp_prototyp.Helferlein.PreferenceHelferlein;
 import de.epprojekt.ep_sjpp_prototyp.MainActivity;
 import de.epprojekt.ep_sjpp_prototyp.R;
 import de.epprojekt.ep_sjpp_prototyp.WarenkorbActivity;
-
 
 public class KaeseActivity extends AppCompatActivity {
 
@@ -43,7 +41,6 @@ public class KaeseActivity extends AppCompatActivity {
 
         hilfMirDaddyDB = new DBHelferlein(this);
         hilfMirMommyAnimation = new AnimationsHelferlein();
-
 
         hilfMirDaddyDB = new DBHelferlein(this);
         hilfMirMommyAnimation = new AnimationsHelferlein();

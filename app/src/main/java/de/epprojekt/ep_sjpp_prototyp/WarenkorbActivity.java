@@ -11,7 +11,6 @@ import android.widget.ImageButton;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import java.util.ArrayList;
-
 import de.epprojekt.ep_sjpp_prototyp.Helferlein.AddAndSetHelferlein;
 import de.epprojekt.ep_sjpp_prototyp.Helferlein.AnimationsHelferlein;
 import de.epprojekt.ep_sjpp_prototyp.Helferlein.DBHelferlein;

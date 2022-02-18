@@ -8,8 +8,6 @@ public class PreferenceHelferlein {
 
     private static final String MY_PREFERENCE_NAME = "de.epprojekt.ep_sjpp_prototyp";
 
-
-
     public static void saveTotalInPref(Context context, int total, String key){
         SharedPreferences sharedPreferences = context.getSharedPreferences(MY_PREFERENCE_NAME, Context.MODE_PRIVATE);
         SharedPreferences.Editor editor = sharedPreferences.edit();

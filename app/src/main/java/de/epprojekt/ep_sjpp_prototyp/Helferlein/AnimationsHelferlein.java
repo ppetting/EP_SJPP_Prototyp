@@ -10,8 +10,6 @@ public class AnimationsHelferlein {
 
     public void ownAnimation(ImageButton item, ImageButton warenkorb){
 
-        //AM ENDE MÜSSEN WIR DIE BERECHNUNGEN SO ANPASSEN WIE WIR DIE EINEZELNEN LAYOUTS VERSCHOBEN HABEN
-
         //ANIMATIONSSET
         AnimationSet animationSet = new AnimationSet(false);
 
@@ -56,8 +54,6 @@ public class AnimationsHelferlein {
     }
 
     public void ownAnimationWithInvisible(ImageButton item, ImageButton warenkorb){
-
-        //AM ENDE MÜSSEN WIR DIE BERECHNUNGEN SO ANPASSEN WIE WIR DIE EINEZELNEN LAYOUTS VERSCHOBEN HABEN
 
         //ANIMATIONSSET
         AnimationSet animationSet2 = new AnimationSet(false);
