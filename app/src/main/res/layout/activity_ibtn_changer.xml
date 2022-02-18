@@ -37,16 +37,34 @@
                 android:backgroundTint="@color/g200"
                 tools:ignore="NotSibling" />
 
+            <TextView
+                android:id="@+id/tvGruenerApfel"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/imageButtonGruenerApfelChanger"
+                android:text="grüner Apfel"
+                android:textColor="@color/g200"
+                android:layout_centerHorizontal="true"/>
+
             <ImageButton
                 android:id="@+id/imageButtonRoterApfeleChanger"
                 android:layout_width="150dp"
                 android:layout_height="150dp"
                 android:layout_centerHorizontal="true"
                 android:scaleType="fitCenter"
-                android:layout_below="@id/imageButtonGruenerApfelChanger"
+                android:layout_below="@id/tvGruenerApfel"
                 app:srcCompat="@drawable/roterapfel"
                 android:backgroundTint="@color/g200"
                 tools:ignore="NotSibling" />
+
+            <TextView
+                android:id="@+id/tvRoterApfel"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/imageButtonRoterApfeleChanger"
+                android:text="roter Apfel"
+                android:textColor="@color/g200"
+                android:layout_centerHorizontal="true"/>
 
             <ImageButton
                 android:id="@+id/imageButtonGurkeChanger"
@@ -54,10 +72,19 @@
                 android:layout_height="150dp"
                 android:layout_centerHorizontal="true"
                 android:scaleType="fitCenter"
-                android:layout_below="@id/imageButtonRoterApfeleChanger"
+                android:layout_below="@id/tvRoterApfel"
                 app:srcCompat="@drawable/gurke"
                 android:backgroundTint="@color/g200"
                 tools:ignore="NotSibling" />
+
+            <TextView
+                android:id="@+id/tvGurke"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/imageButtonGurkeChanger"
+                android:text="Salatgurke"
+                android:textColor="@color/g200"
+                android:layout_centerHorizontal="true"/>
 
             <ImageButton
                 android:id="@+id/imageButtonSechserEierChanger"
@@ -65,10 +92,19 @@
                 android:layout_height="150dp"
                 android:layout_centerHorizontal="true"
                 android:scaleType="fitCenter"
-                android:layout_below="@id/imageButtonGurkeChanger"
+                android:layout_below="@id/tvGurke"
                 app:srcCompat="@drawable/sechser_eier"
                 android:backgroundTint="@color/g200"
                 tools:ignore="NotSibling" />
+
+            <TextView
+                android:id="@+id/tvSechserPackungEier"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/imageButtonSechserEierChanger"
+                android:text="sechser Packung Eier"
+                android:textColor="@color/g200"
+                android:layout_centerHorizontal="true"/>
 
             <ImageButton
                 android:id="@+id/imageButtonZehnerEierChanger"
@@ -76,10 +112,19 @@
                 android:layout_height="150dp"
                 android:layout_centerHorizontal="true"
                 android:scaleType="fitCenter"
-                android:layout_below="@id/imageButtonSechserEierChanger"
+                android:layout_below="@id/tvSechserPackungEier"
                 app:srcCompat="@drawable/zehner_eier"
                 android:backgroundTint="@color/g200"
                 tools:ignore="NotSibling" />
+
+            <TextView
+                android:id="@+id/tvZehnerPackungEier"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/imageButtonZehnerEierChanger"
+                android:text="zehner Packung Eier"
+                android:textColor="@color/g200"
+                android:layout_centerHorizontal="true"/>
 
             <ImageButton
                 android:id="@+id/imageButtonScheibenkaeseChanger"
@@ -87,10 +132,19 @@
                 android:layout_height="150dp"
                 android:layout_centerHorizontal="true"
                 android:scaleType="fitCenter"
-                android:layout_below="@id/imageButtonZehnerEierChanger"
+                android:layout_below="@id/tvZehnerPackungEier"
                 app:srcCompat="@drawable/kaesescheibe"
                 android:backgroundTint="@color/g200"
                 tools:ignore="NotSibling" />
+
+            <TextView
+                android:id="@+id/tvScheibenkaese"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/imageButtonScheibenkaeseChanger"
+                android:text="Scheibenkäse"
+                android:textColor="@color/g200"
+                android:layout_centerHorizontal="true"/>
 
             <ImageButton
                 android:id="@+id/imageButtonHartkaeseChanger"
@@ -98,10 +152,19 @@
                 android:layout_height="150dp"
                 android:layout_centerHorizontal="true"
                 android:scaleType="fitCenter"
-                android:layout_below="@id/imageButtonScheibenkaeseChanger"
+                android:layout_below="@id/tvScheibenkaese"
                 app:srcCompat="@drawable/hartkaese"
                 android:backgroundTint="@color/g200"
                 tools:ignore="NotSibling" />
+
+            <TextView
+                android:id="@+id/tvHartkaese"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/imageButtonHartkaeseChanger"
+                android:text="Hartkäse"
+                android:textColor="@color/g200"
+                android:layout_centerHorizontal="true"/>
 
             <ImageButton
                 android:id="@+id/imageButtonStreichkaeseChanger"
@@ -109,11 +172,20 @@
                 android:layout_height="150dp"
                 android:layout_centerHorizontal="true"
                 android:scaleType="fitCenter"
-                android:layout_below="@id/imageButtonHartkaeseChanger"
+                android:layout_below="@id/tvHartkaese"
                 app:srcCompat="@drawable/streichkaese"
                 android:backgroundTint="@color/g200"
                 tools:ignore="NotSibling" />
 
+            <TextView
+                android:id="@+id/tvStreichkaese"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/imageButtonStreichkaeseChanger"
+                android:text="Streichkäse"
+                android:paddingBottom="10dp"
+                android:textColor="@color/g200"
+                android:layout_centerHorizontal="true"/>
 
 
         </RelativeLayout>
