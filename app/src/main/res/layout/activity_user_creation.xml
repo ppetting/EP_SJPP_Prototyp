@@ -81,6 +81,8 @@
         android:layout_below="@id/ETblau"
         android:layout_marginTop="30dp"
         android:layout_centerHorizontal="true"
+        android:backgroundTint="@color/g200"
+        android:textColor="@color/g500"
         android:text="Neuen Benutzer anlegen"
         android:textSize="15dp" />
 

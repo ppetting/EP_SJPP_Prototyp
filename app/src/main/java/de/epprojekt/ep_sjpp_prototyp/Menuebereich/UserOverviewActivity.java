@@ -31,9 +31,9 @@ public class UserOverviewActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_user_overview);
 
-        ownLinearLayout = findViewById(R.id.LinearLayoutDeletePage);
-
         hilfMirDaddyDB = new DBHelferlein(this);
+
+        ownLinearLayout = findViewById(R.id.LinearLayoutDeletePage);
 
         aktiverNutzer = PreferenceHelferlein.loadUserFromPref(getApplicationContext(), KEY_AKTIVERNUTZER);
 

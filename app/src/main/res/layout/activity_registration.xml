@@ -30,6 +30,7 @@
                     android:layout_height="wrap_content"
                     android:layout_below="@+id/editTextPassword"
                     android:backgroundTint="@color/g200"
+                    android:textColor="@color/g500"
                     android:text="Registrierung"
                     />
 

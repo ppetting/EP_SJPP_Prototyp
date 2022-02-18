@@ -4,6 +4,7 @@ import android.annotation.SuppressLint;
 import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
+import android.database.DatabaseUtils;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.graphics.Bitmap;
@@ -297,6 +298,17 @@ public class DBHelferlein extends SQLiteOpenHelper {
 
     }
 
+    public boolean isEmpty(){
+        SQLiteDatabase database = this.getReadableDatabase();
+
+        long NoOfRows = DatabaseUtils.queryNumEntries(database,userdaten);
+
+        if (NoOfRows == 0){
+            return true;
+        } else {
+            return false;
+        }
+    }
 
     public byte[] drawableToByteArray (Context context, Integer i) {
         InputStream inputStream = context.getResources().openRawResource(i);

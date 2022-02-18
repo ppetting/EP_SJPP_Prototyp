@@ -20,6 +20,7 @@ import de.epprojekt.ep_sjpp_prototyp.Einkauf.MilchprdoukteActivity;
 import de.epprojekt.ep_sjpp_prototyp.Helferlein.DBHelferlein;
 import de.epprojekt.ep_sjpp_prototyp.Helferlein.PreferenceHelferlein;
 import de.epprojekt.ep_sjpp_prototyp.Menuebereich.RegistrationActivity;
+import de.epprojekt.ep_sjpp_prototyp.Menuebereich.UserCreationActivity;
 import de.epprojekt.ep_sjpp_prototyp.Menuebereich.UserOverviewActivity;
 
 
@@ -31,7 +32,6 @@ public class MainActivity extends AppCompatActivity {
     Toolbar toolbar;
     DBHelferlein hilfMirDaddyDB;
     public final static String FIRST_APP_START_MAIN = "FirstAppStartMain";
-    public final static String FIRST_APP_START_MAIN_TWO = "FirstAppStartMainTwo";
     final static String KEY_AKTIVERNUTZER = "aktiver_nutzer";
     final static String KEY_PASSWORT = "key_passwort";
     String aktiverNutzer;
@@ -43,12 +43,15 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-         if(PreferenceHelferlein.loadPassword(getApplicationContext(), KEY_PASSWORT).equals("")) {
-             Intent intent = new Intent(this, RegistrationActivity.class);
-             startActivity(intent);
-         }
-
         hilfMirDaddyDB = new DBHelferlein(this);
+
+         if(PreferenceHelferlein.loadPassword(getApplicationContext(), KEY_PASSWORT).equals("")) {
+             Intent intentRegistration = new Intent(this, RegistrationActivity.class);
+             startActivity(intentRegistration);}
+         else if(hilfMirDaddyDB.isEmpty()){
+             Intent intentUCO = new Intent(this, UserCreationActivity.class);
+             startActivity(intentUCO);
+        }
 
         aktiverNutzer = PreferenceHelferlein.loadUserFromPref(getApplicationContext(), KEY_AKTIVERNUTZER);
 
@@ -123,7 +126,7 @@ public class MainActivity extends AppCompatActivity {
             builder.show();
         });
 
-        if(PreferenceHelferlein.firstAppStart(getApplicationContext(),FIRST_APP_START_MAIN_TWO)) {
+        if(PreferenceHelferlein.firstAppStart(getApplicationContext(),FIRST_APP_START_MAIN)) {
             hilfMirDaddyDB.setDrawableFromGallery("roterApfel", hilfMirDaddyDB.drawableToByteArray(MainActivity.this, R.drawable.roterapfel));
             hilfMirDaddyDB.setDrawableFromGallery("gruenerApfel", hilfMirDaddyDB.drawableToByteArray(MainActivity.this, R.drawable.gruenerapfel));
             hilfMirDaddyDB.setDrawableFromGallery("Salatgurke", hilfMirDaddyDB.drawableToByteArray(MainActivity.this, R.drawable.gurke));
