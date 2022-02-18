@@ -95,8 +95,8 @@ public class AddAndSetHelferlein {
                 dialog.dismiss();
                 dbHelferlein.deletefromUserdaten(PreferenceHelferlein.loadUserFromPref(context, KEY_AKTIVERNUTZER));
                 dialog.dismiss();
-                PreferenceHelferlein.saveUserInPref(context,"", KEY_AKTIVERNUTZER);
-                Intent refresh = new Intent(context, MainActivity.class);
+                PreferenceHelferlein.saveUserInPref(context,"Benutzer wählen oder erstellen", KEY_AKTIVERNUTZER);
+                Intent refresh = new Intent(context, UserOverviewActivity.class);
                 context.startActivity(refresh);
             } else if (options[item].equals("Nein")) {
                 dialog.dismiss();
