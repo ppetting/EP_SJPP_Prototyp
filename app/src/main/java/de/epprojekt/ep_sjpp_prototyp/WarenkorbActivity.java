@@ -23,7 +23,7 @@ public class WarenkorbActivity extends AppCompatActivity {
     DBHelferlein hilfMirDaddyDB;
     AnimationsHelferlein hilfMirMommyAnimation;
     LinearLayout ownLinearLayout;
-    int i = 0;
+    int counter = 0;
     final static String KEY_AKTIVERNUTZER = "aktiver_nutzer";
     String aktiverNutzer;
     int fiftyshadesofgrey = Color.parseColor("#CBD2D9");
@@ -52,9 +52,9 @@ public class WarenkorbActivity extends AppCompatActivity {
 
         ArrayList<String> arrayListOfWarenkorbitems = hilfMirDaddyDB.createArrayListOfWarenkorbItems(aktiverNutzer);
 
-        while(i < arrayListOfWarenkorbitems.size()){
-            AddAndSetHelferlein.addViewIBTN(AddAndSetHelferlein.setPicture(hilfMirDaddyDB.getWarenkorbItemname(arrayListOfWarenkorbitems.get(i),aktiverNutzer),arrayListOfWarenkorbitems.get(i),WarenkorbActivity.this,hilfMirDaddyDB,fiftyshadesofgrey,hilfMirMommyAnimation,ibtnLoeschen),ownLinearLayout);
-            i++;
+        while(counter < arrayListOfWarenkorbitems.size()){
+            AddAndSetHelferlein.addViewIBTN(AddAndSetHelferlein.setPicture(hilfMirDaddyDB.getWarenkorbItemname(arrayListOfWarenkorbitems.get(counter),aktiverNutzer),arrayListOfWarenkorbitems.get(counter),WarenkorbActivity.this,hilfMirDaddyDB,fiftyshadesofgrey,hilfMirMommyAnimation,ibtnLoeschen),ownLinearLayout);
+            counter++;
         }
 
         ibtnLoeschen.setOnClickListener(v -> {

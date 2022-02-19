@@ -45,7 +45,7 @@ public class GemueseUndObstActivity extends AppCompatActivity {
 
         ibtnAepfel = findViewById(R.id.imageButtonAepfel);
         ibtnGurke = findViewById(R.id.imageButtonGurke);
-        ibtnGurke.setImageBitmap(BitmapFactory.decodeByteArray(hilfMirDaddyDB.getDrawableFromTable("Salatgurke"),0,hilfMirDaddyDB.getDrawableFromTable("Salatgurke").length));
+        ibtnGurke.setImageBitmap(BitmapFactory.decodeByteArray(hilfMirDaddyDB.getDrawableFromTable(gurke),0,hilfMirDaddyDB.getDrawableFromTable(gurke).length));
 
         ibtnWarenkorb = findViewById(R.id.imageButtonWarenkorb);
         ibtnMenue = findViewById(R.id.imageButtonHome);
@@ -75,7 +75,7 @@ public class GemueseUndObstActivity extends AppCompatActivity {
         });
 
         ibtnGurke.setOnClickListener(v -> {
-            if (hilfMirDaddyDB.darfHinzugefügtWerden(gurke, aktiverNutzer)){
+            if (hilfMirDaddyDB.darfHinzugefuegtWerden(gurke, aktiverNutzer)){
                 hilfMirDaddyDB.insertIntoWarenkorb(ibtnGurke, R.drawable.gurke, gurke + counterGurke, gurke, aktiverNutzer);
                 hilfMirMommyAnimation.ownAnimation(ibtnGurke, ibtnWarenkorb);
                 counterGurke++;

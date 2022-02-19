@@ -86,7 +86,7 @@ public class KaeseActivity extends AppCompatActivity {
         });
 
         ibtnHartkaese.setOnClickListener(v -> {
-            if (hilfMirDaddyDB.darfHinzugefügtWerden(hartkaese, aktiverNutzer)){
+            if (hilfMirDaddyDB.darfHinzugefuegtWerden(hartkaese, aktiverNutzer)){
                 hilfMirDaddyDB.insertIntoWarenkorb(ibtnHartkaese, R.drawable.hartkaese, hartkaese + counterHartkaese, hartkaese, aktiverNutzer);
                 hilfMirMommyAnimation.ownAnimation(ibtnHartkaese, ibtnWarenkorb);
                 counterHartkaese++;
@@ -97,7 +97,7 @@ public class KaeseActivity extends AppCompatActivity {
         });
 
         ibtnScheibenkaese.setOnClickListener(v -> {
-            if (hilfMirDaddyDB.darfHinzugefügtWerden(scheibenkaese, aktiverNutzer)){
+            if (hilfMirDaddyDB.darfHinzugefuegtWerden(scheibenkaese, aktiverNutzer)){
                 hilfMirDaddyDB.insertIntoWarenkorb(ibtnScheibenkaese, R.drawable.kaesescheibe, scheibenkaese + counterScheibenkaese, scheibenkaese, aktiverNutzer);
                 hilfMirMommyAnimation.ownAnimation(ibtnScheibenkaese, ibtnWarenkorb);
                 counterScheibenkaese++;
@@ -108,7 +108,7 @@ public class KaeseActivity extends AppCompatActivity {
         });
 
         ibtnStreichkaese.setOnClickListener(v -> {
-            if (hilfMirDaddyDB.darfHinzugefügtWerden(streichkaese, aktiverNutzer)){
+            if (hilfMirDaddyDB.darfHinzugefuegtWerden(streichkaese, aktiverNutzer)){
                 hilfMirDaddyDB.insertIntoWarenkorb(ibtnStreichkaese, R.drawable.streichkaese, streichkaese + counterStreichkaese, streichkaese, aktiverNutzer);
                 hilfMirMommyAnimation.ownAnimation(ibtnStreichkaese, ibtnWarenkorb);
                 counterStreichkaese++;

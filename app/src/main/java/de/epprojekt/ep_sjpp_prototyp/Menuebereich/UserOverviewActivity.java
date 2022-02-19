@@ -20,7 +20,7 @@ public class UserOverviewActivity extends AppCompatActivity {
     DBHelferlein hilfMirDaddyDB;
     public static String anlegen_bearbeiten = "Benutzer anlegen";
     TextView tvToolbar;
-    int j = 0;
+    int counter = 0;
     int fiftyshadesofgrey = Color.parseColor("#CBD2D9");
     final static String KEY_AKTIVERNUTZER = "aktiver_nutzer";
     String aktiverNutzer;
@@ -62,9 +62,9 @@ public class UserOverviewActivity extends AppCompatActivity {
             startActivity(intentHome);
         });
 
-        while (j < hilfMirDaddyDB.createArrayListOfUserdaten().size()) {
-            AddAndSetHelferlein.addViewBTN(AddAndSetHelferlein.generateButtonsAndSetName(hilfMirDaddyDB.createArrayListOfUserdaten().get(j),UserOverviewActivity.this, fiftyshadesofgrey,hilfMirDaddyDB),ownLinearLayout);
-            j++;
+        while (counter < hilfMirDaddyDB.createArrayListOfUserdaten().size()) {
+            AddAndSetHelferlein.addViewBTN(AddAndSetHelferlein.generateButtonsAndSetName(hilfMirDaddyDB.createArrayListOfUserdaten().get(counter),UserOverviewActivity.this, fiftyshadesofgrey,hilfMirDaddyDB),ownLinearLayout);
+            counter++;
         }
     }
 

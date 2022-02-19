@@ -245,7 +245,7 @@ public class DBHelferlein extends SQLiteOpenHelper {
         return count;
     }
 
-    public Boolean darfHinzugefügtWerden (String produktname, String aktiverNutzer){
+    public Boolean darfHinzugefuegtWerden(String produktname, String aktiverNutzer){
         Integer countEinkaufswagen = flagCountEinkaufswagen(fetchSortiment(produktname),aktiverNutzer);
         Integer personenmaximum = getFlaganzahl(aktiverNutzer, fetchSortiment(produktname));
         if(countEinkaufswagen < personenmaximum){

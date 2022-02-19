@@ -24,6 +24,14 @@ public class IbtnChangerActivity extends AppCompatActivity{
 
     ImageButton  ibtnMenue, ibtnWarenkorb;
     ImageButton ibtnRoterApfelChanger,ibtnGruenerApfelChanger,ibtnGurkeChanger,ibtnSechserEierChanger,ibtnZehnerEierChanger,ibtnHartkaeseChanger,ibtnStreichkaeseChanger,ibtnScheibenkaeseChanger,ibtnKaeseChanger;
+    final String roterApfel = "roterApfel";
+    final String gruenerApfel = "gruenerApfel";
+    final String zehnerEier = "zehnerPackungEier";
+    final String sechserEier = "sechserPackungEier";
+    final String gurke = "Salatgurke";
+    final String hartkaese = "Hartkaese";
+    final String streichkaese = "Streichkaese";
+    final String scheibenkaese = "Kaeseaufschnitt";
     DBHelferlein hilfMirDaddyDB;
     public static byte[] byteArray = null;
 
@@ -40,13 +48,21 @@ public class IbtnChangerActivity extends AppCompatActivity{
         ibtnWarenkorb.setImageResource(R.drawable.mann);
 
         ibtnRoterApfelChanger = findViewById(R.id.imageButtonRoterApfeleChanger);
+        ibtnRoterApfelChanger.setImageBitmap(BitmapFactory.decodeByteArray(hilfMirDaddyDB.getDrawableFromTable(roterApfel),0,hilfMirDaddyDB.getDrawableFromTable(roterApfel).length));
         ibtnGruenerApfelChanger = findViewById(R.id.imageButtonGruenerApfelChanger);
+        ibtnGruenerApfelChanger.setImageBitmap(BitmapFactory.decodeByteArray(hilfMirDaddyDB.getDrawableFromTable(gruenerApfel),0,hilfMirDaddyDB.getDrawableFromTable(gruenerApfel).length));
         ibtnGurkeChanger = findViewById(R.id.imageButtonGurkeChanger);
+        ibtnGurkeChanger.setImageBitmap(BitmapFactory.decodeByteArray(hilfMirDaddyDB.getDrawableFromTable(gurke),0,hilfMirDaddyDB.getDrawableFromTable(gurke).length));
         ibtnSechserEierChanger = findViewById(R.id.imageButtonSechserEierChanger);
+        ibtnSechserEierChanger.setImageBitmap(BitmapFactory.decodeByteArray(hilfMirDaddyDB.getDrawableFromTable(sechserEier),0,hilfMirDaddyDB.getDrawableFromTable(sechserEier).length));
         ibtnZehnerEierChanger = findViewById(R.id.imageButtonZehnerEierChanger);
+        ibtnZehnerEierChanger.setImageBitmap(BitmapFactory.decodeByteArray(hilfMirDaddyDB.getDrawableFromTable(zehnerEier),0,hilfMirDaddyDB.getDrawableFromTable(zehnerEier).length));
         ibtnHartkaeseChanger = findViewById(R.id.imageButtonHartkaeseChanger);
+        ibtnHartkaeseChanger.setImageBitmap(BitmapFactory.decodeByteArray(hilfMirDaddyDB.getDrawableFromTable(hartkaese),0,hilfMirDaddyDB.getDrawableFromTable(hartkaese).length));
         ibtnStreichkaeseChanger = findViewById(R.id.imageButtonStreichkaeseChanger);
+        ibtnStreichkaeseChanger.setImageBitmap(BitmapFactory.decodeByteArray(hilfMirDaddyDB.getDrawableFromTable(streichkaese),0,hilfMirDaddyDB.getDrawableFromTable(streichkaese).length));
         ibtnScheibenkaeseChanger = findViewById(R.id.imageButtonScheibenkaeseChanger);
+        ibtnScheibenkaeseChanger.setImageBitmap(BitmapFactory.decodeByteArray(hilfMirDaddyDB.getDrawableFromTable(scheibenkaese),0,hilfMirDaddyDB.getDrawableFromTable(scheibenkaese).length));
 
         ibtnRoterApfelChanger.setOnClickListener(v -> selectImage("roterApfel"));
         ibtnGruenerApfelChanger.setOnClickListener(v -> selectImage("gruenerApfel"));
@@ -144,6 +160,8 @@ public class IbtnChangerActivity extends AppCompatActivity{
             if (options[item].equals("Ja"))
             {
                 hilfMirDaddyDB.setDrawableFromGallery(string, byteArray);
+                Intent intent = new Intent(this, IbtnChangerActivity.class);
+                startActivity(intent);
             }
             else if (options[item].equals("Nein")) {
                 dialog.dismiss();

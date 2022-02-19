@@ -47,9 +47,9 @@ public class EierActivity extends AppCompatActivity {
         tvToolbar.setText(aktiverNutzer);
 
         ibtnSechserEier = findViewById(R.id.imageButtonSechserEier);
-        ibtnSechserEier.setImageBitmap(BitmapFactory.decodeByteArray(hilfMirDaddyDB.getDrawableFromTable("sechserPackungEier"),0,hilfMirDaddyDB.getDrawableFromTable("sechserPackungEier").length));
+        ibtnSechserEier.setImageBitmap(BitmapFactory.decodeByteArray(hilfMirDaddyDB.getDrawableFromTable(sechserEier),0,hilfMirDaddyDB.getDrawableFromTable(sechserEier).length));
         ibtnZehnerEier = findViewById(R.id.imageButtonZehnerEier);
-        ibtnZehnerEier.setImageBitmap(BitmapFactory.decodeByteArray(hilfMirDaddyDB.getDrawableFromTable("zehnerPackungEier"),0,hilfMirDaddyDB.getDrawableFromTable("zehnerPackungEier").length));
+        ibtnZehnerEier.setImageBitmap(BitmapFactory.decodeByteArray(hilfMirDaddyDB.getDrawableFromTable(zehnerEier),0,hilfMirDaddyDB.getDrawableFromTable(zehnerEier).length));
 
         ibtnSoundSechserEier = findViewById(R.id.imageButtonSoundSechserEier);
         ibtnSoundZehnerEier = findViewById(R.id.imageButtonSoundZehnerEier);
@@ -74,7 +74,7 @@ public class EierActivity extends AppCompatActivity {
         });
 
         ibtnSechserEier.setOnClickListener(v -> {
-            if (hilfMirDaddyDB.darfHinzugefügtWerden(sechserEier, aktiverNutzer)){
+            if (hilfMirDaddyDB.darfHinzugefuegtWerden(sechserEier, aktiverNutzer)){
                 hilfMirDaddyDB.insertIntoWarenkorb(ibtnSechserEier, R.drawable.sechser_eier, sechserEier + counterSechserEier, sechserEier, aktiverNutzer);
                 hilfMirMommyAnimation.ownAnimation(ibtnSechserEier, ibtnWarenkorb);
                 counterSechserEier++;
@@ -85,7 +85,7 @@ public class EierActivity extends AppCompatActivity {
         });
 
         ibtnZehnerEier.setOnClickListener(v -> {
-            if (hilfMirDaddyDB.darfHinzugefügtWerden(zehnerEier, aktiverNutzer)){
+            if (hilfMirDaddyDB.darfHinzugefuegtWerden(zehnerEier, aktiverNutzer)){
                 hilfMirDaddyDB.insertIntoWarenkorb(ibtnZehnerEier, R.drawable.zehner_eier, zehnerEier + counterZehnerEier, zehnerEier, aktiverNutzer);
                 hilfMirMommyAnimation.ownAnimation(ibtnZehnerEier, ibtnWarenkorb);
                 counterZehnerEier++;

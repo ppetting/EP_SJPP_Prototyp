@@ -48,9 +48,9 @@ public class AepfelActivity extends AppCompatActivity {
         tvToolbar.setText(aktiverNutzer);
 
         ibtnRoterApfel = findViewById(R.id.iamgeButtonRoterApfel);
-        ibtnRoterApfel.setImageBitmap(BitmapFactory.decodeByteArray(hilfMirDaddyDB.getDrawableFromTable("roterApfel"),0,hilfMirDaddyDB.getDrawableFromTable("roterApfel").length));
+        ibtnRoterApfel.setImageBitmap(BitmapFactory.decodeByteArray(hilfMirDaddyDB.getDrawableFromTable(roterApfel),0,hilfMirDaddyDB.getDrawableFromTable(roterApfel).length));
         ibtnGruenerApfel = findViewById(R.id.imageButtonGruenerApfel);
-        ibtnGruenerApfel.setImageBitmap(BitmapFactory.decodeByteArray(hilfMirDaddyDB.getDrawableFromTable("gruenerApfel"),0,hilfMirDaddyDB.getDrawableFromTable("gruenerApfel").length));
+        ibtnGruenerApfel.setImageBitmap(BitmapFactory.decodeByteArray(hilfMirDaddyDB.getDrawableFromTable(gruenerApfel),0,hilfMirDaddyDB.getDrawableFromTable(gruenerApfel).length));
 
         ibtnWarenkorb = findViewById(R.id.imageButtonWarenkorb);
         ibtnMenue = findViewById(R.id.imageButtonHome);
@@ -75,7 +75,7 @@ public class AepfelActivity extends AppCompatActivity {
         });
 
         ibtnRoterApfel.setOnClickListener(v -> {
-            if (hilfMirDaddyDB.darfHinzugefügtWerden(roterApfel, aktiverNutzer)){
+            if (hilfMirDaddyDB.darfHinzugefuegtWerden(roterApfel, aktiverNutzer)){
                 hilfMirDaddyDB.insertIntoWarenkorb(ibtnRoterApfel, R.drawable.roterapfel, roterApfel + counterRoterApfel, roterApfel, aktiverNutzer);
                 hilfMirMommyAnimation.ownAnimation(ibtnRoterApfel, ibtnWarenkorb);
                 counterRoterApfel++;
@@ -86,7 +86,7 @@ public class AepfelActivity extends AppCompatActivity {
         });
 
         ibtnGruenerApfel.setOnClickListener(v -> {
-            if (hilfMirDaddyDB.darfHinzugefügtWerden(gruenerApfel, aktiverNutzer)){
+            if (hilfMirDaddyDB.darfHinzugefuegtWerden(gruenerApfel, aktiverNutzer)){
                 hilfMirDaddyDB.insertIntoWarenkorb(ibtnGruenerApfel, R.drawable.gruenerapfel, gruenerApfel + counterGruenerApfel, gruenerApfel, aktiverNutzer);
                 hilfMirMommyAnimation.ownAnimation(ibtnGruenerApfel, ibtnWarenkorb);
                 counterGruenerApfel++;
